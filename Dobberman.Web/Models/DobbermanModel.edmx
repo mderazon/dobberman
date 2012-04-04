@@ -13,13 +13,27 @@
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DobbermanModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
         <EntityContainer Name="DobbermanEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ReportSet" EntityType="DobbermanModel.Report" />
+          <EntitySet Name="Reports" EntityType="DobbermanModel.Report" />
+          <EntitySet Name="Users" EntityType="DobbermanModel.User" />
+          <EntitySet Name="Authorities" EntityType="DobbermanModel.Authority" />
         </EntityContainer>
         <EntityType Name="Report">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ReportId" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ReportId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Type="Int32" Name="UserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Authority">
+          <Key>
+            <PropertyRef Name="AuthorityId" />
+          </Key>
+          <Property Type="Int32" Name="AuthorityId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -49,7 +63,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="DobbermanModel" >
-        <EntityTypeShape EntityType="DobbermanModel.Report" Width="1.5" PointX="8" PointY="4.5" Height="1.2110807291666665" />
+        <EntityTypeShape EntityType="DobbermanModel.Report" Width="1.5" PointX="8.25" PointY="4.125" Height="1.2110807291666665" />
+        <EntityTypeShape EntityType="DobbermanModel.User" Width="1.5" PointX="5.25" PointY="4.125" Height="1.2110807291666665" />
+        <EntityTypeShape EntityType="DobbermanModel.Authority" Width="1.5" PointX="11.125" PointY="4.125" Height="1.2110807291666665" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

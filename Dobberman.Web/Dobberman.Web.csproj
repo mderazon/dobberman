@@ -11,7 +11,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TAUP2C.Dobberman.Web</RootNamespace>
-    <AssemblyName>Dobberman.Web</AssemblyName>
+    <AssemblyName>TAUP2C.Dobberman.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>

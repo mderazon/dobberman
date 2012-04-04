@@ -11,31 +11,21 @@ using TAUP2C.Dobberman.Web.Models;
 
 namespace TAUP2C.Dobberman.Web.Services
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
     public class DobbermanService : IDobbermanService
     {
         
-
-        public Report GetReportById(string reportId)
+        Report IDobbermanService.GetReportById(string userId)
         {
-            using (DobbermanEntities dob = new DobbermanEntities())
-            {
-                Report r = new Report();
-                var report = (from r in dob.Reports
-            }
-            {
-                Author a = new Author();
-                var author = (from p in pubs.authors
-                              where p.au_id == authorId
-                              select p).First();
+            Report report = new Report();
+            // TODO add code to get from database
+            report.ReportId = 1;
+            report.ReportDescription = "What a pretty little report";
+            report.Mood = "Happy";
+            report.Authority = (new Authority());
+            report.User = new User();
 
-                a.authorCity = author.city;
-                a.authorFName = author.au_fname;
-                a.authorId = author.au_id;
-                a.authorLName = author.au_lname;
-
-                return a;
-            }
+            return report;
+            
         }
     }
 }

@@ -68,28 +68,76 @@ namespace TAUP2C.Dobberman.Web.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Report> ReportSet
+        public ObjectSet<Report> Reports
         {
             get
             {
-                if ((_ReportSet == null))
+                if ((_Reports == null))
                 {
-                    _ReportSet = base.CreateObjectSet<Report>("ReportSet");
+                    _Reports = base.CreateObjectSet<Report>("Reports");
                 }
-                return _ReportSet;
+                return _Reports;
             }
         }
-        private ObjectSet<Report> _ReportSet;
+        private ObjectSet<Report> _Reports;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<User> Users
+        {
+            get
+            {
+                if ((_Users == null))
+                {
+                    _Users = base.CreateObjectSet<User>("Users");
+                }
+                return _Users;
+            }
+        }
+        private ObjectSet<User> _Users;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Authority> Authorities
+        {
+            get
+            {
+                if ((_Authorities == null))
+                {
+                    _Authorities = base.CreateObjectSet<Authority>("Authorities");
+                }
+                return _Authorities;
+            }
+        }
+        private ObjectSet<Authority> _Authorities;
 
         #endregion
         #region AddTo Methods
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the ReportSet EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Reports EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToReportSet(Report report)
+        public void AddToReports(Report report)
         {
-            base.AddObject("ReportSet", report);
+            base.AddObject("Reports", report);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUsers(User user)
+        {
+            base.AddObject("Users", user);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Authorities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAuthorities(Authority authority)
+        {
+            base.AddObject("Authorities", authority);
         }
 
         #endregion
@@ -99,6 +147,61 @@ namespace TAUP2C.Dobberman.Web.Models
     #endregion
     
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DobbermanModel", Name="Authority")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Authority : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Authority object.
+        /// </summary>
+        /// <param name="authorityId">Initial value of the AuthorityId property.</param>
+        public static Authority CreateAuthority(global::System.Int32 authorityId)
+        {
+            Authority authority = new Authority();
+            authority.AuthorityId = authorityId;
+            return authority;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 AuthorityId
+        {
+            get
+            {
+                return _AuthorityId;
+            }
+            set
+            {
+                if (_AuthorityId != value)
+                {
+                    OnAuthorityIdChanging(value);
+                    ReportPropertyChanging("AuthorityId");
+                    _AuthorityId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("AuthorityId");
+                    OnAuthorityIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _AuthorityId;
+        partial void OnAuthorityIdChanging(global::System.Int32 value);
+        partial void OnAuthorityIdChanged();
+
+        #endregion
+    
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -113,11 +216,11 @@ namespace TAUP2C.Dobberman.Web.Models
         /// <summary>
         /// Create a new Report object.
         /// </summary>
-        /// <param name="id">Initial value of the Id property.</param>
-        public static Report CreateReport(global::System.Int32 id)
+        /// <param name="reportId">Initial value of the ReportId property.</param>
+        public static Report CreateReport(global::System.Int32 reportId)
         {
             Report report = new Report();
-            report.Id = id;
+            report.ReportId = reportId;
             return report;
         }
 
@@ -129,27 +232,82 @@ namespace TAUP2C.Dobberman.Web.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 Id
+        public global::System.Int32 ReportId
         {
             get
             {
-                return _Id;
+                return _ReportId;
             }
             set
             {
-                if (_Id != value)
+                if (_ReportId != value)
                 {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
+                    OnReportIdChanging(value);
+                    ReportPropertyChanging("ReportId");
+                    _ReportId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ReportId");
+                    OnReportIdChanged();
                 }
             }
         }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
+        private global::System.Int32 _ReportId;
+        partial void OnReportIdChanging(global::System.Int32 value);
+        partial void OnReportIdChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DobbermanModel", Name="User")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class User : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new User object.
+        /// </summary>
+        /// <param name="userId">Initial value of the UserId property.</param>
+        public static User CreateUser(global::System.Int32 userId)
+        {
+            User user = new User();
+            user.UserId = userId;
+            return user;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                if (_UserId != value)
+                {
+                    OnUserIdChanging(value);
+                    ReportPropertyChanging("UserId");
+                    _UserId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("UserId");
+                    OnUserIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _UserId;
+        partial void OnUserIdChanging(global::System.Int32 value);
+        partial void OnUserIdChanged();
 
         #endregion
     
