@@ -21,9 +21,34 @@
         <!--Pivot Control-->
         <controls:Pivot Title="Dobberman" Grid.ColumnSpan="3">
             <!--Pivot item one-->
-            <controls:PivotItem Header="Reports">
-                <Grid/>
-            </controls:PivotItem>
+                <controls:PivotItem Header="Reports">
+                <Grid>
+                    <ListBox Name="ReportList" Margin="0,0,0,0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Button Width="460" Height="120">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal" Height="80" Width="400">
+                                            <Image Source="{Binding moodImage}" Width="48" Height="48"/>
+                                            <StackPanel Orientation="Vertical" Height="80">
+                                                <StackPanel Orientation="Horizontal" Height="40">
+                                                    <TextBlock Width="100" FontSize="22" Text="Date:" Height="40"/>
+                                                    <TextBlock Width="200" FontSize="22" Text="{Binding date}" Height="40"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal" Height="40">
+                                                    <TextBlock Width="100" FontSize="22" Text="Authority:" Height="40"/>
+                                                    <TextBlock Width="200" FontSize="22" Text="{Binding authority}" Height="40"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+            </Grid>
+      </controls:PivotItem>
+            
 
             <!--Pivot item two-->
             <controls:PivotItem Header="Statistics">
