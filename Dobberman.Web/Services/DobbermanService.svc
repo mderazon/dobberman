@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="DobbermanService" CodeBehind="DobbermanService.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="TAUP2C.Dobberman.Web.Services.DobbermanService" CodeBehind="DobbermanService.svc.cs" %>

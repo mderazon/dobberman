@@ -37,4 +37,20 @@ namespace TAUP2C.Dobberman.Web.Services
         [DataMember]
         public Authority Authority { get; set; }
     }
+
+    [DataContract]
+    public class Authority
+    {
+        [DataMember]
+        public int AuthorityId { get; set; }
+        [DataMember]
+        public string FacebookPage { get; set; }
+    }
+
+    [DataContract]
+    public class User
+    {
+        [DataMember]
+        public string UserId { get; set; }
+    }
 }
