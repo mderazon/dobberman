@@ -4,11 +4,65 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" Namespace="DobbermanModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
-        <EntityContainer Name="DobbermanModelTargetContainer" >
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="DobbermanModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="DobbermanModelStoreContainer">
+    <EntitySet Name="Reports" EntityType="DobbermanModel.Store.Reports" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="DobbermanModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Authorities" EntityType="DobbermanModel.Store.Authorities" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserReport" Association="DobbermanModel.Store.UserReport">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Report" EntitySet="Reports" />
+    </AssociationSet>
+    <AssociationSet Name="AuthorityReport" Association="DobbermanModel.Store.AuthorityReport">
+      <End Role="Authority" EntitySet="Authorities" />
+      <End Role="Report" EntitySet="Reports" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Reports">
+    <Key>
+      <PropertyRef Name="ReportId" />
+    </Key>
+    <Property Name="ReportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_UserId" Type="int" Nullable="false" />
+    <Property Name="Authority_AuthorityId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Authorities">
+    <Key>
+      <PropertyRef Name="AuthorityId" />
+    </Key>
+    <Property Name="AuthorityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <Association Name="UserReport">
+    <End Role="User" Type="DobbermanModel.Store.Users" Multiplicity="1" />
+    <End Role="Report" Type="DobbermanModel.Store.Reports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Report">
+        <PropertyRef Name="User_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AuthorityReport">
+    <End Role="Authority" Type="DobbermanModel.Store.Authorities" Multiplicity="1" />
+    <End Role="Report" Type="DobbermanModel.Store.Reports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Authority">
+        <PropertyRef Name="AuthorityId" />
+      </Principal>
+      <Dependent Role="Report">
+        <PropertyRef Name="Authority_AuthorityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DobbermanModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
@@ -16,36 +70,90 @@
           <EntitySet Name="Reports" EntityType="DobbermanModel.Report" />
           <EntitySet Name="Users" EntityType="DobbermanModel.User" />
           <EntitySet Name="Authorities" EntityType="DobbermanModel.Authority" />
+          <AssociationSet Name="UserReport" Association="DobbermanModel.UserReport">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="AuthorityReport" Association="DobbermanModel.AuthorityReport">
+            <End Role="Authority" EntitySet="Authorities" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Report">
           <Key>
             <PropertyRef Name="ReportId" />
           </Key>
           <Property Type="Int32" Name="ReportId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="User" Relationship="DobbermanModel.UserReport" FromRole="Report" ToRole="User" />
+          <NavigationProperty Name="Authority" Relationship="DobbermanModel.AuthorityReport" FromRole="Report" ToRole="Authority" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
           <Property Type="Int32" Name="UserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Report" Relationship="DobbermanModel.UserReport" FromRole="User" ToRole="Report" />
         </EntityType>
         <EntityType Name="Authority">
           <Key>
             <PropertyRef Name="AuthorityId" />
           </Key>
           <Property Type="Int32" Name="AuthorityId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Report" Relationship="DobbermanModel.AuthorityReport" FromRole="Authority" ToRole="Report" />
         </EntityType>
+        <Association Name="UserReport">
+          <End Type="DobbermanModel.User" Role="User" Multiplicity="1" />
+          <End Type="DobbermanModel.Report" Role="Report" Multiplicity="*" />
+        </Association>
+        <Association Name="AuthorityReport">
+          <End Type="DobbermanModel.Authority" Role="Authority" Multiplicity="1" />
+          <End Type="DobbermanModel.Report" Role="Report" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs" Space="C-S">
-        <Alias Key="Model" Value="DobbermanModel" />
-        <Alias Key="Target" Value="DobbermanModel.Store" />
-        <EntityContainerMapping CdmEntityContainer="DobbermanEntities" StorageEntityContainer="DobbermanModelTargetContainer">
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DobbermanModelStoreContainer" CdmEntityContainer="DobbermanEntities">
+    <EntitySetMapping Name="Reports">
+      <EntityTypeMapping TypeName="IsTypeOf(DobbermanModel.Report)">
+        <MappingFragment StoreEntitySet="Reports">
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(DobbermanModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Authorities">
+      <EntityTypeMapping TypeName="IsTypeOf(DobbermanModel.Authority)">
+        <MappingFragment StoreEntitySet="Authorities">
+          <ScalarProperty Name="AuthorityId" ColumnName="AuthorityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserReport" TypeName="DobbermanModel.UserReport" StoreEntitySet="Reports">
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="User_UserId" />
+      </EndProperty>
+      <EndProperty Name="Report">
+        <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AuthorityReport" TypeName="DobbermanModel.AuthorityReport" StoreEntitySet="Reports">
+      <EndProperty Name="Authority">
+        <ScalarProperty Name="AuthorityId" ColumnName="Authority_AuthorityId" />
+      </EndProperty>
+      <EndProperty Name="Report">
+        <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
@@ -63,9 +171,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="DobbermanModel" >
-        <EntityTypeShape EntityType="DobbermanModel.Report" Width="1.5" PointX="8.25" PointY="4.125" Height="1.2110807291666665" />
-        <EntityTypeShape EntityType="DobbermanModel.User" Width="1.5" PointX="5.25" PointY="4.125" Height="1.2110807291666665" />
-        <EntityTypeShape EntityType="DobbermanModel.Authority" Width="1.5" PointX="11.125" PointY="4.125" Height="1.2110807291666665" />
+        <EntityTypeShape EntityType="DobbermanModel.Report" Width="1.5" PointX="6.25" PointY="2.625" Height="1.099264322916667" />
+        <EntityTypeShape EntityType="DobbermanModel.User" Width="1.5" PointX="2.875" PointY="2.625" Height="1.0992643229166665" />
+        <EntityTypeShape EntityType="DobbermanModel.Authority" Width="1.5" PointX="9.75" PointY="2.625" Height="1.0992643229166665" />
+        <AssociationConnector Association="DobbermanModel.UserReport">
+          <ConnectorPoint PointX="4.375" PointY="3.2568058268229167" />
+          <ConnectorPoint PointX="6.25" PointY="3.2568058268229167" />
+        </AssociationConnector>
+        <AssociationConnector Association="DobbermanModel.AuthorityReport">
+          <ConnectorPoint PointX="9.75" PointY="3.2568058268229167" />
+          <ConnectorPoint PointX="7.75" PointY="3.2568058268229167" />
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dobberman.Web", "Dobberman.Web\Dobberman.Web.csproj", "{3833DBCF-A3CA-4590-97A6-B07429F551FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dobberman.Phone", "Dobberman.Phone\Dobberman.Phone.csproj", "{D9424134-3C6D-4DE8-B632-2364D6E83A0F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3833DBCF-A3CA-4590-97A6-B07429F551FF} = {3833DBCF-A3CA-4590-97A6-B07429F551FF}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution

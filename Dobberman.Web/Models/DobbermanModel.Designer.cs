@@ -16,6 +16,12 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
+#region EDM Relationship Metadata
+
+[assembly: EdmRelationshipAttribute("DobbermanModel", "UserReport", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TAUP2C.Dobberman.Web.Models.User), "Report", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TAUP2C.Dobberman.Web.Models.Report))]
+[assembly: EdmRelationshipAttribute("DobbermanModel", "AuthorityReport", "Authority", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TAUP2C.Dobberman.Web.Models.Authority), "Report", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TAUP2C.Dobberman.Web.Models.Report))]
+
+#endregion
 
 namespace TAUP2C.Dobberman.Web.Models
 {
@@ -201,6 +207,31 @@ namespace TAUP2C.Dobberman.Web.Models
 
         #endregion
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DobbermanModel", "AuthorityReport", "Report")]
+        public EntityCollection<Report> Report
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Report>("DobbermanModel.AuthorityReport", "Report");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Report>("DobbermanModel.AuthorityReport", "Report", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -256,6 +287,85 @@ namespace TAUP2C.Dobberman.Web.Models
 
         #endregion
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DobbermanModel", "UserReport", "User")]
+        public User User
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("DobbermanModel.UserReport", "User").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("DobbermanModel.UserReport", "User").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<User> UserReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("DobbermanModel.UserReport", "User");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("DobbermanModel.UserReport", "User", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DobbermanModel", "AuthorityReport", "Authority")]
+        public Authority Authority
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Authority>("DobbermanModel.AuthorityReport", "Authority").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Authority>("DobbermanModel.AuthorityReport", "Authority").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Authority> AuthorityReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Authority>("DobbermanModel.AuthorityReport", "Authority");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Authority>("DobbermanModel.AuthorityReport", "Authority", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -311,6 +421,31 @@ namespace TAUP2C.Dobberman.Web.Models
 
         #endregion
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DobbermanModel", "UserReport", "Report")]
+        public EntityCollection<Report> Report
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Report>("DobbermanModel.UserReport", "Report");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Report>("DobbermanModel.UserReport", "Report", value);
+                }
+            }
+        }
+
+        #endregion
     }
 
     #endregion
