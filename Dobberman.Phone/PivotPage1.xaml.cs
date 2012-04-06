@@ -10,10 +10,10 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using TAUP2C.Dobberman.Phone.DobbermanService;
 
 namespace TAUP2C.Dobberman.Phone
 {
-
     public class Reports
     {
         public string authority { get; set; }
@@ -39,44 +39,65 @@ namespace TAUP2C.Dobberman.Phone
                     this.moodImage = "Images/appbar.delete.rest.png";
                     break;
 
-           } 
+            }
         }
 
 
     }
+
+ 
+ 
+
+   
     public partial class PivotPage1 : PhoneApplicationPage
     {
+        List<Report> reportList = new List<Report>();
         public PivotPage1()
         {
             InitializeComponent();
-            Loaded+=new RoutedEventHandler(PivotPage1_Loaded);
+            DobbermanServiceClient client = new DobbermanServiceClient();
+            client.GetReportByIdCompleted += new EventHandler<GetReportByIdCompletedEventArgs>(client_FindReportCompleted);
+            client.GetReportByIdAsync("1");
+            //Loaded += new RoutedEventHandler(PivotPage1_Loaded);
+            
+        }
+
+        void client_FindReportCompleted(object sender, GetReportByIdCompletedEventArgs e)
+        {
+            reportList.Add (e.Result);
+            ReportList.ItemsSource = reportList;
         }
 
         void PivotPage1_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Reports> reportList = new List<Reports>();
             
-            String DefaultDate = "25/07/2010 21:17:00";
-            String DefaultAuthority = "";
-            String DefaultMood = "positive";
-            String RandomType = "";
+            //String DefaultDate = "25/07/2010 21:17:00";
+            //String DefaultAuthority = "";
+            //String DefaultMood = "positive";
+            //String RandomType = "";
 
-            for (int i = 0; i < 20; i++)
-            {
+        
 
-                DefaultAuthority = "AB" + i.ToString();
-                switch (DefaultMood)
-                {
-                    case "positive":
-                        DefaultMood = "negative";
-                        break;
-                    case "negative":
-                        DefaultMood = "positive";
-                        break;
+            //for (int i = 0; i < 20; i++)
+            //{
 
-                }
-                reportList.Add(new Reports(DefaultAuthority, DefaultDate, DefaultMood, ""));
-            }
+            //    defaultauthority = "ab" + i.tostring();
+            //    switch (defaultmood)
+            //    {
+            //        case "positive":
+            //            defaultmood = "negative";
+            //            break;
+            //        case "negative":
+            //            defaultmood = "positive";
+            //            break;
+
+            //    }
+            //reportlist.add(new reports(defaultauthority, defaultdate, defaultmood, ""));
+            //}
+            //Report rrr = new Report();
+            //rrr.Mood = "Happy";
+            //reportList.Add(rrr);
+            
             ReportList.ItemsSource = reportList;
 
         }

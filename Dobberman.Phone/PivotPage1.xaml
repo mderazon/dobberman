@@ -29,15 +29,15 @@
                                 <Button Width="460" Height="120">
                                     <Button.Content>
                                         <StackPanel Orientation="Horizontal" Height="80" Width="400">
-                                            <Image Source="{Binding moodImage}" Width="48" Height="48"/>
+                                            <Image Source="" Width="48" Height="48"/>
                                             <StackPanel Orientation="Vertical" Height="80">
                                                 <StackPanel Orientation="Horizontal" Height="40">
                                                     <TextBlock Width="100" FontSize="22" Text="Date:" Height="40"/>
-                                                    <TextBlock Width="200" FontSize="22" Text="{Binding date}" Height="40"/>
+                                                    <TextBlock Width="200" FontSize="22" Text="{Binding Mood}" Height="40"/>
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Height="40">
                                                     <TextBlock Width="100" FontSize="22" Text="Authority:" Height="40"/>
-                                                    <TextBlock Width="200" FontSize="22" Text="{Binding authority}" Height="40"/>
+                                                    <TextBlock Width="200" FontSize="22" Text="" Height="40"/>
                                                 </StackPanel>
                                             </StackPanel>
                                         </StackPanel>
