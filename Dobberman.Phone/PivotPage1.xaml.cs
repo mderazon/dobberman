@@ -64,6 +64,8 @@ namespace TAUP2C.Dobberman.Phone
 
         void client_FindReportCompleted(object sender, GetReportByIdCompletedEventArgs e)
         {
+            Page f = new DisplayReport(e.Result);
+            f.Name = "1.1";
             reportList.Add (e.Result);
             ReportList.ItemsSource = reportList;
         }
@@ -101,7 +103,21 @@ namespace TAUP2C.Dobberman.Phone
             ReportList.ItemsSource = reportList;
 
         }
+       
 
+
+// Handle selection changed on ListBox
+        private void MainListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+{
+    // If selected index is -1 (no selection) do nothing
+    if (ReportList.SelectedIndex == -1)
+        return;
+    // Navigate to the new page
+    NavigationService.Navigate(new Uri("/1.1", UriKind.Relative));
+
+    // Reset selected index to -1 (no selection)
+    ReportList.SelectedIndex = -1;
+}
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
 

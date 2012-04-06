@@ -23,7 +23,7 @@
             <!--Pivot item one-->
                 <controls:PivotItem Header="Reports">
                 <Grid>
-                    <ListBox Name="ReportList" Margin="0,0,0,0">
+                    <ListBox Name="ReportList" Margin="0,0,0,0" SelectionChanged="MainListBox_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Button Width="460" Height="120">
