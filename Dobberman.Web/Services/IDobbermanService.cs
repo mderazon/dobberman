@@ -15,9 +15,20 @@ namespace TAUP2C.Dobberman.Web.Services
     public interface IDobbermanService
     {
         [OperationContract]
-        Report GetReportById(string userId);
+        List<Report> GetReportsByUserId(int userId);
+
+        [OperationContract]
+        bool CreateNewReport(Report report);
+
+        [OperationContract]
+        bool CreateNewUser(User user);
+        
+        [OperationContract]
+        bool CreateNewAuthority(Authority authority);
     
     }
+
+    
 
     [DataContract]
     public class Report
@@ -25,7 +36,9 @@ namespace TAUP2C.Dobberman.Web.Services
         [DataMember]
         public int ReportId { get; set; }
         [DataMember]
-        public string ReportDescription { get; set; }
+        public string Description { get; set; }
+        [DataMember]
+        public DateTime Date { get; set; }
         [DataMember]
         public string Mood { get; set; }
         [DataMember]
@@ -33,7 +46,11 @@ namespace TAUP2C.Dobberman.Web.Services
         [DataMember]
         public string Location { get; set; }
         [DataMember]
+        public int UserId { get; set; }
+        [DataMember]
         public User User { get; set; }
+        [DataMember]
+        public int AuthorityId { get; set; }
         [DataMember]
         public Authority Authority { get; set; }
     }
@@ -44,6 +61,8 @@ namespace TAUP2C.Dobberman.Web.Services
         [DataMember]
         public int AuthorityId { get; set; }
         [DataMember]
+        public string Name { get; set; }
+        [DataMember]
         public string FacebookPage { get; set; }
     }
 
@@ -51,6 +70,10 @@ namespace TAUP2C.Dobberman.Web.Services
     public class User
     {
         [DataMember]
-        public string UserId { get; set; }
+        public int UserId { get; set; }
+        [DataMember]
+        public string Email { get; set; }
+        [DataMember]
+        public string Name { get; set; }
     }
 }

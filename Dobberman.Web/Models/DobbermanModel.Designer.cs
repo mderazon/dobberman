@@ -18,8 +18,8 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("DobbermanModel", "UserReport", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TAUP2C.Dobberman.Web.Models.User), "Report", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TAUP2C.Dobberman.Web.Models.Report))]
-[assembly: EdmRelationshipAttribute("DobbermanModel", "AuthorityReport", "Authority", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TAUP2C.Dobberman.Web.Models.Authority), "Report", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TAUP2C.Dobberman.Web.Models.Report))]
+[assembly: EdmRelationshipAttribute("DobbermanModel", "FK_AuthorityEntityReportEntity", "Authorities", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TAUP2C.Dobberman.Web.Models.AuthorityEntity), "Reports", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TAUP2C.Dobberman.Web.Models.ReportEntity), true)]
+[assembly: EdmRelationshipAttribute("DobbermanModel", "FK_ReportEntityUserEntity", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TAUP2C.Dobberman.Web.Models.UserEntity), "Reports", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TAUP2C.Dobberman.Web.Models.ReportEntity), true)]
 
 #endregion
 
@@ -74,76 +74,76 @@ namespace TAUP2C.Dobberman.Web.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Report> Reports
-        {
-            get
-            {
-                if ((_Reports == null))
-                {
-                    _Reports = base.CreateObjectSet<Report>("Reports");
-                }
-                return _Reports;
-            }
-        }
-        private ObjectSet<Report> _Reports;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<User> Users
-        {
-            get
-            {
-                if ((_Users == null))
-                {
-                    _Users = base.CreateObjectSet<User>("Users");
-                }
-                return _Users;
-            }
-        }
-        private ObjectSet<User> _Users;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Authority> Authorities
+        public ObjectSet<AuthorityEntity> Authorities
         {
             get
             {
                 if ((_Authorities == null))
                 {
-                    _Authorities = base.CreateObjectSet<Authority>("Authorities");
+                    _Authorities = base.CreateObjectSet<AuthorityEntity>("Authorities");
                 }
                 return _Authorities;
             }
         }
-        private ObjectSet<Authority> _Authorities;
+        private ObjectSet<AuthorityEntity> _Authorities;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ReportEntity> Reports
+        {
+            get
+            {
+                if ((_Reports == null))
+                {
+                    _Reports = base.CreateObjectSet<ReportEntity>("Reports");
+                }
+                return _Reports;
+            }
+        }
+        private ObjectSet<ReportEntity> _Reports;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<UserEntity> Users
+        {
+            get
+            {
+                if ((_Users == null))
+                {
+                    _Users = base.CreateObjectSet<UserEntity>("Users");
+                }
+                return _Users;
+            }
+        }
+        private ObjectSet<UserEntity> _Users;
 
         #endregion
         #region AddTo Methods
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Authorities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAuthorities(AuthorityEntity authorityEntity)
+        {
+            base.AddObject("Authorities", authorityEntity);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Reports EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToReports(Report report)
+        public void AddToReports(ReportEntity reportEntity)
         {
-            base.AddObject("Reports", report);
+            base.AddObject("Reports", reportEntity);
         }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the Users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToUsers(User user)
+        public void AddToUsers(UserEntity userEntity)
         {
-            base.AddObject("Users", user);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Authorities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToAuthorities(Authority authority)
-        {
-            base.AddObject("Authorities", authority);
+            base.AddObject("Users", userEntity);
         }
 
         #endregion
@@ -157,22 +157,26 @@ namespace TAUP2C.Dobberman.Web.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="DobbermanModel", Name="Authority")]
+    [EdmEntityTypeAttribute(NamespaceName="DobbermanModel", Name="AuthorityEntity")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Authority : EntityObject
+    public partial class AuthorityEntity : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Authority object.
+        /// Create a new AuthorityEntity object.
         /// </summary>
         /// <param name="authorityId">Initial value of the AuthorityId property.</param>
-        public static Authority CreateAuthority(global::System.Int32 authorityId)
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="facebookPage">Initial value of the FacebookPage property.</param>
+        public static AuthorityEntity CreateAuthorityEntity(global::System.Int32 authorityId, global::System.String name, global::System.String facebookPage)
         {
-            Authority authority = new Authority();
-            authority.AuthorityId = authorityId;
-            return authority;
+            AuthorityEntity authorityEntity = new AuthorityEntity();
+            authorityEntity.AuthorityId = authorityId;
+            authorityEntity.Name = name;
+            authorityEntity.FacebookPage = facebookPage;
+            return authorityEntity;
         }
 
         #endregion
@@ -204,6 +208,54 @@ namespace TAUP2C.Dobberman.Web.Models
         private global::System.Int32 _AuthorityId;
         partial void OnAuthorityIdChanging(global::System.Int32 value);
         partial void OnAuthorityIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String FacebookPage
+        {
+            get
+            {
+                return _FacebookPage;
+            }
+            set
+            {
+                OnFacebookPageChanging(value);
+                ReportPropertyChanging("FacebookPage");
+                _FacebookPage = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("FacebookPage");
+                OnFacebookPageChanged();
+            }
+        }
+        private global::System.String _FacebookPage;
+        partial void OnFacebookPageChanging(global::System.String value);
+        partial void OnFacebookPageChanged();
 
         #endregion
     
@@ -215,18 +267,18 @@ namespace TAUP2C.Dobberman.Web.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("DobbermanModel", "AuthorityReport", "Report")]
-        public EntityCollection<Report> Report
+        [EdmRelationshipNavigationPropertyAttribute("DobbermanModel", "FK_AuthorityEntityReportEntity", "Reports")]
+        public EntityCollection<ReportEntity> Reports
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Report>("DobbermanModel.AuthorityReport", "Report");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReportEntity>("DobbermanModel.FK_AuthorityEntityReportEntity", "Reports");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Report>("DobbermanModel.AuthorityReport", "Report", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReportEntity>("DobbermanModel.FK_AuthorityEntityReportEntity", "Reports", value);
                 }
             }
         }
@@ -237,22 +289,30 @@ namespace TAUP2C.Dobberman.Web.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="DobbermanModel", Name="Report")]
+    [EdmEntityTypeAttribute(NamespaceName="DobbermanModel", Name="ReportEntity")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Report : EntityObject
+    public partial class ReportEntity : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Report object.
+        /// Create a new ReportEntity object.
         /// </summary>
         /// <param name="reportId">Initial value of the ReportId property.</param>
-        public static Report CreateReport(global::System.Int32 reportId)
+        /// <param name="date">Initial value of the Date property.</param>
+        /// <param name="description">Initial value of the Description property.</param>
+        /// <param name="userId">Initial value of the UserId property.</param>
+        /// <param name="authorityId">Initial value of the AuthorityId property.</param>
+        public static ReportEntity CreateReportEntity(global::System.Int32 reportId, global::System.DateTime date, global::System.String description, global::System.Int32 userId, global::System.Int32 authorityId)
         {
-            Report report = new Report();
-            report.ReportId = reportId;
-            return report;
+            ReportEntity reportEntity = new ReportEntity();
+            reportEntity.ReportId = reportId;
+            reportEntity.Date = date;
+            reportEntity.Description = description;
+            reportEntity.UserId = userId;
+            reportEntity.AuthorityId = authorityId;
+            return reportEntity;
         }
 
         #endregion
@@ -284,6 +344,102 @@ namespace TAUP2C.Dobberman.Web.Models
         private global::System.Int32 _ReportId;
         partial void OnReportIdChanging(global::System.Int32 value);
         partial void OnReportIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                OnDateChanging(value);
+                ReportPropertyChanging("Date");
+                _Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Date");
+                OnDateChanged();
+            }
+        }
+        private global::System.DateTime _Date;
+        partial void OnDateChanging(global::System.DateTime value);
+        partial void OnDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                OnUserIdChanging(value);
+                ReportPropertyChanging("UserId");
+                _UserId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserId");
+                OnUserIdChanged();
+            }
+        }
+        private global::System.Int32 _UserId;
+        partial void OnUserIdChanging(global::System.Int32 value);
+        partial void OnUserIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 AuthorityId
+        {
+            get
+            {
+                return _AuthorityId;
+            }
+            set
+            {
+                OnAuthorityIdChanging(value);
+                ReportPropertyChanging("AuthorityId");
+                _AuthorityId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AuthorityId");
+                OnAuthorityIdChanged();
+            }
+        }
+        private global::System.Int32 _AuthorityId;
+        partial void OnAuthorityIdChanging(global::System.Int32 value);
+        partial void OnAuthorityIdChanged();
 
         #endregion
     
@@ -295,16 +451,16 @@ namespace TAUP2C.Dobberman.Web.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("DobbermanModel", "UserReport", "User")]
-        public User User
+        [EdmRelationshipNavigationPropertyAttribute("DobbermanModel", "FK_AuthorityEntityReportEntity", "Authorities")]
+        public AuthorityEntity Authority
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("DobbermanModel.UserReport", "User").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AuthorityEntity>("DobbermanModel.FK_AuthorityEntityReportEntity", "Authorities").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("DobbermanModel.UserReport", "User").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AuthorityEntity>("DobbermanModel.FK_AuthorityEntityReportEntity", "Authorities").Value = value;
             }
         }
         /// <summary>
@@ -312,17 +468,17 @@ namespace TAUP2C.Dobberman.Web.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<User> UserReference
+        public EntityReference<AuthorityEntity> AuthorityReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("DobbermanModel.UserReport", "User");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AuthorityEntity>("DobbermanModel.FK_AuthorityEntityReportEntity", "Authorities");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("DobbermanModel.UserReport", "User", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AuthorityEntity>("DobbermanModel.FK_AuthorityEntityReportEntity", "Authorities", value);
                 }
             }
         }
@@ -333,16 +489,16 @@ namespace TAUP2C.Dobberman.Web.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("DobbermanModel", "AuthorityReport", "Authority")]
-        public Authority Authority
+        [EdmRelationshipNavigationPropertyAttribute("DobbermanModel", "FK_ReportEntityUserEntity", "Users")]
+        public UserEntity User
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Authority>("DobbermanModel.AuthorityReport", "Authority").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserEntity>("DobbermanModel.FK_ReportEntityUserEntity", "Users").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Authority>("DobbermanModel.AuthorityReport", "Authority").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserEntity>("DobbermanModel.FK_ReportEntityUserEntity", "Users").Value = value;
             }
         }
         /// <summary>
@@ -350,17 +506,17 @@ namespace TAUP2C.Dobberman.Web.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Authority> AuthorityReference
+        public EntityReference<UserEntity> UserReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Authority>("DobbermanModel.AuthorityReport", "Authority");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserEntity>("DobbermanModel.FK_ReportEntityUserEntity", "Users");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Authority>("DobbermanModel.AuthorityReport", "Authority", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserEntity>("DobbermanModel.FK_ReportEntityUserEntity", "Users", value);
                 }
             }
         }
@@ -371,22 +527,26 @@ namespace TAUP2C.Dobberman.Web.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="DobbermanModel", Name="User")]
+    [EdmEntityTypeAttribute(NamespaceName="DobbermanModel", Name="UserEntity")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class User : EntityObject
+    public partial class UserEntity : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new User object.
+        /// Create a new UserEntity object.
         /// </summary>
         /// <param name="userId">Initial value of the UserId property.</param>
-        public static User CreateUser(global::System.Int32 userId)
+        /// <param name="email">Initial value of the Email property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static UserEntity CreateUserEntity(global::System.Int32 userId, global::System.String email, global::System.String name)
         {
-            User user = new User();
-            user.UserId = userId;
-            return user;
+            UserEntity userEntity = new UserEntity();
+            userEntity.UserId = userId;
+            userEntity.Email = email;
+            userEntity.Name = name;
+            return userEntity;
         }
 
         #endregion
@@ -418,6 +578,54 @@ namespace TAUP2C.Dobberman.Web.Models
         private global::System.Int32 _UserId;
         partial void OnUserIdChanging(global::System.Int32 value);
         partial void OnUserIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Email
+        {
+            get
+            {
+                return _Email;
+            }
+            set
+            {
+                OnEmailChanging(value);
+                ReportPropertyChanging("Email");
+                _Email = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Email");
+                OnEmailChanged();
+            }
+        }
+        private global::System.String _Email;
+        partial void OnEmailChanging(global::System.String value);
+        partial void OnEmailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
 
         #endregion
     
@@ -429,18 +637,18 @@ namespace TAUP2C.Dobberman.Web.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("DobbermanModel", "UserReport", "Report")]
-        public EntityCollection<Report> Report
+        [EdmRelationshipNavigationPropertyAttribute("DobbermanModel", "FK_ReportEntityUserEntity", "Reports")]
+        public EntityCollection<ReportEntity> Reports
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Report>("DobbermanModel.UserReport", "Report");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReportEntity>("DobbermanModel.FK_ReportEntityUserEntity", "Reports");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Report>("DobbermanModel.UserReport", "Report", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReportEntity>("DobbermanModel.FK_ReportEntityUserEntity", "Reports", value);
                 }
             }
         }
