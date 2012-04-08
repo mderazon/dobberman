@@ -35,6 +35,9 @@
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="AuthorityId" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="Location" Type="nvarchar(max)" />
+          <Property Name="Mood" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -105,6 +108,9 @@
           <Property Type="Int32" Name="AuthorityId" Nullable="false" />
           <NavigationProperty Name="Authority" Relationship="DobbermanModel.FK_AuthorityEntityReportEntity" FromRole="Reports" ToRole="Authorities" />
           <NavigationProperty Name="User" Relationship="DobbermanModel.FK_ReportEntityUserEntity" FromRole="Reports" ToRole="Users" />
+          <Property Type="Binary" Name="Photo" Nullable="true" />
+          <Property Type="String" Name="Location" Nullable="true" />
+          <Property Type="String" Name="Mood" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
         </EntityType>
         <EntityType Name="UserEntity">
           <Key>
@@ -145,36 +151,39 @@
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="DobbermanModelStoreContainer" CdmEntityContainer="DobbermanEntities">
-          <EntitySetMapping Name="Authorities">
-            <EntityTypeMapping TypeName="DobbermanModel.AuthorityEntity">
-              <MappingFragment StoreEntitySet="Authorities">
-                <ScalarProperty Name="FacebookPage" ColumnName="FacebookPage" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="AuthorityId" ColumnName="AuthorityId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reports">
-            <EntityTypeMapping TypeName="DobbermanModel.ReportEntity">
-              <MappingFragment StoreEntitySet="Reports">
-                <ScalarProperty Name="AuthorityId" ColumnName="AuthorityId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+    <EntitySetMapping Name="Authorities">
+      <EntityTypeMapping TypeName="IsTypeOf(DobbermanModel.AuthorityEntity)">
+        <MappingFragment StoreEntitySet="Authorities">
+          <ScalarProperty Name="AuthorityId" ColumnName="AuthorityId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FacebookPage" ColumnName="FacebookPage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reports">
+      <EntityTypeMapping TypeName="IsTypeOf(DobbermanModel.ReportEntity)">
+        <MappingFragment StoreEntitySet="Reports">
+          <ScalarProperty Name="Mood" ColumnName="Mood" />
                 <ScalarProperty Name="ReportId" ColumnName="ReportId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="DobbermanModel.UserEntity">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AuthorityId" ColumnName="AuthorityId" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(DobbermanModel.UserEntity)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
@@ -195,7 +204,7 @@
     <edmx:Diagrams>
       <Diagram Name="DobbermanModel" >
         <EntityTypeShape EntityType="DobbermanModel.AuthorityEntity" Width="1.5" PointX="9.875" PointY="3.375" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="DobbermanModel.ReportEntity" Width="1.5" PointX="6.875" PointY="3" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="DobbermanModel.ReportEntity" Width="1.5" PointX="6.875" PointY="3" Height="2.9417936197916656" />
         <EntityTypeShape EntityType="DobbermanModel.UserEntity" Width="1.5" PointX="4" PointY="3.375" Height="1.7879850260416674" />
         <AssociationConnector Association="DobbermanModel.FK_AuthorityEntityReportEntity" >
           <ConnectorPoint PointX="9.875" PointY="4.2689925130208337" />

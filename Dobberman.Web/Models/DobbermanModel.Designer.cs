@@ -440,6 +440,78 @@ namespace TAUP2C.Dobberman.Web.Models
         private global::System.Int32 _AuthorityId;
         partial void OnAuthorityIdChanging(global::System.Int32 value);
         partial void OnAuthorityIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] Photo
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_Photo);
+            }
+            set
+            {
+                OnPhotoChanging(value);
+                ReportPropertyChanging("Photo");
+                _Photo = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Photo");
+                OnPhotoChanged();
+            }
+        }
+        private global::System.Byte[] _Photo;
+        partial void OnPhotoChanging(global::System.Byte[] value);
+        partial void OnPhotoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Location
+        {
+            get
+            {
+                return _Location;
+            }
+            set
+            {
+                OnLocationChanging(value);
+                ReportPropertyChanging("Location");
+                _Location = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Location");
+                OnLocationChanged();
+            }
+        }
+        private global::System.String _Location;
+        partial void OnLocationChanging(global::System.String value);
+        partial void OnLocationChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Mood
+        {
+            get
+            {
+                return _Mood;
+            }
+            set
+            {
+                OnMoodChanging(value);
+                ReportPropertyChanging("Mood");
+                _Mood = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Mood");
+                OnMoodChanged();
+            }
+        }
+        private global::System.String _Mood;
+        partial void OnMoodChanging(global::System.String value);
+        partial void OnMoodChanged();
 
         #endregion
     

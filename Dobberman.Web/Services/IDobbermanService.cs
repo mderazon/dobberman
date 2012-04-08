@@ -16,7 +16,7 @@ namespace TAUP2C.Dobberman.Web.Services
     {
         [OperationContract]
         List<Report> GetReportsByUserId(int userId);
-
+       
         [OperationContract]
         bool CreateNewReport(Report report);
 
@@ -41,9 +41,9 @@ namespace TAUP2C.Dobberman.Web.Services
         public DateTime Date { get; set; }
         [DataMember]
         public string Mood { get; set; }
-        [DataMember]
+        [DataMember(IsRequired = false)]
         public byte[] Photo { get; set; }
-        [DataMember]
+        [DataMember(IsRequired = false)]
         public string Location { get; set; }
         [DataMember]
         public int UserId { get; set; }
@@ -58,7 +58,7 @@ namespace TAUP2C.Dobberman.Web.Services
     [DataContract]
     public class Authority
     {
-        [DataMember]
+        [DataMember(IsRequired=false)]
         public int AuthorityId { get; set; }
         [DataMember]
         public string Name { get; set; }
@@ -69,7 +69,7 @@ namespace TAUP2C.Dobberman.Web.Services
     [DataContract]
     public class User
     {
-        [DataMember]
+        [DataMember(IsRequired=false)]
         public int UserId { get; set; }
         [DataMember]
         public string Email { get; set; }

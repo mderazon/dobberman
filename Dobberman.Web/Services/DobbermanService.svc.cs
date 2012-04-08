@@ -127,6 +127,13 @@ namespace TAUP2C.Dobberman.Web.Services
             Report report = new Report()
             {
                 ReportId = reportEntity.ReportId,
+                Date = reportEntity.Date,
+                Description = reportEntity.Description,
+                Mood = reportEntity.Mood,
+                Photo = reportEntity.Photo,
+                Location = reportEntity.Location,
+                UserId = reportEntity.UserId,
+                AuthorityId = reportEntity.AuthorityId,
                 User = TranslateUserEntityToUser(reportEntity.User),
                 Authority = TranslateAuthorityEntityToAuthority(reportEntity.Authority),
             };
