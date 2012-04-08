@@ -53,8 +53,8 @@ namespace TAUP2C.Dobberman.Web.Services
             //}
         }
 
-        // Create methods
-        #region Translators
+
+        #region Create methods
         public bool CreateNewReport(Report report)
         {
             ReportEntity reportEntity = new ReportEntity()
@@ -116,7 +116,8 @@ namespace TAUP2C.Dobberman.Web.Services
             }
             return true;
         }
-       
+        #endregion
+
 
 
         // Translation methods, used to convert between Entity objects represented in the DobbermanModel and the objects in the service data contracts
