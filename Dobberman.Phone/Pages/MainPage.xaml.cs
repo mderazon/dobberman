@@ -28,31 +28,25 @@ namespace TAUP2C.Dobberman.Phone.Pages
             this.date = date;
             this.mood = mood;
             this.description = description;
-            this.moodImage = "Images/appbar.add.rest.png";
+            this.moodImage = "/Images/appbar.add.rest.png";
 
             switch (mood)
             {
                 case "positive":
-                    this.moodImage = "Images/appbar.add.rest.png";
+                    this.moodImage = "/Images/appbar.add.rest.png";
                     break;
                 case "negative":
-                    this.moodImage = "Images/appbar.delete.rest.png";
+                    this.moodImage = "/Images/appbar.delete.rest.png";
                     break;
 
             }
-        }
+        }        
+    }   
 
-
-    }
-
- 
- 
-
-   
-    public partial class PivotPage1 : PhoneApplicationPage
+    public partial class MainPage : PhoneApplicationPage
     {
         List<Report> reportList = new List<Report>();
-        public PivotPage1()
+        public MainPage()
         {
             InitializeComponent();
             DobbermanServiceClient client = new DobbermanServiceClient();
@@ -64,7 +58,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
         void client_FindReportCompleted(object sender, GetReportByIdCompletedEventArgs e)
         {
-            Page f = new DisplayReport(e.Result);
+            Page f = new ReportDetailsPage(e.Result);
             f.Name = "1.1";
             reportList.Add (e.Result);
             ReportList.ItemsSource = reportList;

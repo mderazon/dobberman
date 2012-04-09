@@ -73,7 +73,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
                     _accessToken = result.AccessToken;
                     //AccessToken is used when you want to use API as a user
                     //This example is not using it at all just showing it in a messagebox
-                    NavigationService.Navigate(new Uri("/PivotPage1.xaml", UriKind.RelativeOrAbsolute));
+                    NavigationService.Navigate(new Uri("/Pages/MainPage.xaml", UriKind.RelativeOrAbsolute));
                     //Hide the browser controller
                     _webBrowser.Visibility = System.Windows.Visibility.Collapsed;
                 }
