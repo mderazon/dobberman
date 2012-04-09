@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using TAUP2C.Dobberman.Phone.DobbermanService;
 
-namespace TAUP2C.Dobberman.Phone
+namespace TAUP2C.Dobberman.Phone.Pages
 {
     public class Reports
     {

@@ -11,11 +11,11 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
-namespace TAUP2C.Dobberman.Phone
+namespace TAUP2C.Dobberman.Phone.Pages
 {
-    public partial class DisplayReport : PhoneApplicationPage
+    public partial class ReportDetailsPage : PhoneApplicationPage
     {
-        public DisplayReport(DobbermanService.Report R)
+        public ReportDetailsPage(DobbermanService.Report R)
         {
             InitializeComponent();
             this.xxx.Text = R.Mood;
