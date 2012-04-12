@@ -111,14 +111,19 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Page1.xaml", UriKind.Relative));
-            object data = (sender as Button).DataContext as object;
-            ListBoxItem pressedItem = this.ReportList.ItemContainerGenerator.ContainerFromItem(data) as ListBoxItem;
-            if (pressedItem != null)
-            {
-                NavigationService.Navigate(new Uri("/Page1.xaml", UriKind.Relative));
+            Report ButtonReport = ( sender as Button ).DataContext as Report;
+           States.CurReport = ButtonReport;
+            //ReportDetails P = new ReportDetails(ButtonReport);
 
-            }
+
+            NavigationService.Navigate(new Uri("/Pages/ReportDetails.xaml", UriKind.Relative));
+            //object data = (sender as Button).DataContext as object;
+            //ListBoxItem pressedItem = this.ReportList.ItemContainerGenerator.ContainerFromItem(data) as ListBoxItem;
+            //if (pressedItem != null)
+            //{
+            //    NavigationService.Navigate(new Uri("/Page1.xaml", UriKind.Relative));
+
+            //}
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)

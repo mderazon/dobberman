@@ -7,22 +7,79 @@
       <xsd:import schemaLocation="http://localhost:65493/Services/DobbermanService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IDobbermanService_GetReportById_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetReportById" />
+  <wsdl:message name="IDobbermanService_GetReportsByUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportsByUserId" />
   </wsdl:message>
-  <wsdl:message name="IDobbermanService_GetReportById_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetReportByIdResponse" />
+  <wsdl:message name="IDobbermanService_GetReportsByUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportsByUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDobbermanService_CreateNewReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewReport" />
+  </wsdl:message>
+  <wsdl:message name="IDobbermanService_CreateNewReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDobbermanService_CreateNewUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewUser" />
+  </wsdl:message>
+  <wsdl:message name="IDobbermanService_CreateNewUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDobbermanService_CreateNewAuthority_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewAuthority" />
+  </wsdl:message>
+  <wsdl:message name="IDobbermanService_CreateNewAuthority_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewAuthorityResponse" />
   </wsdl:message>
   <wsdl:portType name="IDobbermanService">
-    <wsdl:operation name="GetReportById">
-      <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/GetReportById" message="tns:IDobbermanService_GetReportById_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/GetReportByIdResponse" message="tns:IDobbermanService_GetReportById_OutputMessage" />
+    <wsdl:operation name="GetReportsByUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/GetReportsByUserId" message="tns:IDobbermanService_GetReportsByUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/GetReportsByUserIdResponse" message="tns:IDobbermanService_GetReportsByUserId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/CreateNewReport" message="tns:IDobbermanService_CreateNewReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/CreateNewReportResponse" message="tns:IDobbermanService_CreateNewReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/CreateNewUser" message="tns:IDobbermanService_CreateNewUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/CreateNewUserResponse" message="tns:IDobbermanService_CreateNewUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewAuthority">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/CreateNewAuthority" message="tns:IDobbermanService_CreateNewAuthority_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/CreateNewAuthorityResponse" message="tns:IDobbermanService_CreateNewAuthority_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDobbermanService" type="tns:IDobbermanService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetReportById">
-      <soap:operation soapAction="http://tempuri.org/IDobbermanService/GetReportById" style="document" />
+    <wsdl:operation name="GetReportsByUserId">
+      <soap:operation soapAction="http://tempuri.org/IDobbermanService/GetReportsByUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewReport">
+      <soap:operation soapAction="http://tempuri.org/IDobbermanService/CreateNewReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewUser">
+      <soap:operation soapAction="http://tempuri.org/IDobbermanService/CreateNewUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewAuthority">
+      <soap:operation soapAction="http://tempuri.org/IDobbermanService/CreateNewAuthority" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

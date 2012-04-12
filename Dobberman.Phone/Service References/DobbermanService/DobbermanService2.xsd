@@ -1,17 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:65493/Services/DobbermanService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" />
-  <xs:element name="GetReportById">
+  <xs:element name="GetReportsByUserId">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetReportByIdResponse">
+  <xs:element name="GetReportsByUserIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="GetReportByIdResult" nillable="true" type="q1:Report" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="GetReportsByUserIdResult" nillable="true" type="q1:ArrayOfReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNewReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="report" nillable="true" type="q2:Report" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNewReportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateNewReportResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNewUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="user" nillable="true" type="q3:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNewUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateNewUserResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNewAuthority">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="authority" nillable="true" type="q4:Authority" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNewAuthorityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateNewAuthorityResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

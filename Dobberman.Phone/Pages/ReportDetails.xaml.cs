@@ -18,6 +18,18 @@ namespace TAUP2C.Dobberman.Phone.Pages
         public ReportDetails()
         {
             InitializeComponent();
+            
+
         }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            this.ContentPanel.DataContext = States.CurReport;
+
+
+        }
+        
     }
 }

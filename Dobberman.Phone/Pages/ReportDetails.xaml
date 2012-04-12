@@ -27,11 +27,11 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" DataContext="{Binding}">
             <TextBlock Height="37" HorizontalAlignment="Left" Margin="12,43,0,0"  Text="Authority:" VerticalAlignment="Top" Width="96" />
-            <TextBlock x:Name="Auth" Height="37" HorizontalAlignment="Right" Margin="0,43,8,0"  Text="{Binding Authority.Name}" VerticalAlignment="Top" Width="219" />
+            <TextBlock  Height="37" HorizontalAlignment="Right" Margin="0,43,8,0"  Text="{Binding Authority.Name}" VerticalAlignment="Top" Width="219" />
             <TextBlock Height="37" HorizontalAlignment="Left" Margin="12,129,0,0"  Text="Date:" VerticalAlignment="Top" Width="96" />
-            <TextBlock x:Name="Date" Height="37" HorizontalAlignment="Left" Margin="229,129,0,0"  Text="" VerticalAlignment="Top" Width="219" />
+            <TextBlock  Height="37" HorizontalAlignment="Left" Margin="229,129,0,0"  Text="" VerticalAlignment="Top" Width="219" />
             <TextBlock Height="37" HorizontalAlignment="Left" Margin="12,208,0,0"  Text="Mood:" VerticalAlignment="Top" Width="96" />
             <TextBlock Height="37" HorizontalAlignment="Left" Margin="9,295,0,0"  Text="Location:" VerticalAlignment="Top" Width="96" />
             <TextBlock Height="41" HorizontalAlignment="Left" Margin="229,291,0,0"  Text="" VerticalAlignment="Top" Width="219" />
