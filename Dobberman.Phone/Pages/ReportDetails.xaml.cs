@@ -13,12 +13,11 @@ using Microsoft.Phone.Controls;
 
 namespace TAUP2C.Dobberman.Phone.Pages
 {
-    public partial class ReportDetailsPage : PhoneApplicationPage
+    public partial class ReportDetails : PhoneApplicationPage
     {
-        public ReportDetailsPage(DobbermanService.Report R)
+        public ReportDetails()
         {
             InitializeComponent();
-            this.xxx.Text = R.Mood;
         }
     }
 }

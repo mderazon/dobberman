@@ -16,17 +16,15 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.ColumnDefinitions>
-        </Grid.ColumnDefinitions>
         <!--Pivot Control-->
-        <controls:Pivot Title="DOBBERMAN" Grid.ColumnSpan="3">
+        <controls:Pivot Title="Dobberman" Grid.ColumnSpan="3">
             <!--Pivot item one-->
-                <controls:PivotItem Header="Reports">
+            <controls:PivotItem Header="Reports">
                 <Grid>
-                    <ListBox Name="ReportList" Margin="0,0,0,0" SelectionChanged="MainListBox_SelectionChanged">
+                    <ListBox Name="ReportList" Margin="0,0,0,0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Button Width="460" Height="120">
+                                <Button Click="Button_Click"  Width="460" Height="120">
                                     <Button.Content>
                                         <StackPanel Orientation="Horizontal" Height="80" Width="400">
                                             <Image Source="" Width="48" Height="48"/>
@@ -37,7 +35,7 @@
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Height="40">
                                                     <TextBlock Width="100" FontSize="22" Text="Authority:" Height="40"/>
-                                                    <TextBlock Width="200" FontSize="22" Text="" Height="40"/>
+                                                    <TextBlock Width="200" FontSize="22" Text="{Binding Authority.Name}" Height="40"/>
                                                 </StackPanel>
                                             </StackPanel>
                                         </StackPanel>
@@ -46,9 +44,9 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-            </Grid>
-      </controls:PivotItem>
-            
+                </Grid>
+            </controls:PivotItem>
+
 
             <!--Pivot item two-->
             <controls:PivotItem Header="Statistics">
@@ -56,6 +54,18 @@
             </controls:PivotItem>
         </controls:Pivot>
     </Grid>
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="appbar_button1" IconUri="/Toolkit.Content/appbar.add.rest.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Toolkit.Content/appbar.logout.rest.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>

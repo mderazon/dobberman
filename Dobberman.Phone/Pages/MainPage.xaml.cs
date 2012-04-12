@@ -28,20 +28,26 @@ namespace TAUP2C.Dobberman.Phone.Pages
             this.date = date;
             this.mood = mood;
             this.description = description;
-            this.moodImage = "/Images/appbar.add.rest.png";
+            this.moodImage = "Images/appbar.add.rest.png";
 
             switch (mood)
             {
                 case "positive":
-                    this.moodImage = "/Images/appbar.add.rest.png";
+                    this.moodImage = "Images/appbar.add.rest.png";
                     break;
                 case "negative":
-                    this.moodImage = "/Images/appbar.delete.rest.png";
+                    this.moodImage = "Images/appbar.delete.rest.png";
                     break;
 
             }
-        }        
-    }   
+        }
+
+
+    }
+
+
+
+
 
     public partial class MainPage : PhoneApplicationPage
     {
@@ -50,68 +56,71 @@ namespace TAUP2C.Dobberman.Phone.Pages
         {
             InitializeComponent();
             DobbermanServiceClient client = new DobbermanServiceClient();
-            client.GetReportByIdCompleted += new EventHandler<GetReportByIdCompletedEventArgs>(client_FindReportCompleted);
-            client.GetReportByIdAsync("1");
+            client.GetReportsByUserIdCompleted += new EventHandler<GetReportsByUserIdCompletedEventArgs>(client_FindReportCompleted);
+            client.GetReportsByUserIdAsync(1);
             //Loaded += new RoutedEventHandler(PivotPage1_Loaded);
-            
+
         }
 
-        void client_FindReportCompleted(object sender, GetReportByIdCompletedEventArgs e)
+        void client_FindReportCompleted(object sender, GetReportsByUserIdCompletedEventArgs e)
         {
-            Page f = new ReportDetailsPage(e.Result);
-            f.Name = "1.1";
-            reportList.Add (e.Result);
+
+            foreach (Report r in e.Result.Cast<Report>())
+            {
+                reportList.Add(r);
+            }
+
             ReportList.ItemsSource = reportList;
         }
 
         void PivotPage1_Loaded(object sender, RoutedEventArgs e)
         {
-            
-            //String DefaultDate = "25/07/2010 21:17:00";
-            //String DefaultAuthority = "";
-            //String DefaultMood = "positive";
-            //String RandomType = "";
 
-        
+            String DefaultDate = "25/07/2010 21:17:00";
+            String DefaultAuthority = "";
+            String DefaultMood = "positive";
+            String RandomType = "";
+            List<Reports> reportList = new List<Reports>();
 
-            //for (int i = 0; i < 20; i++)
-            //{
 
-            //    defaultauthority = "ab" + i.tostring();
-            //    switch (defaultmood)
-            //    {
-            //        case "positive":
-            //            defaultmood = "negative";
-            //            break;
-            //        case "negative":
-            //            defaultmood = "positive";
-            //            break;
+            for (int i = 0; i < 20; i++)
+            {
 
-            //    }
-            //reportlist.add(new reports(defaultauthority, defaultdate, defaultmood, ""));
-            //}
-            //Report rrr = new Report();
-            //rrr.Mood = "Happy";
-            //reportList.Add(rrr);
-            
+                DefaultAuthority = "ab" + i.ToString();
+                switch (DefaultMood)
+                {
+                    case "positive":
+                        DefaultMood = "negative";
+                        break;
+                    case "negative":
+                        DefaultMood = "positive";
+                        break;
+
+                }
+                reportList.Add(new Reports(DefaultAuthority, DefaultDate, DefaultMood, ""));
+            }
+
+
             ReportList.ItemsSource = reportList;
 
         }
-       
 
 
-// Handle selection changed on ListBox
-        private void MainListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-{
-    // If selected index is -1 (no selection) do nothing
-    if (ReportList.SelectedIndex == -1)
-        return;
-    // Navigate to the new page
-    NavigationService.Navigate(new Uri("/1.1", UriKind.Relative));
 
-    // Reset selected index to -1 (no selection)
-    ReportList.SelectedIndex = -1;
-}
+        // Handle selection changed on ListBox
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Page1.xaml", UriKind.Relative));
+            object data = (sender as Button).DataContext as object;
+            ListBoxItem pressedItem = this.ReportList.ItemContainerGenerator.ContainerFromItem(data) as ListBoxItem;
+            if (pressedItem != null)
+            {
+                NavigationService.Navigate(new Uri("/Page1.xaml", UriKind.Relative));
+
+            }
+        }
+
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
 
