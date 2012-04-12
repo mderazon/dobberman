@@ -123,12 +123,10 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <Content Include="ExternalLibraries\Facebook.dll" />
+    <Resource Include="ApplicationIcon.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApplicationIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

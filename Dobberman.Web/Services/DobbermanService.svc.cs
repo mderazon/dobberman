@@ -55,7 +55,7 @@ namespace TAUP2C.Dobberman.Web.Services
 
 
         #region Create methods
-        public bool CreateNewReport(Report report)
+        public int CreateNewReport(Report report)
         {
             ReportEntity reportEntity = new ReportEntity()
             {
@@ -69,10 +69,10 @@ namespace TAUP2C.Dobberman.Web.Services
                 context.AddToReports(reportEntity);
                 context.SaveChanges();
             }
-            return true;
+            return reportEntity.ReportId;
         }
 
-        public bool CreateNewUser(User user)
+        public int CreateNewUser(User user)
         {
             using (DobbermanEntities context = new DobbermanEntities())
             {
@@ -81,7 +81,7 @@ namespace TAUP2C.Dobberman.Web.Services
                                              in context.Users
                                          where p.Email == user.Email
                                          select p).FirstOrDefault();
-                if (!(validateUser == null)) return false;
+                if (!(validateUser == null)) return validateUser.UserId;
 
                 UserEntity userEntity = new UserEntity()
                 {
@@ -90,11 +90,11 @@ namespace TAUP2C.Dobberman.Web.Services
                 };
                 context.AddToUsers(userEntity);
                 context.SaveChanges();
-                
+                return userEntity.UserId;
             }
-            return true;
+            
         }
-        public bool CreateNewAuthority(Authority authority)
+        public int CreateNewAuthority(Authority authority)
         {
             using (DobbermanEntities context = new DobbermanEntities())
             {
@@ -103,7 +103,7 @@ namespace TAUP2C.Dobberman.Web.Services
                                              in context.Authorities
                                            where p.Name == authority.Name
                                            select p).FirstOrDefault();
-                if (!(validateAuthority == null)) return false;
+                if (!(validateAuthority == null)) return validateAuthority.AuthorityId;
 
                 AuthorityEntity authorityEntity = new AuthorityEntity()
                 {
@@ -112,9 +112,9 @@ namespace TAUP2C.Dobberman.Web.Services
                 };
                 context.AddToAuthorities(authorityEntity);
                 context.SaveChanges();
-
+                return authorityEntity.AuthorityId;
             }
-            return true;
+            
         }
         #endregion
 

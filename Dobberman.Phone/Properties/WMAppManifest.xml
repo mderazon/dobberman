@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{766fc6df-b584-4fad-b78d-444a0d4bd8ac}" Title="Dobberman.Phone" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="Dobberman.Phone author" Description="Sample description" Publisher="Dobberman.Phone">
+  <App xmlns="" ProductID="{766fc6df-b584-4fad-b78d-444a0d4bd8ac}" Title="Dobberman" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="Dobberman.Phone author" Description="Sample description" Publisher="Dobberman.Phone">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES"/>
@@ -27,7 +27,7 @@
         <TemplateType5>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
           <Count>0</Count>
-          <Title>Dobberman.Phone</Title>
+          <Title>Dobberman</Title>
         </TemplateType5>
       </PrimaryToken>
     </Tokens>

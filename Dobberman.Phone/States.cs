@@ -13,6 +13,7 @@ namespace TAUP2C.Dobberman.Phone
 {
     public static class States
     {
+        public static int userId;
         public static DobbermanService.Report CurReport;
     }
 }
