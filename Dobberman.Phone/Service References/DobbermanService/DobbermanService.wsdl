@@ -13,6 +13,12 @@
   <wsdl:message name="IDobbermanService_GetReportsByUserId_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetReportsByUserIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IDobbermanService_GetAllAuthorities_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAuthorities" />
+  </wsdl:message>
+  <wsdl:message name="IDobbermanService_GetAllAuthorities_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAuthoritiesResponse" />
+  </wsdl:message>
   <wsdl:message name="IDobbermanService_CreateNewReport_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateNewReport" />
   </wsdl:message>
@@ -36,6 +42,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/GetReportsByUserId" message="tns:IDobbermanService_GetReportsByUserId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/GetReportsByUserIdResponse" message="tns:IDobbermanService_GetReportsByUserId_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllAuthorities">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/GetAllAuthorities" message="tns:IDobbermanService_GetAllAuthorities_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/GetAllAuthoritiesResponse" message="tns:IDobbermanService_GetAllAuthorities_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="CreateNewReport">
       <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/CreateNewReport" message="tns:IDobbermanService_CreateNewReport_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/CreateNewReportResponse" message="tns:IDobbermanService_CreateNewReport_OutputMessage" />
@@ -53,6 +63,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetReportsByUserId">
       <soap:operation soapAction="http://tempuri.org/IDobbermanService/GetReportsByUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAuthorities">
+      <soap:operation soapAction="http://tempuri.org/IDobbermanService/GetAllAuthorities" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

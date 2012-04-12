@@ -16,7 +16,10 @@ namespace TAUP2C.Dobberman.Web.Services
     {
         [OperationContract]
         List<Report> GetReportsByUserId(int userId);
-       
+
+        [OperationContract]
+        List<Authority> GetAllAuthorities();
+
         [OperationContract]
         int CreateNewReport(Report report);
 
