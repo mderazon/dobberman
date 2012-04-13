@@ -15,5 +15,6 @@ namespace TAUP2C.Dobberman.Phone
     {
         public static int userId;
         public static DobbermanService.Report CurReport;
+        public static string accessToken;
     }
 }

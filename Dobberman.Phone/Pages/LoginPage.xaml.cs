@@ -73,6 +73,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
                 if (result.IsSuccess)
                 {
                     _accessToken = result.AccessToken;
+                    States.accessToken = result.AccessToken;
                     //AccessToken is used when you want to use API as a user
                     //This example is not using it at all just showing it in a messagebox
                     //NavigationService.Navigate(new Uri("/Pages/MainPage.xaml", UriKind.RelativeOrAbsolute));

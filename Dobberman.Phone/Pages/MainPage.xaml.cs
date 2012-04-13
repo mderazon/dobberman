@@ -14,38 +14,7 @@ using TAUP2C.Dobberman.Phone.DobbermanService;
 
 namespace TAUP2C.Dobberman.Phone.Pages
 {
-    public class Reports
-    {
-        public string authority { get; set; }
-        public string date { get; set; }
-        public string mood { get; set; }
-        public string description { get; set; }
-        public string moodImage { get; set; }
-
-        public Reports(string authority, string date, string mood, string description)
-        {
-            this.authority = authority;
-            this.date = date;
-            this.mood = mood;
-            this.description = description;
-            this.moodImage = "Images/appbar.add.rest.png";
-
-            switch (mood)
-            {
-                case "positive":
-                    this.moodImage = "Images/appbar.add.rest.png";
-                    break;
-                case "negative":
-                    this.moodImage = "Images/appbar.delete.rest.png";
-                    break;
-
-            }
-        }
-
-
-    }
-
-
+    
 
 
 
@@ -76,32 +45,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
         void PivotPage1_Loaded(object sender, RoutedEventArgs e)
         {
 
-            String DefaultDate = "25/07/2010 21:17:00";
-            String DefaultAuthority = "";
-            String DefaultMood = "positive";
-            String RandomType = "";
-            List<Reports> reportList = new List<Reports>();
-
-
-            for (int i = 0; i < 20; i++)
-            {
-
-                DefaultAuthority = "ab" + i.ToString();
-                switch (DefaultMood)
-                {
-                    case "positive":
-                        DefaultMood = "negative";
-                        break;
-                    case "negative":
-                        DefaultMood = "positive";
-                        break;
-
-                }
-                reportList.Add(new Reports(DefaultAuthority, DefaultDate, DefaultMood, ""));
-            }
-
-
-            ReportList.ItemsSource = reportList;
+       
 
         }
 
@@ -134,6 +78,11 @@ namespace TAUP2C.Dobberman.Phone.Pages
         private void PhoneApplicationPage_Loaded_1(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void AddReport_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Pages/AddReport.xaml", UriKind.Relative));
         }
     }
 }
