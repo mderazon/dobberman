@@ -32,6 +32,24 @@ namespace TAUP2C.Dobberman.Web.Services
 
         }
 
+        public List<Report> GetReportsByAuthorityId(int authorityId)
+        {
+            List<Report> reports = new List<Report>();
+            using (DobbermanEntities context = new DobbermanEntities())
+            {
+                IQueryable<ReportEntity> reportsQuery = context.Authorities
+                    .Where(c => c.AuthorityId == authorityId)
+                    .SelectMany(c => c.Reports);
+
+                foreach (var report in reportsQuery)
+                {
+                    reports.Add(TranslateReportEntityToReport(report));
+                }
+            }
+            return reports;
+
+        }
+
         public List<Authority> GetAllAuthorities()
         {
             List<Authority> authorities = new List<Authority>();
@@ -41,6 +59,22 @@ namespace TAUP2C.Dobberman.Web.Services
                     from n in context.Authorities
                     orderby n.Name
                     select n;
+
+                foreach (var authority in sortedAuthorities)
+                {
+                    authorities.Add(TranslateAuthorityEntityToAuthority(authority));
+                }
+            }
+            return authorities;
+        }
+
+        public List<Authority> GetAuthoritiesByReports()
+        {
+            List<Authority> authorities = new List<Authority>();
+            using (DobbermanEntities context = new DobbermanEntities())
+            {
+                var sortedAuthorities = context.Authorities.OrderBy(auth => auth.Reports.Count());
+
 
                 foreach (var authority in sortedAuthorities)
                 {

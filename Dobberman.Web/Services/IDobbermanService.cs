@@ -14,12 +14,22 @@ namespace TAUP2C.Dobberman.Web.Services
     [ServiceContract]
     public interface IDobbermanService
     {
+
         [OperationContract]
         List<Report> GetReportsByUserId(int userId);
 
         [OperationContract]
+        List<Report> GetReportsByAuthorityId(int authorityId);
+
+        // returns a list of all authorities
+        [OperationContract]
         List<Authority> GetAllAuthorities();
 
+        // returns a list of authorities sorted by the number of reports associated with them
+        [OperationContract]
+        List<Authority> GetAuthoritiesByReports();
+
+        // returns a list of all reports with a location that is not null
         [OperationContract]
         List<Report> GetAllReportsWithLocation();
 
