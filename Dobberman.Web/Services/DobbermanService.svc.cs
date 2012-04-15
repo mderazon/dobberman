@@ -30,27 +30,6 @@ namespace TAUP2C.Dobberman.Web.Services
             }
             return reports;
 
-            //using (DobbermanEntities context = new DobbermanEntities())
-            //{
-            //    // get specific user by userid
-            //    UserEntity userEntity = (from p
-            //                                 in context.Users
-            //                                 where p.UserId == userId
-            //                                 select p).FirstOrDefault();
-            
-            //    // load the reports of the user explicitly 
-            //    if (!userEntity.Report.IsLoaded)
-            //    {
-            //        userEntity.Report.Load();
-            //    }
-            //    // load reports by user into a list and return it
-            //    List<Report> reports = new List<Report>();
-            //    foreach (var report in userEntity.Report)
-            //    {
-            //        reports.Add(TranslateReportEntityToReport(report));
-            //    } 
-            //    return reports;
-            //}
         }
 
         public List<Authority> GetAllAuthorities()
@@ -71,6 +50,23 @@ namespace TAUP2C.Dobberman.Web.Services
             return authorities;
         }
 
+        public List<Report> GetAllReportsWithLocation()
+        {
+            List<Report> reports = new List<Report>();
+            using (DobbermanEntities context = new DobbermanEntities())
+            {
+                IQueryable<ReportEntity> reportsQuery =
+                from n in context.Reports
+                    where n.Location != null
+                    select n;
+
+                foreach (var report in reportsQuery)
+                {
+                    reports.Add(TranslateReportEntityToReport(report));
+                }
+            }
+            return reports;
+        }
         #region Create methods
         public int CreateNewReport(Report report)
         {
@@ -80,6 +76,9 @@ namespace TAUP2C.Dobberman.Web.Services
                 UserId = report.UserId,
                 Description = report.Description,
                 Date = report.Date,
+                Location = report.Location,
+                Photo = report.Photo,
+                Mood = report.Mood,
             };
             using (DobbermanEntities context = new DobbermanEntities())
             {

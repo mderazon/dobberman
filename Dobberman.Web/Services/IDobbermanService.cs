@@ -21,6 +21,9 @@ namespace TAUP2C.Dobberman.Web.Services
         List<Authority> GetAllAuthorities();
 
         [OperationContract]
+        List<Report> GetAllReportsWithLocation();
+
+        [OperationContract]
         int CreateNewReport(Report report);
 
         [OperationContract]
