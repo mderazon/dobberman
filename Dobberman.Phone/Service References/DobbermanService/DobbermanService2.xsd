@@ -15,6 +15,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetReportsByAuthorityId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="authorityId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReportsByAuthorityIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="GetReportsByAuthorityIdResult" nillable="true" type="q2:ArrayOfReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetAllAuthorities">
     <xs:complexType>
       <xs:sequence />
@@ -23,14 +37,38 @@
   <xs:element name="GetAllAuthoritiesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="GetAllAuthoritiesResult" nillable="true" type="q2:ArrayOfAuthority" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="GetAllAuthoritiesResult" nillable="true" type="q3:ArrayOfAuthority" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSortedAuthorities">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSortedAuthoritiesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="GetSortedAuthoritiesResult" nillable="true" type="q4:ArrayOfAuthority" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllReportsWithLocation">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllReportsWithLocationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="GetAllReportsWithLocationResult" nillable="true" type="q5:ArrayOfReport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateNewReport">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="report" nillable="true" type="q3:Report" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="report" nillable="true" type="q6:Report" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -44,7 +82,7 @@
   <xs:element name="CreateNewUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="user" nillable="true" type="q4:User" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="user" nillable="true" type="q7:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -58,7 +96,7 @@
   <xs:element name="CreateNewAuthority">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="authority" nillable="true" type="q5:Authority" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/TAUP2C.Dobberman.Web.Services" minOccurs="0" name="authority" nillable="true" type="q8:Authority" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

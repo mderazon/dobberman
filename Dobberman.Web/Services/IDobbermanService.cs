@@ -25,9 +25,9 @@ namespace TAUP2C.Dobberman.Web.Services
         [OperationContract]
         List<Authority> GetAllAuthorities();
 
-        // returns a list of authorities sorted by the number of reports associated with them
+        // returns a list of authorities sorted by the number of reports associated with them, does not get the reports themselves
         [OperationContract]
-        List<Authority> GetAuthoritiesByReports();
+        List<Authority> GetSortedAuthorities();
 
         // returns a list of all reports with a location that is not null
         [OperationContract]
@@ -80,6 +80,9 @@ namespace TAUP2C.Dobberman.Web.Services
         public string Name { get; set; }
         [DataMember]
         public string FacebookPage { get; set; }
+        [DataMember]
+        public List<Report> Reports { get; set; }
+
     }
 
     [DataContract]

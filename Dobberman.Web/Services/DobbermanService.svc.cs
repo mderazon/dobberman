@@ -68,7 +68,7 @@ namespace TAUP2C.Dobberman.Web.Services
             return authorities;
         }
 
-        public List<Authority> GetAuthoritiesByReports()
+        public List<Authority> GetSortedAuthorities()
         {
             List<Authority> authorities = new List<Authority>();
             using (DobbermanEntities context = new DobbermanEntities())
@@ -78,7 +78,7 @@ namespace TAUP2C.Dobberman.Web.Services
 
                 foreach (var authority in sortedAuthorities)
                 {
-                    authorities.Add(TranslateAuthorityEntityToAuthority(authority));
+                    authorities.Add(TranslateAuthorityEntityToAuthority(authority));                   
                 }
             }
             return authorities;
@@ -101,6 +101,7 @@ namespace TAUP2C.Dobberman.Web.Services
             }
             return reports;
         }
+
         #region Create methods
         public int CreateNewReport(Report report)
         {

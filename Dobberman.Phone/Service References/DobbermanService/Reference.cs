@@ -191,6 +191,8 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
         
         private string NameField;
         
+        private System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> ReportsField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int AuthorityId {
             get {
@@ -226,6 +228,19 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> Reports {
+            get {
+                return this.ReportsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReportsField, value) != true)) {
+                    this.ReportsField = value;
+                    this.RaisePropertyChanged("Reports");
                 }
             }
         }
@@ -309,10 +324,25 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
         
         System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> EndGetReportsByUserId(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDobbermanService/GetReportsByAuthorityId", ReplyAction="http://tempuri.org/IDobbermanService/GetReportsByAuthorityIdResponse")]
+        System.IAsyncResult BeginGetReportsByAuthorityId(int authorityId, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> EndGetReportsByAuthorityId(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDobbermanService/GetAllAuthorities", ReplyAction="http://tempuri.org/IDobbermanService/GetAllAuthoritiesResponse")]
         System.IAsyncResult BeginGetAllAuthorities(System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Authority> EndGetAllAuthorities(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDobbermanService/GetSortedAuthorities", ReplyAction="http://tempuri.org/IDobbermanService/GetSortedAuthoritiesResponse")]
+        System.IAsyncResult BeginGetSortedAuthorities(System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Authority> EndGetSortedAuthorities(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDobbermanService/GetAllReportsWithLocation", ReplyAction="http://tempuri.org/IDobbermanService/GetAllReportsWithLocationResponse")]
+        System.IAsyncResult BeginGetAllReportsWithLocation(System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> EndGetAllReportsWithLocation(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDobbermanService/CreateNewReport", ReplyAction="http://tempuri.org/IDobbermanService/CreateNewReportResponse")]
         System.IAsyncResult BeginCreateNewReport(TAUP2C.Dobberman.Phone.DobbermanService.Report report, System.AsyncCallback callback, object asyncState);
@@ -355,6 +385,25 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetReportsByAuthorityIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetReportsByAuthorityIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetAllAuthoritiesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -368,6 +417,44 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Authority>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetSortedAuthoritiesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSortedAuthoritiesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Authority> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Authority>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetAllReportsWithLocationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetAllReportsWithLocationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report>)(this.results[0]));
             }
         }
     }
@@ -439,11 +526,29 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
         
         private System.Threading.SendOrPostCallback onGetReportsByUserIdCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetReportsByAuthorityIdDelegate;
+        
+        private EndOperationDelegate onEndGetReportsByAuthorityIdDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetReportsByAuthorityIdCompletedDelegate;
+        
         private BeginOperationDelegate onBeginGetAllAuthoritiesDelegate;
         
         private EndOperationDelegate onEndGetAllAuthoritiesDelegate;
         
         private System.Threading.SendOrPostCallback onGetAllAuthoritiesCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSortedAuthoritiesDelegate;
+        
+        private EndOperationDelegate onEndGetSortedAuthoritiesDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSortedAuthoritiesCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetAllReportsWithLocationDelegate;
+        
+        private EndOperationDelegate onEndGetAllReportsWithLocationDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetAllReportsWithLocationCompletedDelegate;
         
         private BeginOperationDelegate onBeginCreateNewReportDelegate;
         
@@ -518,7 +623,13 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
         
         public event System.EventHandler<GetReportsByUserIdCompletedEventArgs> GetReportsByUserIdCompleted;
         
+        public event System.EventHandler<GetReportsByAuthorityIdCompletedEventArgs> GetReportsByAuthorityIdCompleted;
+        
         public event System.EventHandler<GetAllAuthoritiesCompletedEventArgs> GetAllAuthoritiesCompleted;
+        
+        public event System.EventHandler<GetSortedAuthoritiesCompletedEventArgs> GetSortedAuthoritiesCompleted;
+        
+        public event System.EventHandler<GetAllReportsWithLocationCompletedEventArgs> GetAllReportsWithLocationCompleted;
         
         public event System.EventHandler<CreateNewReportCompletedEventArgs> CreateNewReportCompleted;
         
@@ -577,6 +688,52 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult TAUP2C.Dobberman.Phone.DobbermanService.IDobbermanService.BeginGetReportsByAuthorityId(int authorityId, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetReportsByAuthorityId(authorityId, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> TAUP2C.Dobberman.Phone.DobbermanService.IDobbermanService.EndGetReportsByAuthorityId(System.IAsyncResult result) {
+            return base.Channel.EndGetReportsByAuthorityId(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetReportsByAuthorityId(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int authorityId = ((int)(inValues[0]));
+            return ((TAUP2C.Dobberman.Phone.DobbermanService.IDobbermanService)(this)).BeginGetReportsByAuthorityId(authorityId, callback, asyncState);
+        }
+        
+        private object[] OnEndGetReportsByAuthorityId(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> retVal = ((TAUP2C.Dobberman.Phone.DobbermanService.IDobbermanService)(this)).EndGetReportsByAuthorityId(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetReportsByAuthorityIdCompleted(object state) {
+            if ((this.GetReportsByAuthorityIdCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetReportsByAuthorityIdCompleted(this, new GetReportsByAuthorityIdCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetReportsByAuthorityIdAsync(int authorityId) {
+            this.GetReportsByAuthorityIdAsync(authorityId, null);
+        }
+        
+        public void GetReportsByAuthorityIdAsync(int authorityId, object userState) {
+            if ((this.onBeginGetReportsByAuthorityIdDelegate == null)) {
+                this.onBeginGetReportsByAuthorityIdDelegate = new BeginOperationDelegate(this.OnBeginGetReportsByAuthorityId);
+            }
+            if ((this.onEndGetReportsByAuthorityIdDelegate == null)) {
+                this.onEndGetReportsByAuthorityIdDelegate = new EndOperationDelegate(this.OnEndGetReportsByAuthorityId);
+            }
+            if ((this.onGetReportsByAuthorityIdCompletedDelegate == null)) {
+                this.onGetReportsByAuthorityIdCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetReportsByAuthorityIdCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetReportsByAuthorityIdDelegate, new object[] {
+                        authorityId}, this.onEndGetReportsByAuthorityIdDelegate, this.onGetReportsByAuthorityIdCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult TAUP2C.Dobberman.Phone.DobbermanService.IDobbermanService.BeginGetAllAuthorities(System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginGetAllAuthorities(callback, asyncState);
         }
@@ -618,6 +775,94 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
                 this.onGetAllAuthoritiesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAllAuthoritiesCompleted);
             }
             base.InvokeAsync(this.onBeginGetAllAuthoritiesDelegate, null, this.onEndGetAllAuthoritiesDelegate, this.onGetAllAuthoritiesCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult TAUP2C.Dobberman.Phone.DobbermanService.IDobbermanService.BeginGetSortedAuthorities(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSortedAuthorities(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Authority> TAUP2C.Dobberman.Phone.DobbermanService.IDobbermanService.EndGetSortedAuthorities(System.IAsyncResult result) {
+            return base.Channel.EndGetSortedAuthorities(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetSortedAuthorities(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((TAUP2C.Dobberman.Phone.DobbermanService.IDobbermanService)(this)).BeginGetSortedAuthorities(callback, asyncState);
+        }
+        
+        private object[] OnEndGetSortedAuthorities(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Authority> retVal = ((TAUP2C.Dobberman.Phone.DobbermanService.IDobbermanService)(this)).EndGetSortedAuthorities(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSortedAuthoritiesCompleted(object state) {
+            if ((this.GetSortedAuthoritiesCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSortedAuthoritiesCompleted(this, new GetSortedAuthoritiesCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSortedAuthoritiesAsync() {
+            this.GetSortedAuthoritiesAsync(null);
+        }
+        
+        public void GetSortedAuthoritiesAsync(object userState) {
+            if ((this.onBeginGetSortedAuthoritiesDelegate == null)) {
+                this.onBeginGetSortedAuthoritiesDelegate = new BeginOperationDelegate(this.OnBeginGetSortedAuthorities);
+            }
+            if ((this.onEndGetSortedAuthoritiesDelegate == null)) {
+                this.onEndGetSortedAuthoritiesDelegate = new EndOperationDelegate(this.OnEndGetSortedAuthorities);
+            }
+            if ((this.onGetSortedAuthoritiesCompletedDelegate == null)) {
+                this.onGetSortedAuthoritiesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSortedAuthoritiesCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSortedAuthoritiesDelegate, null, this.onEndGetSortedAuthoritiesDelegate, this.onGetSortedAuthoritiesCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult TAUP2C.Dobberman.Phone.DobbermanService.IDobbermanService.BeginGetAllReportsWithLocation(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetAllReportsWithLocation(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> TAUP2C.Dobberman.Phone.DobbermanService.IDobbermanService.EndGetAllReportsWithLocation(System.IAsyncResult result) {
+            return base.Channel.EndGetAllReportsWithLocation(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetAllReportsWithLocation(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((TAUP2C.Dobberman.Phone.DobbermanService.IDobbermanService)(this)).BeginGetAllReportsWithLocation(callback, asyncState);
+        }
+        
+        private object[] OnEndGetAllReportsWithLocation(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> retVal = ((TAUP2C.Dobberman.Phone.DobbermanService.IDobbermanService)(this)).EndGetAllReportsWithLocation(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetAllReportsWithLocationCompleted(object state) {
+            if ((this.GetAllReportsWithLocationCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetAllReportsWithLocationCompleted(this, new GetAllReportsWithLocationCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetAllReportsWithLocationAsync() {
+            this.GetAllReportsWithLocationAsync(null);
+        }
+        
+        public void GetAllReportsWithLocationAsync(object userState) {
+            if ((this.onBeginGetAllReportsWithLocationDelegate == null)) {
+                this.onBeginGetAllReportsWithLocationDelegate = new BeginOperationDelegate(this.OnBeginGetAllReportsWithLocation);
+            }
+            if ((this.onEndGetAllReportsWithLocationDelegate == null)) {
+                this.onEndGetAllReportsWithLocationDelegate = new EndOperationDelegate(this.OnEndGetAllReportsWithLocation);
+            }
+            if ((this.onGetAllReportsWithLocationCompletedDelegate == null)) {
+                this.onGetAllReportsWithLocationCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAllReportsWithLocationCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetAllReportsWithLocationDelegate, null, this.onEndGetAllReportsWithLocationDelegate, this.onGetAllReportsWithLocationCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -847,6 +1092,19 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
                 return _result;
             }
             
+            public System.IAsyncResult BeginGetReportsByAuthorityId(int authorityId, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = authorityId;
+                System.IAsyncResult _result = base.BeginInvoke("GetReportsByAuthorityId", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> EndGetReportsByAuthorityId(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> _result = ((System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report>)(base.EndInvoke("GetReportsByAuthorityId", _args, result)));
+                return _result;
+            }
+            
             public System.IAsyncResult BeginGetAllAuthorities(System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[0];
                 System.IAsyncResult _result = base.BeginInvoke("GetAllAuthorities", _args, callback, asyncState);
@@ -856,6 +1114,30 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
             public System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Authority> EndGetAllAuthorities(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Authority> _result = ((System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Authority>)(base.EndInvoke("GetAllAuthorities", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetSortedAuthorities(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("GetSortedAuthorities", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Authority> EndGetSortedAuthorities(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Authority> _result = ((System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Authority>)(base.EndInvoke("GetSortedAuthorities", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetAllReportsWithLocation(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("GetAllReportsWithLocation", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> EndGetAllReportsWithLocation(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> _result = ((System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report>)(base.EndInvoke("GetAllReportsWithLocation", _args, result)));
                 return _result;
             }
             
