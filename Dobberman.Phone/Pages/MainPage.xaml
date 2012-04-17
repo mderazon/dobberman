@@ -6,14 +6,11 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded_1">
-
+    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded_1" mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480">
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
@@ -24,18 +21,20 @@
                     <ListBox Name="ReportList" Margin="0,0,0,0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Button Click="Button_Click"  Width="460" Height="120">
+                                <Button Click="Button_Click"  Width="540" Height="200" BorderThickness="15,0,0,0" BorderBrush="{Binding Mood, Converter={StaticResource BorderBrushConverter}}">
                                     <Button.Content>
-                                        <StackPanel Orientation="Horizontal" Height="80" Width="400">
-                                            <Image Source="" Width="48" Height="48"/>
-                                            <StackPanel Orientation="Vertical" Height="80">
+                                        <StackPanel Orientation="Horizontal" Height="160" Width="540">
+                                            <StackPanel Orientation="Vertical" Height="160">
                                                 <StackPanel Orientation="Horizontal" Height="40">
-                                                    <TextBlock Width="100" FontSize="22" Text="Date:" Height="40"/>
-                                                    <TextBlock Width="200" FontSize="22" Text="{Binding Mood}" Height="40"/>
+                                                    <TextBlock Width="200" FontSize="22" Text="{Binding Authority.Name}" Height="40"/>
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Height="40">
-                                                    <TextBlock Width="100" FontSize="22" Text="Authority:" Height="40"/>
-                                                    <TextBlock Width="200" FontSize="22" Text="{Binding Authority.Name}" Height="40"/>
+                                                    
+                                                    <TextBlock Width="400" FontSize="22" Text="{Binding Date}" Height="40"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal" Height="80">
+
+                                                    <TextBlock Width="400" FontSize="22" Text="{Binding Description}" Height="80" TextWrapping="Wrap"/>
                                                 </StackPanel>
                                             </StackPanel>
                                         </StackPanel>
