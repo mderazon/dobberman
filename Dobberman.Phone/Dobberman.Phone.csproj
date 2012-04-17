@@ -52,11 +52,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Facebook.6.0.10.0\lib\sl4-windowsphone71\Facebook.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Expression.Drawing, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Expression.Interactions, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Phone.Controls.Maps, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\..\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.1\Toolkit\Aug11\Bin\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
@@ -69,7 +66,6 @@
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
     <Reference Include="System.Xml.Linq" />
@@ -78,17 +74,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Google Maps\GoogleTile.cs" />
-    <Compile Include="Google Maps\GoogleTileTypes.cs" />
-    <Compile Include="Google Maps\ImmediateLocation.cs" />
     <Compile Include="Pages\AddReport.xaml.cs">
       <DependentUpon>AddReport.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ReportMappingPage.xaml.cs">
-      <DependentUpon>ReportMappingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="States.cs" />
     <Compile Include="Pages\LoginPage.xaml.cs">
@@ -117,14 +104,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Page1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\ReportMappingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,8 +140,6 @@
     </None>
     <Content Include="ExternalLibraries\Facebook.dll" />
     <Resource Include="ApplicationIcon.png" />
-    <Content Include="Google Maps\Microsoft.Phone.Controls.dll" />
-    <Content Include="Google Maps\Microsoft.Phone.Controls.Maps.dll" />
     <Content Include="Images\128_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -172,7 +149,6 @@
     <Content Include="Images\128_6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\pushpin.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
