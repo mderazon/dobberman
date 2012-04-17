@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define VIRTUAL_WP7
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,6 +13,9 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using TAUP2C.Dobberman.Phone.DobbermanService;
 using Facebook;
+using Microsoft.Phone.Controls.Maps;
+using TAUP2C.Dobberman.Phone.Google_Maps;
+using System.Device.Location;
 
 namespace TAUP2C.Dobberman.Phone.Pages
 {
@@ -225,6 +229,51 @@ namespace TAUP2C.Dobberman.Phone.Pages
         {
             MessageBox.Show("Report Sent Succesfulluy");
         }
+
+       
+             private void GPScheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            string coordinate = System.String.Empty;
+#if REAL_WP7
+            IGeoPositionWatcher<GeoCoordinate> watcher;
+            watcher = new System.Device.Location.GeoCoordinateWatcher();
+
+            // Do not suppress prompt, and wait 1000 milliseconds to start.
+            watcher.TryStart(false, TimeSpan.FromMilliseconds(1000));
+            GeoCoordinate coord = watcher.Position.Location;
+
+            if (coord.IsUnknown != true)
+            {
+                coordinate = coord.ToString(); 
+                watcher.Stop();
+              
+            }
+                
+            else
+            {
+                coordinate = null;
+            }
+        }
+#endif
+#if VIRTUAL_WP7
+            GeoCoordinate coord = new GeoCoordinate();
+            List<GeoCoordinate> myList = new List<GeoCoordinate>();
+              
+                myList.Add(new GeoCoordinate(31.101,35.145));
+                myList.Add(new GeoCoordinate(31.838, 34.878));
+                myList.Add(new GeoCoordinate(32.549, 35.234));
+                coord = myList[RandomNumber(0, 2)];
+                coordinate = coord.ToString();
+#endif
+ 
+}
+        private int RandomNumber(int min, int max)
+        {
+            Random random = new Random();
+            return random.Next(min, max);
+        }
+ 
+        
 
         
        
