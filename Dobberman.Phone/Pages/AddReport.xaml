@@ -88,7 +88,7 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,-391" DataContext="{Binding}">
             <TextBlock Height="37" HorizontalAlignment="Left" Margin="134,151,0,0"  Text="How do you feel?" VerticalAlignment="Top" Width="178" />
             <toolkit:AutoCompleteBox HorizontalAlignment="Left" Margin="70,62,0,0" Name="autoCompleteBox1" VerticalAlignment="Top" Height="69" Width="316" Text="Select Authority" GotFocus="AutoCompleteSelected" />
-            <CheckBox Content="Get Location From GPS" Height="67" HorizontalAlignment="Left" Margin="70,414,0,0" Name="checkBox1" VerticalAlignment="Top" Width="316" IsChecked="True" Background="White"></CheckBox>
+            <CheckBox Content="Get Location From GPS" Height="67" HorizontalAlignment="Left" Margin="70,414,0,0" Name="GPScheckbox" VerticalAlignment="Top" Width="316" IsChecked="True" Background="White" Checked="GPScheckbox_Checked"></CheckBox>
             <TextBox Name="Desc" Height="124" HorizontalAlignment="Left" Margin="27,311,0,0" Text="Enter Report Description" VerticalAlignment="Top" Width="406" />
             <CheckBox Background="White" BorderBrush="#BFC11414" Content="Post to autority's Facebook page" Height="74" HorizontalAlignment="Left" IsChecked="True" Margin="27,476,0,0" Name="checkBox2" VerticalAlignment="Top" Width="421" />
             <Button Content="" Height="104" HorizontalAlignment="Left" Margin="27,201,0,0" Name="button1" VerticalAlignment="Top" Width="107" BorderThickness="0" Opacity="0.7" Click="button1_Click">
