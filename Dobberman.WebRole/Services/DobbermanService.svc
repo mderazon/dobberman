@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="TAUP2C.Dobberman.WebRole.Services.DobbermanService" CodeBehind="DobbermanService.svc.cs" %>

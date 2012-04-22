@@ -9,7 +9,7 @@
             </basicHttpBinding>
         </bindings>
         <client>
-            <endpoint address="http://localhost:65493/Services/DobbermanService.svc"
+            <endpoint address="http://dobberman.cloudapp.net/Services/DobbermanService.svc"
                 binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IDobbermanService"
                 contract="DobbermanService.IDobbermanService" name="BasicHttpBinding_IDobbermanService" />
         </client>
