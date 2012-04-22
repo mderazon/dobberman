@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8e23827f-c69d-4336-833a-5cfeb92874e8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://dobberman.cloudapp.net/Services/DobbermanService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DobbermanService.xsd" MetadataType="Schema" ID="06385fe2-29df-4931-a202-c6c04ccd29f6" SourceId="1" SourceUrl="http://dobberman.cloudapp.net/Services/DobbermanService.svc?xsd=xsd1" />
+    <MetadataFile FileName="DobbermanService.wsdl" MetadataType="Wsdl" ID="d1771fc2-beb1-48ec-b4b0-653659bdc56d" SourceId="1" SourceUrl="http://dobberman.cloudapp.net/Services/DobbermanService.svc?wsdl" />
+    <MetadataFile FileName="DobbermanService1.xsd" MetadataType="Schema" ID="0d7092ed-e0a1-4c6b-a51a-de95383f7e06" SourceId="1" SourceUrl="http://dobberman.cloudapp.net/Services/DobbermanService.svc?xsd=xsd2" />
+    <MetadataFile FileName="DobbermanService2.xsd" MetadataType="Schema" ID="082063b7-4bc5-43b7-8b74-d6ff8da1d876" SourceId="1" SourceUrl="http://dobberman.cloudapp.net/Services/DobbermanService.svc?xsd=xsd0" />
+    <MetadataFile FileName="DobbermanService.disco" MetadataType="Disco" ID="1dc64437-fca1-401a-a95e-4d0a5ebe4197" SourceId="1" SourceUrl="http://dobberman.cloudapp.net/Services/DobbermanService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
