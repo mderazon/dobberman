@@ -105,9 +105,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BorderBrushConverter.cs" />
+    <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Google Maps\GoogleTile.cs" />
     <Compile Include="Google Maps\GoogleTileTypes.cs" />
     <Compile Include="Google Maps\ImmediateLocation.cs" />
+    <Compile Include="Helpers\FacebookHelpers.cs" />
+    <Compile Include="Helpers\PhoneHelpers.cs" />
     <Compile Include="Pages\AddReport.xaml.cs">
       <DependentUpon>AddReport.xaml</DependentUpon>
     </Compile>

@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using TAUP2C.Dobberman.Phone.DobbermanService;
+using TAUP2C.Dobberman.Phone.Helpers;
 
 namespace TAUP2C.Dobberman.Phone.Pages
 {
@@ -83,6 +84,23 @@ namespace TAUP2C.Dobberman.Phone.Pages
         private void AddReport_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Pages/AddReport.xaml", UriKind.Relative));
+        }
+
+        private void OnLogout(object sender, EventArgs e)
+        {
+            this.CleanUp();
+        }
+
+        private void CleanUp()
+        {
+            // Clean the current authentication token, flags and view models.
+            PhoneHelpers.SetApplicationState("UserBackPress", false);
+            PhoneHelpers.RemoveIsolatedStorageSetting("UserIsRegistered");
+
+
+
+            // Navigate to the log in page.
+            this.NavigationService.GoBack();
         }
     }
 }

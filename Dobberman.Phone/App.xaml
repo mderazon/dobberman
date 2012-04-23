@@ -10,6 +10,7 @@
     <!--Application Resources-->
     <Application.Resources>
         <converters:BorderBrushConverter x:Key="BorderBrushConverter"/>
+        <converters:VisibilityConverter x:Key="VisibilityConverter" />
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
