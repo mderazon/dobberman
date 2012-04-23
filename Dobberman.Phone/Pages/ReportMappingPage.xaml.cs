@@ -20,10 +20,7 @@ using System.Xml.Linq;
 using Microsoft.Phone.Shell;
 using System.Windows.Navigation;
 using System.Text;
-//using GpsEmulatorClient;
-//using TAUP2C.Dobberman.Phone.DM;
-//using Hitch.ServiceContract;
-//using Hitch.Runner.HitchServiceReference;
+
 
 namespace TAUP2C.Dobberman.Phone.Pages
 {

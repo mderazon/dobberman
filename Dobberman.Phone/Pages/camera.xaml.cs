@@ -22,7 +22,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
     {
         string storageAccount = "dobberman";
         string storageKey = "9Uure7kO3RV71DRY+5rbMWurEuNfP1oCKkGvRi+/TlJq9nQbqU39FUYbPpqt+ml8qHfZNCGlxf4WBuhyO6gkdQ==";
-        string blobServiceUri = "dobberman.blob.core.windows.net";
+        string blobServiceUri = "http://dobberman.blob.core.windows.net";
         
         CloudBlobClient blobClient;
 
