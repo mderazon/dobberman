@@ -83,7 +83,8 @@
                            VerticalAlignment="Center" />
             </Grid>-->
             <my:Map x:Name="googlemap" ZoomLevel="4" 
-                  
+                  Center="{Binding AppState.MapCenter}"
+
                     VerticalAlignment="Stretch"
                     CopyrightVisibility="Collapsed"
                     LogoVisibility="Collapsed"
@@ -201,7 +202,6 @@
         <toolkit:PerformanceProgressBar VerticalAlignment="Top"
                                         x:Name="_performanceProgressBar" />
         <Button Content="get location" Grid.Row="1" Height="90" HorizontalAlignment="Left" Margin="76,564,0,0" Name="button2" VerticalAlignment="Top" Width="310" Click="button2_Click" />
-        <TextBox Grid.Row="1" Height="90" HorizontalAlignment="Left" Margin="0,464,0,0" Name="print" Text="TextBox" VerticalAlignment="Top" Width="468"  />
     </Grid>
 
 </phone:PhoneApplicationPage>
