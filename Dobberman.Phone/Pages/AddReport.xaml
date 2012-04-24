@@ -10,69 +10,11 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls">
-    <!--<phone:PhoneApplicationPage.Resources>
-        <Style x:Key="RadioButtonStyle1" TargetType="RadioButton">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
-            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
-            <Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
-            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
-            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
-            <Setter Property="Padding" Value="10,3,10,5"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="RadioButton">
-                        <Grid Background="Transparent">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CheckStates">
-                                    <VisualState x:Name="Checked">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonBackground">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Red"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Unchecked"/>
-                                    <VisualState x:Name="Indeterminate"/>
-                                </VisualStateGroup>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="MouseOver"/>
-                                    <VisualState x:Name="Pressed">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentContainer">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Gray"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Disabled">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentContainer">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ButtonBackground">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonBackground">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0" Margin="{StaticResource PhoneTouchTargetOverhang}">
-                                <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Border>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </phone:PhoneApplicationPage.Resources>-->
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <ScrollViewer Margin="12,0,12,-391" Grid.Row="1" Height="1093" Width="468">
+        <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -80,48 +22,45 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="Dobberman" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock x:Name="PageTitle" Text="Add Report" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
-
-        <!--ContentPanel - place additional content here-->
+        
+            <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,-391" DataContext="{Binding}">
-            <TextBlock Height="37" HorizontalAlignment="Left" Margin="134,151,0,0"  Text="How do you feel?" VerticalAlignment="Top" Width="178" />
-            <toolkit:AutoCompleteBox HorizontalAlignment="Left" Margin="70,62,0,0" Name="autoCompleteBox1" VerticalAlignment="Top" Height="69" Width="316" Text="Select Authority" GotFocus="AutoCompleteSelected" />
-            <CheckBox Content="Get Location From GPS" Height="67" HorizontalAlignment="Left" Margin="70,414,0,0" Name="checkbox" VerticalAlignment="Top" Width="316" IsChecked="True" Background="White" Checked="GPScheckbox_Checked"></CheckBox>
-            <TextBox Name="Desc" Height="124" HorizontalAlignment="Left" Margin="27,311,0,0" Text="Enter Report Description" VerticalAlignment="Top" Width="406" />
-            <CheckBox Background="White" BorderBrush="#BFC11414" Content="Post to autority's Facebook page" Height="74" HorizontalAlignment="Left" IsChecked="True" Margin="27,476,0,0" Name="checkBox2" VerticalAlignment="Top" Width="421" />
-            <Button Content="" Height="104" HorizontalAlignment="Left" Margin="27,201,0,0" Name="button1" VerticalAlignment="Top" Width="107" BorderThickness="0" Opacity="0.7" Click="button1_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Images/128_1.png" />
-                </Button.Background>
+            <toolkit:AutoCompleteBox HorizontalAlignment="Left" Margin="15,39,0,0" Name="autoCompleteBox1" VerticalAlignment="Top" Height="69" Width="397" Text="Select Authority" GotFocus="AutoCompleteSelected" />
+            <CheckBox Content="Get Location From GPS" Height="67" HorizontalAlignment="Left" Margin="12,379,0,0" Name="checkbox" VerticalAlignment="Top" Width="316" IsChecked="True" Background="White" Checked="GPScheckbox_Checked"></CheckBox>
+                <CheckBox Background="White" BorderBrush="#BFC11414" Content="Post to autority's Facebook page" Height="74" HorizontalAlignment="Left" IsChecked="True" Margin="15,426,0,0" Name="checkBox2" VerticalAlignment="Top" Width="421" />
+            <Button HorizontalAlignment="Left"  Name="button1" Click="button1_Click" Height="134" Margin="12,140,0,0" VerticalAlignment="Top" Width="140" BorderThickness="20,0,0,0" BorderBrush="#FF0081FF" Opacity="0.5">
+                <TextBlock Height="70" TextWrapping="Wrap" Text="Happy" Width="109" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="14.667" Foreground="#FFFBEAEA" />
             </Button>
-            <Button BorderThickness="0" Content="" Height="104" HorizontalAlignment="Left" Margin="166,201,0,0" Name="button2" Opacity="0.7" VerticalAlignment="Top" Width="107" Click="button2_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Images/128_4.png" />
-                </Button.Background>
+            <Button Height="134" Margin="139,140,153,0" Name="button2" Click="button2_Click" VerticalAlignment="Top" BorderThickness="20,0,0,0" Width="140" BorderBrush="#FFFD0909" Opacity="0.5">
+                <TextBlock Height="70" TextWrapping="Wrap" Text="Unhappy" Width="109" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="14.667" Foreground="#FFFDFDFD" />
             </Button>
-            <Button BorderThickness="0" Content="" Height="104" HorizontalAlignment="Left" Margin="302,201,0,0" Name="button3" Opacity="0.7" VerticalAlignment="Top" Width="107" Click="button3_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Images/128_6.png" />
-                </Button.Background>
+            <Button HorizontalAlignment="Right" Height="134" Margin="0,140,-3,0" Name="button3" Click="button3_Click" VerticalAlignment="Top" Width="150" BorderThickness="20,0,0,0" BorderBrush="#FFFFD800" Opacity="0.5">
+                <TextBlock Height="70" TextWrapping="Wrap" Text="Concerened" Width="109" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="14.667" Foreground="#FFF3F1F1" />
             </Button>
-            <Button Content="Post Report!" Height="77" HorizontalAlignment="Left" Margin="88,522,0,0" Name="button4" VerticalAlignment="Top" Width="239" Click="PostReport_Click" />
+            <!--<Button Content="Post Report!" Height="77" HorizontalAlignment="Left" Margin="89,485,0,0" Name="button4" VerticalAlignment="Top" Width="239" Click="PostReport_Click" />-->
+            
+            <TextBlock FontSize="26.667" HorizontalAlignment="Left" Margin="10,10,0,1298" Text="Select Authority:" TextWrapping="Wrap" />
+            <TextBlock FontSize="26.667" HorizontalAlignment="Left" Margin="15,102,0,1188" Text="How do feel?" TextWrapping="Wrap" />
+            <TextBox Margin="10,280,20,949" TextWrapping="Wrap" Text="Please Decsribe." BorderThickness="20,0,0,0" BorderBrush="#FF47643F" GotFocus="TextBox_GotFocus" x:Name="Decs" />
+                <Image Height="164" HorizontalAlignment="Left" x:Name="ReportImage" Margin="96,506,0,0" Visibility="Collapsed" Stretch="Fill" VerticalAlignment="Top" Width="266" />
+            </Grid>
+           
         </Grid>
-    </Grid>
+    </ScrollViewer>
 
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
+    <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBarIconButton x:Name="TakeAPicture" IconUri="/Images/appbar.feature.camera.rest.png" Text="Button 1" Click="CameraClick" />
+            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar.logout.rest.png" Text="Button 2"/>
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
-
-
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>
 
+
+    

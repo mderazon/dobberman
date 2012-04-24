@@ -16,9 +16,6 @@ using TAUP2C.Dobberman.Phone.Helpers;
 namespace TAUP2C.Dobberman.Phone.Pages
 {
     
-
-
-
     public partial class MainPage : PhoneApplicationPage
     {
         List<Report> reportList = new List<Report>();

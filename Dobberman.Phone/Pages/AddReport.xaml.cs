@@ -9,8 +9,12 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Devices;
+using Microsoft.Phone;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Tasks;
 using TAUP2C.Dobberman.Phone.DobbermanService;
 using Facebook;
 using Microsoft.Phone.Controls.Maps;
@@ -68,6 +72,14 @@ namespace TAUP2C.Dobberman.Phone.Pages
             if (autoCompleteBox1.Text == "Select Authority")
             {
                 autoCompleteBox1.Text = "";
+            }
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (Decs.Text == "Please Decsribe.")
+            {
+                Decs.Text = "";
             }
         }
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -191,7 +203,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
             }
 
-            NewReport.Description = this.Desc.Text;
+            NewReport.Description = this.Decs.Text;
             NewReport.Location = "";
             if (LastMoodCheck == "")
             {
@@ -272,11 +284,50 @@ namespace TAUP2C.Dobberman.Phone.Pages
             Random random = new Random();
             return random.Next(min, max);
         }
- 
-        
 
-        
-       
+
+
+
+        private void CameraClick(object sender, EventArgs eventArgs)
+        {
+            //The camera chooser used to capture a picture.
+            CameraCaptureTask ctask;
+
+            //Create new instance of CameraCaptureClass
+            ctask = new CameraCaptureTask();
+
+            //Create new event handler for capturing a photo
+            ctask.Completed += new EventHandler<PhotoResult>(ctask_Completed);
+
+            //Show the camera.
+            ctask.Show();
+
+
+        }
+
+        /// <summary>
+        /// Event handler for retrieving the JPEG photo stream.
+        /// Also to for decoding JPEG stream into a writeable bitmap and displaying.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void ctask_Completed(object sender, PhotoResult e)
+        {
+
+            if (e.TaskResult == TaskResult.OK && e.ChosenPhoto != null)
+            {
+
+                WriteableBitmap CapturedImage = PictureDecoder.DecodeJpeg(e.ChosenPhoto);
+                //UploadToBlobContainer(e.ChosenPhoto);
+
+                ReportImage.Source = CapturedImage;
+                ReportImage.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                //user decided not to take a picture
+            }
+        }
        
   }
 }
