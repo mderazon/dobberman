@@ -24,12 +24,30 @@
   <xs:complexType name="Authority">
     <xs:sequence>
       <xs:element minOccurs="0" name="AuthorityId" type="xs:int" />
+      <xs:element minOccurs="0" name="Category" nillable="true" type="tns:Category" />
+      <xs:element minOccurs="0" name="CategoryId" type="xs:int" />
       <xs:element minOccurs="0" name="FacebookPage" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Reports" nillable="true" type="tns:ArrayOfReport" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Authority" nillable="true" type="tns:Authority" />
+  <xs:complexType name="Category">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Authorities" nillable="true" type="tns:ArrayOfAuthority" />
+      <xs:element minOccurs="0" name="CategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Picture" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Category" nillable="true" type="tns:Category" />
+  <xs:complexType name="ArrayOfAuthority">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Authority" nillable="true" type="tns:Authority" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAuthority" nillable="true" type="tns:ArrayOfAuthority" />
   <xs:complexType name="User">
     <xs:sequence>
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
@@ -38,10 +56,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="User" nillable="true" type="tns:User" />
-  <xs:complexType name="ArrayOfAuthority">
+  <xs:complexType name="ArrayOfCategory">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Authority" nillable="true" type="tns:Authority" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Category" nillable="true" type="tns:Category" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfAuthority" nillable="true" type="tns:ArrayOfAuthority" />
+  <xs:element name="ArrayOfCategory" nillable="true" type="tns:ArrayOfCategory" />
 </xs:schema>

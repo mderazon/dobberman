@@ -19,6 +19,12 @@
   <wsdl:message name="IDobbermanService_GetReportsByAuthorityId_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetReportsByAuthorityIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IDobbermanService_GetAllReportsWithLocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllReportsWithLocation" />
+  </wsdl:message>
+  <wsdl:message name="IDobbermanService_GetAllReportsWithLocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllReportsWithLocationResponse" />
+  </wsdl:message>
   <wsdl:message name="IDobbermanService_GetAllAuthorities_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllAuthorities" />
   </wsdl:message>
@@ -31,11 +37,17 @@
   <wsdl:message name="IDobbermanService_GetSortedAuthorities_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSortedAuthoritiesResponse" />
   </wsdl:message>
-  <wsdl:message name="IDobbermanService_GetAllReportsWithLocation_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllReportsWithLocation" />
+  <wsdl:message name="IDobbermanService_GetAuthoritiesByCategoryId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAuthoritiesByCategoryId" />
   </wsdl:message>
-  <wsdl:message name="IDobbermanService_GetAllReportsWithLocation_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllReportsWithLocationResponse" />
+  <wsdl:message name="IDobbermanService_GetAuthoritiesByCategoryId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAuthoritiesByCategoryIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDobbermanService_GetAllCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCategories" />
+  </wsdl:message>
+  <wsdl:message name="IDobbermanService_GetAllCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCategoriesResponse" />
   </wsdl:message>
   <wsdl:message name="IDobbermanService_CreateNewReport_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateNewReport" />
@@ -55,6 +67,12 @@
   <wsdl:message name="IDobbermanService_CreateNewAuthority_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateNewAuthorityResponse" />
   </wsdl:message>
+  <wsdl:message name="IDobbermanService_CreateNewCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewCategory" />
+  </wsdl:message>
+  <wsdl:message name="IDobbermanService_CreateNewCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewCategoryResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDobbermanService">
     <wsdl:operation name="GetReportsByUserId">
       <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/GetReportsByUserId" message="tns:IDobbermanService_GetReportsByUserId_InputMessage" />
@@ -64,6 +82,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/GetReportsByAuthorityId" message="tns:IDobbermanService_GetReportsByAuthorityId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/GetReportsByAuthorityIdResponse" message="tns:IDobbermanService_GetReportsByAuthorityId_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllReportsWithLocation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/GetAllReportsWithLocation" message="tns:IDobbermanService_GetAllReportsWithLocation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/GetAllReportsWithLocationResponse" message="tns:IDobbermanService_GetAllReportsWithLocation_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetAllAuthorities">
       <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/GetAllAuthorities" message="tns:IDobbermanService_GetAllAuthorities_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/GetAllAuthoritiesResponse" message="tns:IDobbermanService_GetAllAuthorities_OutputMessage" />
@@ -72,9 +94,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/GetSortedAuthorities" message="tns:IDobbermanService_GetSortedAuthorities_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/GetSortedAuthoritiesResponse" message="tns:IDobbermanService_GetSortedAuthorities_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetAllReportsWithLocation">
-      <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/GetAllReportsWithLocation" message="tns:IDobbermanService_GetAllReportsWithLocation_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/GetAllReportsWithLocationResponse" message="tns:IDobbermanService_GetAllReportsWithLocation_OutputMessage" />
+    <wsdl:operation name="GetAuthoritiesByCategoryId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/GetAuthoritiesByCategoryId" message="tns:IDobbermanService_GetAuthoritiesByCategoryId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/GetAuthoritiesByCategoryIdResponse" message="tns:IDobbermanService_GetAuthoritiesByCategoryId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCategories">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/GetAllCategories" message="tns:IDobbermanService_GetAllCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/GetAllCategoriesResponse" message="tns:IDobbermanService_GetAllCategories_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CreateNewReport">
       <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/CreateNewReport" message="tns:IDobbermanService_CreateNewReport_InputMessage" />
@@ -87,6 +113,10 @@
     <wsdl:operation name="CreateNewAuthority">
       <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/CreateNewAuthority" message="tns:IDobbermanService_CreateNewAuthority_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/CreateNewAuthorityResponse" message="tns:IDobbermanService_CreateNewAuthority_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDobbermanService/CreateNewCategory" message="tns:IDobbermanService_CreateNewCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDobbermanService/CreateNewCategoryResponse" message="tns:IDobbermanService_CreateNewCategory_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDobbermanService" type="tns:IDobbermanService">
@@ -102,6 +132,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetReportsByAuthorityId">
       <soap:operation soapAction="http://tempuri.org/IDobbermanService/GetReportsByAuthorityId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllReportsWithLocation">
+      <soap:operation soapAction="http://tempuri.org/IDobbermanService/GetAllReportsWithLocation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -127,8 +166,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAllReportsWithLocation">
-      <soap:operation soapAction="http://tempuri.org/IDobbermanService/GetAllReportsWithLocation" style="document" />
+    <wsdl:operation name="GetAuthoritiesByCategoryId">
+      <soap:operation soapAction="http://tempuri.org/IDobbermanService/GetAuthoritiesByCategoryId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCategories">
+      <soap:operation soapAction="http://tempuri.org/IDobbermanService/GetAllCategories" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -156,6 +204,15 @@
     </wsdl:operation>
     <wsdl:operation name="CreateNewAuthority">
       <soap:operation soapAction="http://tempuri.org/IDobbermanService/CreateNewAuthority" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewCategory">
+      <soap:operation soapAction="http://tempuri.org/IDobbermanService/CreateNewCategory" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

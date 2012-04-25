@@ -5,73 +5,102 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DobbermanModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="DobbermanModelStoreContainer">
-          <EntitySet Name="Authorities" EntityType="DobbermanModel.Store.Authorities" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Reports" EntityType="DobbermanModel.Store.Reports" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Users" EntityType="DobbermanModel.Store.Users" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_AuthorityEntityReportEntity" Association="DobbermanModel.Store.FK_AuthorityEntityReportEntity">
-            <End Role="Authorities" EntitySet="Authorities" />
-            <End Role="Reports" EntitySet="Reports" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReportEntityUserEntity" Association="DobbermanModel.Store.FK_ReportEntityUserEntity">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Reports" EntitySet="Reports" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Authorities">
-          <Key>
-            <PropertyRef Name="AuthorityId" />
-          </Key>
-          <Property Name="AuthorityId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="FacebookPage" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Reports">
-          <Key>
-            <PropertyRef Name="ReportId" />
-          </Key>
-          <Property Name="ReportId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="AuthorityId" Type="int" Nullable="false" />
-          <Property Name="Photo" Type="varbinary(max)" />
-          <Property Name="Location" Type="nvarchar(max)" />
-          <Property Name="Mood" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_AuthorityEntityReportEntity">
-          <End Role="Authorities" Type="DobbermanModel.Store.Authorities" Multiplicity="1" />
-          <End Role="Reports" Type="DobbermanModel.Store.Reports" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Authorities">
-              <PropertyRef Name="AuthorityId" />
-            </Principal>
-            <Dependent Role="Reports">
-              <PropertyRef Name="AuthorityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReportEntityUserEntity">
-          <End Role="Users" Type="DobbermanModel.Store.Users" Multiplicity="1" />
-          <End Role="Reports" Type="DobbermanModel.Store.Reports" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Reports">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema></edmx:StorageModels>
+  <EntityContainer Name="DobbermanModelStoreContainer">
+    <EntitySet Name="Authorities" EntityType="DobbermanModel.Store.Authorities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Reports" EntityType="DobbermanModel.Store.Reports" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="DobbermanModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categories" EntityType="DobbermanModel.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_AuthorityEntityReportEntity" Association="DobbermanModel.Store.FK_AuthorityEntityReportEntity">
+      <End Role="Authorities" EntitySet="Authorities" />
+      <End Role="Reports" EntitySet="Reports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportEntityUserEntity" Association="DobbermanModel.Store.FK_ReportEntityUserEntity">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Reports" EntitySet="Reports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CategoryEntityAuthorityEntity" Association="DobbermanModel.Store.FK_CategoryEntityAuthorityEntity">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Authorities" EntitySet="Authorities" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Authorities">
+    <Key>
+      <PropertyRef Name="AuthorityId" />
+    </Key>
+    <Property Name="AuthorityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FacebookPage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="Score" Type="float" Nullable="false" DefaultValue="0.5" />
+    <Property Name="AccumulatedScore" Type="int" Nullable="false" DefaultValue="0" />
+  </EntityType>
+  <EntityType Name="Reports">
+    <Key>
+      <PropertyRef Name="ReportId" />
+    </Key>
+    <Property Name="ReportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="AuthorityId" Type="int" Nullable="false" />
+    <Property Name="Photo" Type="varbinary(max)" Nullable="true" />
+    <Property Name="Location" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Mood" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Picture" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_AuthorityEntityReportEntity">
+    <End Role="Authorities" Type="DobbermanModel.Store.Authorities" Multiplicity="1" />
+    <End Role="Reports" Type="DobbermanModel.Store.Reports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Authorities">
+        <PropertyRef Name="AuthorityId" />
+      </Principal>
+      <Dependent Role="Reports">
+        <PropertyRef Name="AuthorityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportEntityUserEntity">
+    <End Role="Users" Type="DobbermanModel.Store.Users" Multiplicity="1" />
+    <End Role="Reports" Type="DobbermanModel.Store.Reports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Reports">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CategoryEntityAuthorityEntity">
+    <End Role="Categories" Type="DobbermanModel.Store.Categories" Multiplicity="1" />
+    <End Role="Authorities" Type="DobbermanModel.Store.Authorities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Authorities">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DobbermanModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
@@ -87,6 +116,11 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Reports" EntitySet="Reports" />
           </AssociationSet>
+          <EntitySet Name="Categories" EntityType="DobbermanModel.CategoryEntity" />
+          <AssociationSet Name="FK_CategoryEntityAuthorityEntity" Association="DobbermanModel.FK_CategoryEntityAuthorityEntity">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Authorities" EntitySet="Authorities" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AuthorityEntity">
           <Key>
@@ -96,6 +130,10 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="FacebookPage" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Reports" Relationship="DobbermanModel.FK_AuthorityEntityReportEntity" FromRole="Authorities" ToRole="Reports" />
+          <Property Type="Int32" Name="CategoryId" Nullable="false" />
+          <Property Type="Double" Name="Score" Nullable="false" DefaultValue="0.5" />
+          <Property Type="Int32" Name="AccumulatedScore" Nullable="false" DefaultValue="0" />
+          <NavigationProperty Name="Category" Relationship="DobbermanModel.FK_CategoryEntityAuthorityEntity" FromRole="Authorities" ToRole="Categories" />
         </EntityType>
         <EntityType Name="ReportEntity">
           <Key>
@@ -110,7 +148,7 @@
           <NavigationProperty Name="User" Relationship="DobbermanModel.FK_ReportEntityUserEntity" FromRole="Reports" ToRole="Users" />
           <Property Type="Binary" Name="Photo" Nullable="true" />
           <Property Type="String" Name="Location" Nullable="true" />
-          <Property Type="String" Name="Mood" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Type="String" Name="Mood" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="UserEntity">
           <Key>
@@ -145,6 +183,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CategoryEntity">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Type="Int32" Name="CategoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="String" Name="Picture" Nullable="true" />
+          <NavigationProperty Name="Authorities" Relationship="DobbermanModel.FK_CategoryEntityAuthorityEntity" FromRole="Categories" ToRole="Authorities" />
+        </EntityType>
+        <Association Name="FK_CategoryEntityAuthorityEntity">
+          <End Type="DobbermanModel.CategoryEntity" Role="Categories" Multiplicity="1" />
+          <End Type="DobbermanModel.AuthorityEntity" Role="Authorities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Authorities">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -157,20 +217,23 @@
           <ScalarProperty Name="AuthorityId" ColumnName="AuthorityId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="FacebookPage" ColumnName="FacebookPage" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="AccumulatedScore" ColumnName="AccumulatedScore" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Reports">
       <EntityTypeMapping TypeName="IsTypeOf(DobbermanModel.ReportEntity)">
         <MappingFragment StoreEntitySet="Reports">
-          <ScalarProperty Name="Mood" ColumnName="Mood" />
-                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="AuthorityId" ColumnName="AuthorityId" />
           <ScalarProperty Name="Photo" ColumnName="Photo" />
           <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Mood" ColumnName="Mood" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -180,6 +243,16 @@
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="IsTypeOf(DobbermanModel.CategoryEntity)">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -203,16 +276,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="DobbermanModel" >
-        <EntityTypeShape EntityType="DobbermanModel.AuthorityEntity" Width="1.5" PointX="9.875" PointY="3.375" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="DobbermanModel.ReportEntity" Width="1.5" PointX="6.875" PointY="3" Height="2.9417936197916656" />
-        <EntityTypeShape EntityType="DobbermanModel.UserEntity" Width="1.5" PointX="4" PointY="3.375" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="DobbermanModel.AuthorityEntity" Width="1.5" PointX="6.375" PointY="3.375" Height="2.5571907552083326" />
+        <EntityTypeShape EntityType="DobbermanModel.ReportEntity" Width="1.5" PointX="3.375" PointY="3" Height="2.9417936197916656" />
+        <EntityTypeShape EntityType="DobbermanModel.UserEntity" Width="1.5" PointX="0.5" PointY="3.375" Height="1.7879850260416674" />
         <AssociationConnector Association="DobbermanModel.FK_AuthorityEntityReportEntity" >
-          <ConnectorPoint PointX="9.875" PointY="4.2689925130208337" />
-          <ConnectorPoint PointX="8.375" PointY="4.2689925130208337" />
+          <ConnectorPoint PointX="6.375" PointY="4.6535953776041659" />
+          <ConnectorPoint PointX="4.875" PointY="4.6535953776041659" />
         </AssociationConnector>
         <AssociationConnector Association="DobbermanModel.FK_ReportEntityUserEntity" >
-          <ConnectorPoint PointX="5.5" PointY="4.2689925130208337" />
-          <ConnectorPoint PointX="6.875" PointY="4.2689925130208337" />
+          <ConnectorPoint PointX="2" PointY="4.2689925130208337" />
+          <ConnectorPoint PointX="3.375" PointY="4.2689925130208337" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="DobbermanModel.CategoryEntity" Width="1.5" PointX="9.125" PointY="3.375" Height="1.7879850260416665" />
+        <AssociationConnector Association="DobbermanModel.FK_CategoryEntityAuthorityEntity">
+          <ConnectorPoint PointX="9.125" PointY="4.3651432291666667" />
+          <ConnectorPoint PointX="7.875" PointY="4.3651432291666667" />
         </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>

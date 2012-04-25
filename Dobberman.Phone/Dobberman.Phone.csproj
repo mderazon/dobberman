@@ -127,14 +127,8 @@
     <Compile Include="Pages\AddReport.xaml.cs">
       <DependentUpon>AddReport.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\camera.xaml.cs">
       <DependentUpon>camera.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Page2.xaml.cs">
-      <DependentUpon>Page2.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ReportMappingPage.xaml.cs">
       <DependentUpon>ReportMappingPage.xaml</DependentUpon>
@@ -173,14 +167,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Page1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Page2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\ReportDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -212,6 +198,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\DobbermanService\TAUP2C.Dobberman.Phone.DobbermanService.Authority.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DobbermanService\TAUP2C.Dobberman.Phone.DobbermanService.Category.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\DobbermanService\TAUP2C.Dobberman.Phone.DobbermanService.Report.datasource">

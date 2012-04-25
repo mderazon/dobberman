@@ -21,6 +21,10 @@ namespace TAUP2C.Dobberman.WebRole.Services
         [OperationContract]
         List<Report> GetReportsByAuthorityId(int authorityId);
 
+        // returns a list of all reports with a location that is not null
+        [OperationContract]
+        List<Report> GetAllReportsWithLocation();
+
         // returns a list of all authorities
         [OperationContract]
         List<Authority> GetAllAuthorities();
@@ -29,10 +33,16 @@ namespace TAUP2C.Dobberman.WebRole.Services
         [OperationContract]
         List<Authority> GetSortedAuthorities();
 
-        // returns a list of all reports with a location that is not null
+        // returns a list of authorities of specific category. the authorities are sorted by score
+        // TODO : return only top and buttom 3
         [OperationContract]
-        List<Report> GetAllReportsWithLocation();
+        List<Authority> GetAuthoritiesByCategoryId(int categoryId);
+        
+        [OperationContract]
+        List<Category> GetAllCategories();
 
+
+        #region Create methods
         [OperationContract]
         int CreateNewReport(Report report);
 
@@ -41,7 +51,12 @@ namespace TAUP2C.Dobberman.WebRole.Services
         
         [OperationContract]
         int CreateNewAuthority(Authority authority);
-    
+
+        [OperationContract]
+        int CreateNewCategory(Category category);
+
+        #endregion
+
     }
 
     
@@ -82,8 +97,29 @@ namespace TAUP2C.Dobberman.WebRole.Services
         public string FacebookPage { get; set; }
         [DataMember]
         public List<Report> Reports { get; set; }
+        [DataMember(IsRequired = false)]
+        public int CategoryId { get; set; }
+        [DataMember]
+        public Category Category { get; set; }
 
     }
+
+    [DataContract]
+    public class Category
+    {
+        [DataMember(IsRequired = false)]
+        public int CategoryId { get; set; }
+        [DataMember]
+        public string Name { get; set; }
+        [DataMember(IsRequired = false)]
+        public string Description { get; set; }
+        [DataMember(IsRequired = false)]
+        public string Picture { get; set; }
+        [DataMember]
+        public List<Authority> Authorities { get; set; }
+
+    }
+
 
     [DataContract]
     public class User

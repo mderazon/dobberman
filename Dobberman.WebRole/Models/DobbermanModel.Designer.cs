@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 
 [assembly: EdmRelationshipAttribute("DobbermanModel", "FK_AuthorityEntityReportEntity", "Authorities", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TAUP2C.Dobberman.WebRole.Models.AuthorityEntity), "Reports", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TAUP2C.Dobberman.WebRole.Models.ReportEntity), true)]
 [assembly: EdmRelationshipAttribute("DobbermanModel", "FK_ReportEntityUserEntity", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TAUP2C.Dobberman.WebRole.Models.UserEntity), "Reports", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TAUP2C.Dobberman.WebRole.Models.ReportEntity), true)]
+[assembly: EdmRelationshipAttribute("DobbermanModel", "FK_CategoryEntityAuthorityEntity", "Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TAUP2C.Dobberman.WebRole.Models.CategoryEntity), "Authorities", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TAUP2C.Dobberman.WebRole.Models.AuthorityEntity), true)]
 
 #endregion
 
@@ -118,6 +119,22 @@ namespace TAUP2C.Dobberman.WebRole.Models
             }
         }
         private ObjectSet<UserEntity> _Users;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<CategoryEntity> Categories
+        {
+            get
+            {
+                if ((_Categories == null))
+                {
+                    _Categories = base.CreateObjectSet<CategoryEntity>("Categories");
+                }
+                return _Categories;
+            }
+        }
+        private ObjectSet<CategoryEntity> _Categories;
 
         #endregion
         #region AddTo Methods
@@ -145,6 +162,14 @@ namespace TAUP2C.Dobberman.WebRole.Models
         {
             base.AddObject("Users", userEntity);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Categories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCategories(CategoryEntity categoryEntity)
+        {
+            base.AddObject("Categories", categoryEntity);
+        }
 
         #endregion
     }
@@ -170,12 +195,14 @@ namespace TAUP2C.Dobberman.WebRole.Models
         /// <param name="authorityId">Initial value of the AuthorityId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="facebookPage">Initial value of the FacebookPage property.</param>
-        public static AuthorityEntity CreateAuthorityEntity(global::System.Int32 authorityId, global::System.String name, global::System.String facebookPage)
+        /// <param name="categoryId">Initial value of the CategoryId property.</param>
+        public static AuthorityEntity CreateAuthorityEntity(global::System.Int32 authorityId, global::System.String name, global::System.String facebookPage, global::System.Int32 categoryId)
         {
             AuthorityEntity authorityEntity = new AuthorityEntity();
             authorityEntity.AuthorityId = authorityId;
             authorityEntity.Name = name;
             authorityEntity.FacebookPage = facebookPage;
+            authorityEntity.CategoryId = categoryId;
             return authorityEntity;
         }
 
@@ -256,6 +283,78 @@ namespace TAUP2C.Dobberman.WebRole.Models
         private global::System.String _FacebookPage;
         partial void OnFacebookPageChanging(global::System.String value);
         partial void OnFacebookPageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CategoryId
+        {
+            get
+            {
+                return _CategoryId;
+            }
+            set
+            {
+                OnCategoryIdChanging(value);
+                ReportPropertyChanging("CategoryId");
+                _CategoryId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CategoryId");
+                OnCategoryIdChanged();
+            }
+        }
+        private global::System.Int32 _CategoryId;
+        partial void OnCategoryIdChanging(global::System.Int32 value);
+        partial void OnCategoryIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double Score
+        {
+            get
+            {
+                return _Score;
+            }
+            set
+            {
+                OnScoreChanging(value);
+                ReportPropertyChanging("Score");
+                _Score = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Score");
+                OnScoreChanged();
+            }
+        }
+        private global::System.Double _Score = 0.5D;
+        partial void OnScoreChanging(global::System.Double value);
+        partial void OnScoreChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 AccumulatedScore
+        {
+            get
+            {
+                return _AccumulatedScore;
+            }
+            set
+            {
+                OnAccumulatedScoreChanging(value);
+                ReportPropertyChanging("AccumulatedScore");
+                _AccumulatedScore = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AccumulatedScore");
+                OnAccumulatedScoreChanged();
+            }
+        }
+        private global::System.Int32 _AccumulatedScore = 0;
+        partial void OnAccumulatedScoreChanging(global::System.Int32 value);
+        partial void OnAccumulatedScoreChanged();
 
         #endregion
     
@@ -282,6 +381,198 @@ namespace TAUP2C.Dobberman.WebRole.Models
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DobbermanModel", "FK_CategoryEntityAuthorityEntity", "Categories")]
+        public CategoryEntity Category
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CategoryEntity>("DobbermanModel.FK_CategoryEntityAuthorityEntity", "Categories").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CategoryEntity>("DobbermanModel.FK_CategoryEntityAuthorityEntity", "Categories").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<CategoryEntity> CategoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CategoryEntity>("DobbermanModel.FK_CategoryEntityAuthorityEntity", "Categories");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CategoryEntity>("DobbermanModel.FK_CategoryEntityAuthorityEntity", "Categories", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DobbermanModel", Name="CategoryEntity")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class CategoryEntity : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new CategoryEntity object.
+        /// </summary>
+        /// <param name="categoryId">Initial value of the CategoryId property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static CategoryEntity CreateCategoryEntity(global::System.Int32 categoryId, global::System.String name)
+        {
+            CategoryEntity categoryEntity = new CategoryEntity();
+            categoryEntity.CategoryId = categoryId;
+            categoryEntity.Name = name;
+            return categoryEntity;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CategoryId
+        {
+            get
+            {
+                return _CategoryId;
+            }
+            set
+            {
+                if (_CategoryId != value)
+                {
+                    OnCategoryIdChanging(value);
+                    ReportPropertyChanging("CategoryId");
+                    _CategoryId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("CategoryId");
+                    OnCategoryIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _CategoryId;
+        partial void OnCategoryIdChanging(global::System.Int32 value);
+        partial void OnCategoryIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Picture
+        {
+            get
+            {
+                return _Picture;
+            }
+            set
+            {
+                OnPictureChanging(value);
+                ReportPropertyChanging("Picture");
+                _Picture = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Picture");
+                OnPictureChanged();
+            }
+        }
+        private global::System.String _Picture;
+        partial void OnPictureChanging(global::System.String value);
+        partial void OnPictureChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DobbermanModel", "FK_CategoryEntityAuthorityEntity", "Authorities")]
+        public EntityCollection<AuthorityEntity> Authorities
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<AuthorityEntity>("DobbermanModel.FK_CategoryEntityAuthorityEntity", "Authorities");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<AuthorityEntity>("DobbermanModel.FK_CategoryEntityAuthorityEntity", "Authorities", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -304,7 +595,8 @@ namespace TAUP2C.Dobberman.WebRole.Models
         /// <param name="description">Initial value of the Description property.</param>
         /// <param name="userId">Initial value of the UserId property.</param>
         /// <param name="authorityId">Initial value of the AuthorityId property.</param>
-        public static ReportEntity CreateReportEntity(global::System.Int32 reportId, global::System.DateTime date, global::System.String description, global::System.Int32 userId, global::System.Int32 authorityId)
+        /// <param name="mood">Initial value of the Mood property.</param>
+        public static ReportEntity CreateReportEntity(global::System.Int32 reportId, global::System.DateTime date, global::System.String description, global::System.Int32 userId, global::System.Int32 authorityId, global::System.String mood)
         {
             ReportEntity reportEntity = new ReportEntity();
             reportEntity.ReportId = reportId;
@@ -312,6 +604,7 @@ namespace TAUP2C.Dobberman.WebRole.Models
             reportEntity.Description = description;
             reportEntity.UserId = userId;
             reportEntity.AuthorityId = authorityId;
+            reportEntity.Mood = mood;
             return reportEntity;
         }
 
@@ -492,7 +785,7 @@ namespace TAUP2C.Dobberman.WebRole.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String Mood
         {
@@ -504,7 +797,7 @@ namespace TAUP2C.Dobberman.WebRole.Models
             {
                 OnMoodChanging(value);
                 ReportPropertyChanging("Mood");
-                _Mood = StructuralObject.SetValidValue(value, true);
+                _Mood = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("Mood");
                 OnMoodChanged();
             }
