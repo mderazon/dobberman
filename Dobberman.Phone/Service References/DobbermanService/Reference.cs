@@ -32,7 +32,7 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
         
         private string MoodField;
         
-        private byte[] PhotoField;
+        private string PhotoField;
         
         private int ReportIdField;
         
@@ -119,7 +119,7 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] Photo {
+        public string Photo {
             get {
                 return this.PhotoField;
             }

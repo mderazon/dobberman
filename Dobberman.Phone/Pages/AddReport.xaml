@@ -52,11 +52,12 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="TakeAPicture" IconUri="/Images/appbar.feature.camera.rest.png" Text="Button 1" Click="CameraClick" />
-            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar.logout.rest.png" Text="Button 2"/>
+            <shell:ApplicationBarIconButton x:Name="take_photo_button" IconUri="/Images/appbar.feature.camera.rest.png" Text="Take photo" Click="TakePhotoClick" />
+            <shell:ApplicationBarIconButton x:Name="send_report_button" IconUri="/Images/mail.sent.png" Text="Send report" Click="SendReportClick" />
+            <shell:ApplicationBarIconButton x:Name="logout_button" IconUri="/Images/appbar.logout.rest.png" Text="Logout"/>
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
+                <!--<shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>-->
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

@@ -20,34 +20,36 @@ using Facebook;
 using Microsoft.Phone.Controls.Maps;
 using TAUP2C.Dobberman.Phone.Google_Maps;
 using System.Device.Location;
+using Microsoft.Samples.WindowsPhoneCloud.StorageClient;
+using Microsoft.Samples.WindowsPhoneCloud.StorageClient.Credentials;
 
 namespace TAUP2C.Dobberman.Phone.Pages
 {
     public partial class AddReport : PhoneApplicationPage
     {
+        // blobs stuff
+        string storageAccount = "dobberman";
+        string storageKey = "9Uure7kO3RV71DRY+5rbMWurEuNfP1oCKkGvRi+/TlJq9nQbqU39FUYbPpqt+ml8qHfZNCGlxf4WBuhyO6gkdQ==";
+        string blobServiceUri = "http://dobberman.blob.core.windows.net";
+        CloudBlobClient blobClient;
+
         public static string LastMoodCheck;
+        private Report newReport;
         private  List<Authority> AuthorityList = new List<Authority>();
         public AddReport()
         {
             InitializeComponent();
-
+            
 
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
-            //this.ContentPanel.DataContext = States.CurReport;
-            GetAuthorities();
-
-
-        }
-
-
-        public void GetAuthorities()
-        {
-
+            
+            newReport = new Report();
+            var credentials = new StorageCredentialsAccountAndKey(storageAccount, storageKey);
+            blobClient = new CloudBlobClient(blobServiceUri, credentials);
 
             DobbermanServiceClient client = new DobbermanServiceClient();
             client.GetAllAuthoritiesCompleted += new EventHandler<GetAllAuthoritiesCompletedEventArgs>(client_GetAllAuthoritiesCompleted);
@@ -55,6 +57,9 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
 
         }
+
+
+       
 
         void client_GetAllAuthoritiesCompleted(object sender, GetAllAuthoritiesCompletedEventArgs e)
         {
@@ -181,9 +186,9 @@ namespace TAUP2C.Dobberman.Phone.Pages
             
         }
 
-        private void PostReport_Click(object sender, RoutedEventArgs e)
+        private void SendReportClick(object sender, EventArgs e)
         {
-            Report NewReport = new Report();
+            //Report NewReport = new Report();
             bool match = false;
 
             foreach (Authority a in AuthorityList)
@@ -191,8 +196,8 @@ namespace TAUP2C.Dobberman.Phone.Pages
                 if (autoCompleteBox1.Text == a.Name)
                 {
                     match = true;
-                    NewReport.Authority = a;
-                    NewReport.AuthorityId = a.AuthorityId;
+                    newReport.Authority = a;
+                    newReport.AuthorityId = a.AuthorityId;
                 }
             }
 
@@ -203,27 +208,25 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
             }
 
-            NewReport.Description = this.Decs.Text;
-            NewReport.Location = "";
+            newReport.Description = this.Decs.Text;
+            newReport.Location = "";
             if (LastMoodCheck == "")
             {
                 MessageBox.Show("Please select report mood");
                 goto reportEnd;
             }
-            NewReport.Date = System.DateTime.Now;
-            NewReport.Mood = LastMoodCheck;
-            NewReport.UserId = States.userId;
+            newReport.Date = System.DateTime.Now;
+            newReport.Mood = LastMoodCheck;
+            newReport.UserId = States.userId;
             
 
             if (checkBox2.IsChecked == true)
             {
-                PostToWall(NewReport);
-               
+                PostToWall(newReport);               
             }
+            PostToServer(newReport);
 
-            PostToServer(NewReport);
-
-        reportEnd:
+            reportEnd:
             return;
        }
 
@@ -243,7 +246,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
         }
 
        
-             private void GPScheckbox_Checked(object sender, RoutedEventArgs e)
+        private void GPScheckbox_Checked(object sender, RoutedEventArgs e)
         {
             string coordinate = System.String.Empty;
 #if REAL_WP7
@@ -288,7 +291,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
 
 
-        private void CameraClick(object sender, EventArgs eventArgs)
+        private void TakePhotoClick(object sender, EventArgs eventArgs)
         {
             //The camera chooser used to capture a picture.
             CameraCaptureTask ctask;
@@ -301,7 +304,6 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
             //Show the camera.
             ctask.Show();
-
 
         }
 
@@ -318,7 +320,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
             {
 
                 WriteableBitmap CapturedImage = PictureDecoder.DecodeJpeg(e.ChosenPhoto);
-                //UploadToBlobContainer(e.ChosenPhoto);
+                UploadToBlobContainer(e.ChosenPhoto);
 
                 ReportImage.Source = CapturedImage;
                 ReportImage.Visibility = Visibility.Visible;
@@ -328,6 +330,30 @@ namespace TAUP2C.Dobberman.Phone.Pages
                 //user decided not to take a picture
             }
         }
+        private void UploadToBlobContainer(System.IO.Stream stream)
+        {
+            string containerName = "reportPictures";
+            var container = blobClient.GetContainerReference(containerName);
+
+            container.CreateIfNotExist(true, r =>
+                Dispatcher.BeginInvoke(() =>
+                {
+                    // TODO reportid not yet created
+                    var blobName = "report" + newReport.ReportId.ToString();
+                    var blob = container.GetBlobReference(blobName);
+                    blob.Metadata["ReportId"] = newReport.ReportId.ToString();
+                    blob.Metadata["Date"] = newReport.Date.ToString();
+                    blob.UploadFromStream(stream, r2 =>
+                        Dispatcher.BeginInvoke(() =>
+                        {
+                             newReport.Photo = container.Uri + "/" + blobName;
+                        }));
+                }));
+
+        }
+
+     
+
        
   }
 }
