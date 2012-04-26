@@ -43,7 +43,7 @@
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="AuthorityId" Type="int" Nullable="false" />
-    <Property Name="Photo" Type="varbinary(max)" Nullable="true" />
+    <Property Name="Photo" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Location" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Mood" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
@@ -146,7 +146,7 @@
           <Property Type="Int32" Name="AuthorityId" Nullable="false" />
           <NavigationProperty Name="Authority" Relationship="DobbermanModel.FK_AuthorityEntityReportEntity" FromRole="Reports" ToRole="Authorities" />
           <NavigationProperty Name="User" Relationship="DobbermanModel.FK_ReportEntityUserEntity" FromRole="Reports" ToRole="Users" />
-          <Property Type="Binary" Name="Photo" Nullable="true" />
+          <Property Type="String" Name="Photo" Nullable="true" />
           <Property Type="String" Name="Location" Nullable="true" />
           <Property Type="String" Name="Mood" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>

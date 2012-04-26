@@ -73,7 +73,7 @@ namespace TAUP2C.Dobberman.WebRole.Services
         [DataMember]
         public string Mood { get; set; }
         [DataMember(IsRequired = false)]
-        public byte[] Photo { get; set; }
+        public string Photo { get; set; }
         [DataMember(IsRequired = false)]
         public string Location { get; set; }
         [DataMember]

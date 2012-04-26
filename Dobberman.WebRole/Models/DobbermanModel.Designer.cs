@@ -739,11 +739,11 @@ namespace TAUP2C.Dobberman.WebRole.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Byte[] Photo
+        public global::System.String Photo
         {
             get
             {
-                return StructuralObject.GetValidValue(_Photo);
+                return _Photo;
             }
             set
             {
@@ -754,8 +754,8 @@ namespace TAUP2C.Dobberman.WebRole.Models
                 OnPhotoChanged();
             }
         }
-        private global::System.Byte[] _Photo;
-        partial void OnPhotoChanging(global::System.Byte[] value);
+        private global::System.String _Photo;
+        partial void OnPhotoChanging(global::System.String value);
         partial void OnPhotoChanged();
     
         /// <summary>
