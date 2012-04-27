@@ -67,7 +67,7 @@
                                                     <TextBlock Text="{Binding TopSecond}" FontSize="30" Width="200" Foreground="#FF4E7DBC"/>
                                                     <TextBlock Text="{Binding TopThird}" FontSize="30" Width="200" Foreground="#FF4E7DBC"/>
                                                 </StackPanel>
-                                                <TextBlock Text="Least Favourites" FontSize="35" Foreground="White"/>
+                                                <TextBlock Text="Least Favourite" FontSize="35" Foreground="White"/>
                                                 <StackPanel Orientation="Vertical" Width="200" Height="150" Margin="10,8,90,37">
                                                     <TextBlock Text="{Binding BottomFirst}" Width="200" FontSize="30" Foreground="#FFBC8A4E"/>
                                                     <TextBlock Text="{Binding BottomSecond}" Width="200" FontSize="30" Foreground="#FFBC8A4E"/>

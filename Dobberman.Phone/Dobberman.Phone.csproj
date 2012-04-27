@@ -138,6 +138,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ReverseCoor\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="States.cs" />
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -206,6 +211,26 @@
     <None Include="Service References\DobbermanService\TAUP2C.Dobberman.Phone.DobbermanService.Report.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ReverseCoor\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ReverseCoor\common.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ReverseCoor\contracts.wsdl" />
+    <None Include="Service References\ReverseCoor\contracts.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ReverseCoor\geocode.wsdl" />
+    <None Include="Service References\ReverseCoor\geocode.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ReverseCoor\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ReverseCoor\TAUP2C.Dobberman.Phone.ReverseCoor.GeocodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <Resource Include="ApplicationIcon.png" />
     <Content Include="Images\128_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -222,6 +247,12 @@
     <Content Include="Images\mail.sent.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Service References\ReverseCoor\configuration91.svcinfo" />
+    <None Include="Service References\ReverseCoor\configuration.svcinfo" />
+    <None Include="Service References\ReverseCoor\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
@@ -285,6 +316,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DobbermanService\" />
+    <WCFMetadataStorage Include="Service References\ReverseCoor\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

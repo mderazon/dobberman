@@ -35,13 +35,14 @@
                 <TextBlock  Height="61" HorizontalAlignment="Left" Margin="88,205,0,0"  Text="{Binding Date}" VerticalAlignment="Top" Width="327" FontSize="30" />
                 <TextBlock FontSize="50" Height="61" HorizontalAlignment="Left" Margin="12,286,0,0"  Text="Mood" VerticalAlignment="Top" Width="154" />
                 <TextBlock Height="74" FontSize="50" HorizontalAlignment="Left" Margin="12,376,0,0"  Text="Location" VerticalAlignment="Top" Width="195" />
-                <TextBlock Height="58" HorizontalAlignment="Left" Margin="88,476,0,0"  Text="{Binding Location}" VerticalAlignment="Top" Width="243" FontSize="30" />
+                <TextBlock HorizontalAlignment="Left" Margin="82,476,0,314"  Text="" Width="333" FontSize="30" x:Name="LocationBox"/>
                 <TextBlock  Height="72" HorizontalAlignment="Left" Margin="172,286,0,0" x:Name="MoodText" Text="" VerticalAlignment="Top" Width="243" FontSize="50" Foreground="{Binding Mood, Converter={StaticResource BorderBrushConverter}}" />
 
-
+                <TextBlock FontSize="50" Height="86" HorizontalAlignment="Left" Margin="43,600,0,0" Text="Picture Attached" VerticalAlignment="Top" Width="370" Grid.Row="1" />
                 <Image Height="153" HorizontalAlignment="Left" Margin="240,638,0,0" Stretch="Fill" VerticalAlignment="Top" Width="157" Grid.Row="1" />
+            
             </Grid>
-            <TextBlock FontSize="50" Height="86" HorizontalAlignment="Left" Margin="24,565,0,0" Text="Picture Attached" VerticalAlignment="Top" Width="370" Grid.Row="1" />
+            
         </Grid>
     </ScrollViewer>
 

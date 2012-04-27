@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -24,7 +25,19 @@ namespace TAUP2C.Dobberman.Phone.Pages
         public string BottomSecond { get; set; }
         public string BottomThird { get; set; }
         public string Type { get; set; }
+       
 
+        public Stats(string c)
+        {
+            TopFirst = "";
+            TopSecond = "";
+            TopThird = "";
+            BottomFirst = "";
+            BottomSecond = "";
+            BottomThird = "";
+            Type = c;
+          
+        }
         public Stats (string a, string b, string c, string d, string e, string f, string g)
         {
             TopFirst = a;
@@ -35,21 +48,81 @@ namespace TAUP2C.Dobberman.Phone.Pages
             BottomThird = f;
             Type = g;
         }
+
     }
     public partial class MainPage : PhoneApplicationPage
     {
         List<Report> reportList = new List<Report>();
-        List<Stats> ss = new List<Stats>();
+        ObservableCollection<Stats> ss = new ObservableCollection<Stats>();
+        DobbermanServiceClient client = new DobbermanServiceClient();
         public MainPage()
         {
             InitializeComponent();
+            
            
-            DobbermanServiceClient client = new DobbermanServiceClient();
-            client.GetReportsByUserIdCompleted += new EventHandler<GetReportsByUserIdCompletedEventArgs>(client_FindReportCompleted);
-            client.GetReportsByUserIdAsync(1);
             //Loaded += new RoutedEventHandler(PivotPage1_Loaded);
 
         }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            
+            client.GetReportsByUserIdCompleted += new EventHandler<GetReportsByUserIdCompletedEventArgs>(client_FindReportCompleted);
+            client.GetReportsByUserIdAsync(1);
+            client.GetAllCategoriesCompleted += new EventHandler<GetAllCategoriesCompletedEventArgs>(client_GetAllCategoriesCompleted);
+            client.GetAllCategoriesAsync();
+            
+
+
+
+        }
+
+        void client_GetAllCategoriesCompleted(object sender, GetAllCategoriesCompletedEventArgs e)
+        {
+            client.GetAuthoritiesByCategoryIdCompleted += new EventHandler<GetAuthoritiesByCategoryIdCompletedEventArgs>(client_GetAuthoritiesByCategoryIdCompleted);
+            ss.Clear();
+            foreach (Category c in e.Result.Cast<Category>())
+            {
+                
+                client.GetAuthoritiesByCategoryIdAsync(c.CategoryId);
+            }
+
+            
+
+        }
+
+        void client_GetAuthoritiesByCategoryIdCompleted(object sender, GetAuthoritiesByCategoryIdCompletedEventArgs e)
+        {
+
+            int i = e.Result.Cast<Authority>().Count();
+            
+            if (i > 0)
+            {
+                Stats s = new Stats(e.Result.ElementAt(0).Category.Name);
+
+                    s.TopFirst = e.Result.ElementAt(0).Name;
+                if (i > 1)
+                    s.TopSecond = e.Result.ElementAt(1).Name;
+                if (i > 2)
+                    s.TopThird= e.Result.ElementAt(2).Name;
+                if (i > 3)
+                    s.BottomThird = e.Result.ElementAt(i - 3).Name;
+                if (i > 4)
+                    s.BottomSecond = e.Result.ElementAt(i - 2).Name;
+                if (i > 5)
+                    s.BottomFirst = e.Result.ElementAt(i - 1).Name;
+               
+                ss.Add(s);
+                StatisticsList.ItemsSource = ss;
+               
+            }
+            
+        }
+                 
+
+   
 
         void client_FindReportCompleted(object sender, GetReportsByUserIdCompletedEventArgs e)
         {
@@ -58,15 +131,6 @@ namespace TAUP2C.Dobberman.Phone.Pages
             {
                 reportList.Add(r);
             }
-
-
-            ss.Add(new Stats("Cellcom", "Pelefon", "Orange", "Yes", "Hot", "Netvision", "Communucation"));
-            ss.Add(new Stats("Tel-Aviv University", "Technion", "HIT", "MIT", "Yell", "Columbia", "Studies"));
-            ss.Add(new Stats("Cellcom", "Pelefon", "Orange", "Yes", "Hot", "Netvision", "Resturants"));
-            ss.Add(new Stats("Tel-Aviv University", "Technion", "HIT", "MIT", "Yell", "Columbia", "Hotels"));
-            ss.Add(new Stats("Cellcom", "Pelefon", "Orange", "Yes", "Hot", "Netvision", "Authorities"));
-            ss.Add(new Stats("Tel-Aviv University", "Technion", "HIT", "MIT", "Yell", "Columbia", "Studies"));
-            StatisticsList.ItemsSource = ss;
 
             ReportList.ItemsSource = reportList;
             
