@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
+
 namespace TAUP2C.Dobberman.Phone.Pages
 {
     public partial class ReportDetails : PhoneApplicationPage
@@ -27,7 +28,18 @@ namespace TAUP2C.Dobberman.Phone.Pages
             base.OnNavigatedTo(e);
 
             this.ContentPanel.DataContext = States.CurReport;
-
+            switch (States.CurReport.Mood)
+            {
+                case ("positive"):
+                    MoodText.Text = "Happy";    
+                    break;
+                case "negative":
+                    MoodText.Text = "Unhappy";
+                    break;
+                case "concerned":
+                    MoodText.Text = "Unhappy";
+                    break;
+            }
 
         }
         

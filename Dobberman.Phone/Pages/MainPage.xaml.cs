@@ -15,13 +15,35 @@ using TAUP2C.Dobberman.Phone.Helpers;
 
 namespace TAUP2C.Dobberman.Phone.Pages
 {
-    
+    public class Stats
+    {
+        public string TopFirst { get; set; }
+        public string TopSecond { get; set; }
+        public string TopThird { get; set; }
+        public string BottomFirst { get; set; }
+        public string BottomSecond { get; set; }
+        public string BottomThird { get; set; }
+        public string Type { get; set; }
+
+        public Stats (string a, string b, string c, string d, string e, string f, string g)
+        {
+            TopFirst = a;
+            TopSecond = b;
+            TopThird = c;
+            BottomFirst = d;
+            BottomSecond = e;
+            BottomThird = f;
+            Type = g;
+        }
+    }
     public partial class MainPage : PhoneApplicationPage
     {
         List<Report> reportList = new List<Report>();
+        List<Stats> ss = new List<Stats>();
         public MainPage()
         {
             InitializeComponent();
+           
             DobbermanServiceClient client = new DobbermanServiceClient();
             client.GetReportsByUserIdCompleted += new EventHandler<GetReportsByUserIdCompletedEventArgs>(client_FindReportCompleted);
             client.GetReportsByUserIdAsync(1);
@@ -31,13 +53,23 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
         void client_FindReportCompleted(object sender, GetReportsByUserIdCompletedEventArgs e)
         {
-
+            
             foreach (Report r in e.Result.Cast<Report>())
             {
                 reportList.Add(r);
             }
 
+
+            ss.Add(new Stats("Cellcom", "Pelefon", "Orange", "Yes", "Hot", "Netvision", "Communucation"));
+            ss.Add(new Stats("Tel-Aviv University", "Technion", "HIT", "MIT", "Yell", "Columbia", "Studies"));
+            ss.Add(new Stats("Cellcom", "Pelefon", "Orange", "Yes", "Hot", "Netvision", "Resturants"));
+            ss.Add(new Stats("Tel-Aviv University", "Technion", "HIT", "MIT", "Yell", "Columbia", "Hotels"));
+            ss.Add(new Stats("Cellcom", "Pelefon", "Orange", "Yes", "Hot", "Netvision", "Authorities"));
+            ss.Add(new Stats("Tel-Aviv University", "Technion", "HIT", "MIT", "Yell", "Columbia", "Studies"));
+            StatisticsList.ItemsSource = ss;
+
             ReportList.ItemsSource = reportList;
+            
         }
 
         void PivotPage1_Loaded(object sender, RoutedEventArgs e)

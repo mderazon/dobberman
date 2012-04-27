@@ -13,33 +13,37 @@
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 
+    <ScrollViewer>
+        <Grid x:Name="LayoutRoot" Background="Transparent" Height="1056" Width="493">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+                <TextBlock x:Name="ApplicationTitle" Text="Dobberman" Style="{StaticResource PhoneTextNormalStyle}"/>
+                <TextBlock x:Name="PageTitle" Text="Report Details" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            </StackPanel>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="Dobberman" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Report Details" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+            <!--ContentPanel - place additional content here-->
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" DataContext="{Binding}">
-            <TextBlock Height="37" HorizontalAlignment="Left" Margin="12,43,0,0"  Text="Authority:" VerticalAlignment="Top" Width="96" />
-            <TextBlock  Height="37" HorizontalAlignment="Right" Margin="0,43,8,0"  Text="{Binding Authority.Name}" VerticalAlignment="Top" Width="219" />
-            <TextBlock Height="37" HorizontalAlignment="Left" Margin="12,129,0,0"  Text="Date:" VerticalAlignment="Top" Width="96" />
-            <TextBlock  Height="37" HorizontalAlignment="Left" Margin="229,129,0,0"  Text="{Binding Date}" VerticalAlignment="Top" Width="219" />
-            <TextBlock Height="37" HorizontalAlignment="Left" Margin="12,208,0,0"  Text="Mood:" VerticalAlignment="Top" Width="96" />
-            <TextBlock Height="37" HorizontalAlignment="Left" Margin="9,295,0,0"  Text="Location:" VerticalAlignment="Top" Width="96" />
-            <TextBlock Height="41" HorizontalAlignment="Left" Margin="229,291,0,0"  Text="{Binding Location}" VerticalAlignment="Top" Width="219" />
-            <TextBlock Height="37" HorizontalAlignment="Left" Margin="12,383,0,0"  Text="Picture Attached:" VerticalAlignment="Top" Width="157" />
-            <Image Height="63" HorizontalAlignment="Left" Margin="291,196,0,0"  Stretch="Fill" VerticalAlignment="Top" Width="74" />
-            <Image Height="153" HorizontalAlignment="Left" Margin="250,383,0,0"  Stretch="Fill" VerticalAlignment="Top" Width="157" />
+            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" DataContext="{Binding}">
+                <TextBlock Height="62" HorizontalAlignment="Left" Margin="12,6,0,0"  Text="Authority" VerticalAlignment="Top" Width="224" FontSize="50" />
+                <TextBlock  Height="55" HorizontalAlignment="Right" Margin="0,84,138,0"  Text="{Binding Authority.Name}" VerticalAlignment="Top" Width="243" FontSize="30" />
+                <TextBlock Height="62" HorizontalAlignment="Left" Margin="9,137,0,0"  Text="Date" VerticalAlignment="Top" Width="224" FontSize="50" />
+                <TextBlock  Height="61" HorizontalAlignment="Left" Margin="88,205,0,0"  Text="{Binding Date}" VerticalAlignment="Top" Width="327" FontSize="30" />
+                <TextBlock FontSize="50" Height="61" HorizontalAlignment="Left" Margin="12,286,0,0"  Text="Mood" VerticalAlignment="Top" Width="154" />
+                <TextBlock Height="74" FontSize="50" HorizontalAlignment="Left" Margin="12,376,0,0"  Text="Location" VerticalAlignment="Top" Width="195" />
+                <TextBlock Height="58" HorizontalAlignment="Left" Margin="88,476,0,0"  Text="{Binding Location}" VerticalAlignment="Top" Width="243" FontSize="30" />
+                <TextBlock  Height="72" HorizontalAlignment="Left" Margin="172,286,0,0" x:Name="MoodText" Text="" VerticalAlignment="Top" Width="243" FontSize="50" Foreground="{Binding Mood, Converter={StaticResource BorderBrushConverter}}" />
+
+
+                <Image Height="153" HorizontalAlignment="Left" Margin="240,638,0,0" Stretch="Fill" VerticalAlignment="Top" Width="157" Grid.Row="1" />
+            </Grid>
+            <TextBlock FontSize="50" Height="86" HorizontalAlignment="Left" Margin="24,565,0,0" Text="Picture Attached" VerticalAlignment="Top" Width="370" Grid.Row="1" />
         </Grid>
-    </Grid>
+    </ScrollViewer>
 
     <!--Sample code showing usage of ApplicationBar-->
     <!--<phone:PhoneApplicationPage.ApplicationBar>
