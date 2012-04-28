@@ -11,6 +11,7 @@
                             xmlns:my="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                             xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+                            
                             x:Name="phoneApplicationPage" 
                             x:Class="TAUP2C.Dobberman.Phone.Pages.ReportMappingPage"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -66,11 +67,7 @@
         <!--ContentPanel - place additional content here-->
 
         <Grid x:Name="ContentPanel"
-              Grid.Row="1" Margin="0,0,0,235">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="577*" />
-                <RowDefinition Height="119*" />
-            </Grid.RowDefinitions>
+              Grid.Row="1" Margin="0,0,0,90">
             <!--<Grid Name="loadingGrid"
                   Background="Black"
                   Canvas.ZIndex="1"
@@ -82,54 +79,6 @@
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center" />
             </Grid>-->
-            <my:Map x:Name="googlemap" ZoomLevel="4" 
-                  Center="{Binding AppState.MapCenter}"
-
-                    VerticalAlignment="Stretch"
-                    CopyrightVisibility="Collapsed"
-                    LogoVisibility="Collapsed"
-                    ScaleVisibility="Visible"
-                    CredentialsProvider="AvesTjeSv35y8Mix1biGoMKTnbWhBp6HCVEHpH2zExT286VxQtNthPtPtjB0lKlU" Margin="0,0,0,34">
-                <my:Map.Mode>
-                    <MSPCMCore:MercatorMode />
-                </my:Map.Mode>
-                <my:MapTileLayer x:Name="street" Height="460" Width="477">
-                    <my:MapTileLayer.TileSources>
-                        <GoogleTileSource:GoogleTile TileTypes="Street" />
-                    </my:MapTileLayer.TileSources>
-                </my:MapTileLayer>
-                <my:MapTileLayer Visibility="Collapsed"
-                                 x:Name="wateroverlay"
-                                 Margin="0,0,0,32">
-                    <my:MapTileLayer.TileSources>
-                        <GoogleTileSource:GoogleTile TileTypes="WaterOverlay" />
-                    </my:MapTileLayer.TileSources>
-                </my:MapTileLayer>
-                <my:MapTileLayer Visibility="Collapsed"
-                                 x:Name="hybrid"
-                                 Margin="0,0,0,32">
-                    <my:MapTileLayer.TileSources>
-                        <GoogleTileSource:GoogleTile TileTypes="Hybrid" />
-                    </my:MapTileLayer.TileSources>
-                </my:MapTileLayer>
-                <my:MapTileLayer Visibility="Collapsed"
-                                 x:Name="satellite"
-                                 Margin="0,0,0,32">
-                    <my:MapTileLayer.TileSources>
-                        <GoogleTileSource:GoogleTile TileTypes="Satellite" />
-                    </my:MapTileLayer.TileSources>
-                </my:MapTileLayer>
-                <my:MapTileLayer Visibility="Collapsed"
-                                 x:Name="physical"
-                                 Margin="0,0,0,32">
-                    <my:MapTileLayer.TileSources>
-
-                        <GoogleTileSource:GoogleTile TileTypes="Physical" />
-                    </my:MapTileLayer.TileSources>
-                </my:MapTileLayer>
-
-
-            </my:Map>
             <StackPanel  Visibility="Collapsed"
                          Name="searchPanel"
                          VerticalAlignment="Top"
@@ -197,11 +146,51 @@
                 </StackPanel>
 
             </StackPanel>
-            <Button Content="Button" Grid.Row="1" Height="72" HorizontalAlignment="Left" Margin="207,104,0,0" Name="button1" VerticalAlignment="Top" Width="160" />
+            <Button Content="Button" Height="72" HorizontalAlignment="Left" Margin="207,606,0,0" Name="button1" VerticalAlignment="Top" Width="160" />
         </Grid>
         <toolkit:PerformanceProgressBar VerticalAlignment="Top"
                                         x:Name="_performanceProgressBar" />
-        <Button Content="get location" Grid.Row="1" Height="90" HorizontalAlignment="Left" Margin="76,564,0,0" Name="button2" VerticalAlignment="Top" Width="310" Click="button2_Click" />
+        <my:Map x:Name="googlemap" ZoomLevel="4" Center="{Binding AppState.MapCenter}" VerticalAlignment="Stretch" CopyrightVisibility="Collapsed" LogoVisibility="Collapsed" ScaleVisibility="Visible" CredentialsProvider="AvesTjeSv35y8Mix1biGoMKTnbWhBp6HCVEHpH2zExT286VxQtNthPtPtjB0lKlU" Margin="-16,0,16,12" Grid.Row="1">
+            <my:Map.Mode>
+                <MSPCMCore:MercatorMode />
+            </my:Map.Mode>
+            <my:MapTileLayer x:Name="street" Height="682" Width="476">
+                <my:MapTileLayer.TileSources>
+                    <GoogleTileSource:GoogleTile TileTypes="Street" />
+                </my:MapTileLayer.TileSources>
+            </my:MapTileLayer>
+            <my:MapTileLayer Visibility="Collapsed" x:Name="wateroverlay" Margin="0,0,0,32">
+                <my:MapTileLayer.TileSources>
+                    <GoogleTileSource:GoogleTile TileTypes="WaterOverlay" />
+                </my:MapTileLayer.TileSources>
+            </my:MapTileLayer>
+            <my:MapTileLayer Visibility="Collapsed" x:Name="hybrid" Margin="0,0,0,32">
+                <my:MapTileLayer.TileSources>
+                    <GoogleTileSource:GoogleTile TileTypes="Hybrid" />
+                </my:MapTileLayer.TileSources>
+            </my:MapTileLayer>
+            <my:MapTileLayer Visibility="Collapsed" x:Name="satellite" Margin="0,0,0,32">
+                <my:MapTileLayer.TileSources>
+                    <GoogleTileSource:GoogleTile TileTypes="Satellite" />
+                </my:MapTileLayer.TileSources>
+            </my:MapTileLayer>
+            <my:MapTileLayer Visibility="Collapsed" x:Name="physical" Margin="0,0,0,32">
+                <my:MapTileLayer.TileSources>
+                    <GoogleTileSource:GoogleTile TileTypes="Physical" />
+                </my:MapTileLayer.TileSources>
+            </my:MapTileLayer>
+            <my:MapItemsControl Name="fuckit" Height="696" Width="504">
+                <my:MapItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <my:Pushpin Location="{Binding Location, Converter={StaticResource StringToGeoConverter}}" Tap="Pushpin_Tap" Background="{Binding Mood, Converter={StaticResource BorderBrushConverter}}"
+                            Content="{Binding Authoroty}" >
+                            
+                        </my:Pushpin>
+                    </DataTemplate>
+                </my:MapItemsControl.ItemTemplate>
+            </my:MapItemsControl>
+            <!--   <my:Pushpin DataContext="{Binding GeoLocationList}" Name ="pusha" Location="{Binding}"/>-->
+        </my:Map>
     </Grid>
 
 </phone:PhoneApplicationPage>

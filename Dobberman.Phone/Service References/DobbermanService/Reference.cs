@@ -28,7 +28,7 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
         
         private string DescriptionField;
         
-        private string LocationField;
+        private string LocationField;//change togeolocation???
         
         private string MoodField;
         

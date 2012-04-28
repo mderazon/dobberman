@@ -78,7 +78,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
 
         }
-
+        //olga - itemsource or datacontext for pushpin - tells what to bind. binding is needed to be at scope.
         void client_GetAllCategoriesCompleted(object sender, GetAllCategoriesCompletedEventArgs e)
         {
             client.GetAuthoritiesByCategoryIdCompleted += new EventHandler<GetAuthoritiesByCategoryIdCompletedEventArgs>(client_GetAuthoritiesByCategoryIdCompleted);
@@ -144,12 +144,12 @@ namespace TAUP2C.Dobberman.Phone.Pages
         }
 
 
-
+        //olga- on click on pushpin:
         // Handle selection changed on ListBox
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Report ButtonReport = ( sender as Button ).DataContext as Report;
+            Report ButtonReport = ( sender as Button /*as pushpin*/).DataContext as Report;
            States.CurReport = ButtonReport;
             //ReportDetails P = new ReportDetails(ButtonReport);
 

@@ -14,7 +14,7 @@ namespace TAUP2C.Dobberman.Phone.Converters
 {
     public class BorderBrushConverter : IValueConverter
     {
-
+        //olga
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var mood = (string) value;

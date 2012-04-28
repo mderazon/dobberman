@@ -118,6 +118,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BorderBrushConverter.cs" />
+    <Compile Include="Converters\StringToGeoConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Google Maps\GoogleTile.cs" />
     <Compile Include="Google Maps\GoogleTileTypes.cs" />
