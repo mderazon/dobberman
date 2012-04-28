@@ -29,21 +29,37 @@
             <!--ContentPanel - place additional content here-->
 
             <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" DataContext="{Binding}">
-                <TextBlock Height="62" HorizontalAlignment="Left" Margin="12,6,0,0"  Text="Authority" VerticalAlignment="Top" Width="224" FontSize="50" />
-                <TextBlock  Height="55" HorizontalAlignment="Right" Margin="0,84,138,0"  Text="{Binding Authority.Name}" VerticalAlignment="Top" Width="243" FontSize="30" />
-                <TextBlock Height="62" HorizontalAlignment="Left" Margin="9,137,0,0"  Text="Date" VerticalAlignment="Top" Width="224" FontSize="50" />
-                <TextBlock  Height="61" HorizontalAlignment="Left" Margin="88,205,0,0"  Text="{Binding Date}" VerticalAlignment="Top" Width="327" FontSize="30" />
-                <TextBlock FontSize="50" Height="61" HorizontalAlignment="Left" Margin="12,286,0,0"  Text="Mood" VerticalAlignment="Top" Width="154" />
-                <TextBlock Height="74" FontSize="50" HorizontalAlignment="Left" Margin="12,376,0,0"  Text="Location" VerticalAlignment="Top" Width="195" />
-                
-                <TextBlock Height="auto" HorizontalAlignment="Left" Margin="82,476,0,314"  Text="" Width="333" FontSize="30" x:Name="LocationBox"/>
-                
-                <TextBlock  Height="72" HorizontalAlignment="Left" Margin="172,286,0,0" x:Name="MoodText" Text="" VerticalAlignment="Top" Width="243" FontSize="50" Foreground="{Binding Mood, Converter={StaticResource BorderBrushConverter}}" />
+                <StackPanel>
+                    <StackPanel>
+                        <TextBlock Height="62" HorizontalAlignment="Left"   Text="Authority" VerticalAlignment="Top" Width="224" FontSize="50" />
+                        <TextBlock  Height="55" HorizontalAlignment="Center"   Text="{Binding Authority.Name}" VerticalAlignment="Top" Width="243" FontSize="30" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Height="62" HorizontalAlignment="Left"   Text="Date"  Width="224" FontSize="50" />
+                        <TextBlock  Height="61" HorizontalAlignment="Center"  Text="{Binding Date}"  Width="327" FontSize="30" />
+                    </StackPanel>   
+                    <StackPanel>
+                        <TextBlock FontSize="50" Height="61" HorizontalAlignment="Left"  Text="Mood" VerticalAlignment="Top" Width="154" />
+                        <TextBlock  Height="72" HorizontalAlignment="Center"  x:Name="MoodText" Text="" VerticalAlignment="Top" Width="243" FontSize="50" Foreground="{Binding Mood, Converter={StaticResource BorderBrushConverter}}" />
+                    </StackPanel>
+                    <StackPanel Height="auto">
+                        <TextBlock Height="74" FontSize="50" HorizontalAlignment="Left"  Text="Location" VerticalAlignment="Top" Width="195" />
+                        <TextBlock Height="auto" HorizontalAlignment="Center" Text="" Width="333" FontSize="30" x:Name="LocationBox"/>
+                    </StackPanel>
+                    <StackPanel Height="auto" >
+                        <TextBlock Height="74" FontSize="50" HorizontalAlignment="Left"  Text="Comment" VerticalAlignment="Top" Width="auto" />
+                        <TextBlock Height="auto" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Description}" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock x:Name="PhotoHeader" FontSize="50" Height="86" HorizontalAlignment="Left" Text="Picture Attached" VerticalAlignment="Top" Width="403" Visibility="Collapsed" />
+                        <Image x:Name="PhotoContainer" Height="189" HorizontalAlignment="Center" Stretch="Fill" VerticalAlignment="Top" Width="304" Visibility="Collapsed" Source="{Binding Photo}" />
+                    </StackPanel>
+                </StackPanel>
 
-                <TextBlock x:Name="PhotoHeader" FontSize="50" Height="86" HorizontalAlignment="Left" Margin="10,600,0,0" Text="Picture Attached" VerticalAlignment="Top" Width="403" Visibility="Collapsed" />
-                <Image Height="153" HorizontalAlignment="Left" Margin="240,638,0,0" Stretch="Fill" VerticalAlignment="Top" Width="157" Grid.Row="1" />
-               
-                <Image x:Name="PhotoContainer" Grid.Row="1" Height="189" HorizontalAlignment="Left" Margin="100,700,0,0" Stretch="Fill" VerticalAlignment="Top" Width="304" Visibility="Collapsed" Source="{Binding Photo}" />
+                
+                
+                
+                
             </Grid>
             
         </Grid>

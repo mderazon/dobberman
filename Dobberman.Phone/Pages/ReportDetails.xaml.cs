@@ -51,7 +51,8 @@ namespace TAUP2C.Dobberman.Phone.Pages
                 this.PhotoHeader.Visibility = Visibility.Visible;
                 this.PhotoContainer.Visibility = Visibility.Visible;
             }
-            if (States.CurReport.Location == "")
+
+            if (States.CurReport.Location == "" || States.CurReport.Location == "Null")
             {
                 this.LocationBox.Text = "No Location Provided";
             }

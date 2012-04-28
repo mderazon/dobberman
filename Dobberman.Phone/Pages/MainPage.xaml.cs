@@ -69,9 +69,18 @@ namespace TAUP2C.Dobberman.Phone.Pages
             googlemap.SetView(geocenter, 9);
             client.GetAllCategoriesCompleted += new EventHandler<GetAllCategoriesCompletedEventArgs>(client_GetAllCategoriesCompleted);
             client.GetAllCategoriesAsync();
-
+            client.GetAllReportsWithLocationCompleted += new EventHandler<GetAllReportsWithLocationCompletedEventArgs>(client_GetAllUsers);
+            client.GetAllReportsWithLocationAsync(1);
         }
 
+        void client_GetAllUsers(object sender, GetAllReportsWithLocationCompletedEventArgs e)
+        {
+            foreach (Report r in e.Result.Cast<Report>())
+            {
+                GeoReportList.Add(r);
+            }
+            fuckit.ItemsSource = GeoReportList;
+        }
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -145,13 +154,10 @@ namespace TAUP2C.Dobberman.Phone.Pages
         void client_FindReportCompleted(object sender, GetReportsByUserIdCompletedEventArgs e)
         {
 
-            foreach (Report r in e.Result.Cast<Report>())
-            {
-                GeoReportList.Add(r);
-            }
+            
 
             ReportList.ItemsSource = e.Result;
-            fuckit.ItemsSource = GeoReportList;
+            
         }
 
        
