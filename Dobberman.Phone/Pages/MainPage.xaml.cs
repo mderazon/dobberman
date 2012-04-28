@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+#define VIRTUAL_WP7
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Device.Location;
@@ -61,12 +63,12 @@ namespace TAUP2C.Dobberman.Phone.Pages
         MapLayer PushpinLayer = new MapLayer();
         private List<Pushpin> pins = new List<Pushpin>();
 
-        GeoCoordinate geocenter = new GeoCoordinate(32.067, 34.47);
+       
 
         public MainPage()
         {
             InitializeComponent();
-            googlemap.SetView(geocenter, 9);
+            googlemap.SetView(GetMyLocation(), 16);
             client.GetAllCategoriesCompleted += new EventHandler<GetAllCategoriesCompletedEventArgs>(client_GetAllCategoriesCompleted);
             client.GetAllCategoriesAsync();
             client.GetAllReportsWithLocationCompleted += new EventHandler<GetAllReportsWithLocationCompletedEventArgs>(client_GetAllUsers);
@@ -81,6 +83,26 @@ namespace TAUP2C.Dobberman.Phone.Pages
             }
             fuckit.ItemsSource = GeoReportList;
         }
+        private GeoCoordinate GetMyLocation()
+        {
+          
+#if REAL_WP7
+            IGeoPositionWatcher<GeoCoordinate> watcher;
+            watcher = new System.Device.Location.GeoCoordinateWatcher();
+
+            // Do not suppress prompt, and wait 1000 milliseconds to start.
+            watcher.TryStart(false, TimeSpan.FromMilliseconds(1000));
+            GeoCoordinate geoCenter = watcher.Position.Location;
+            watcher.Stop();
+            return geoCenter;
+#endif
+#if VIRTUAL_WP7
+        GeoCoordinate geoCenter = new GeoCoordinate(32.114022, 34.803593);
+        return geoCenter;
+#endif
+
+        }
+
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
