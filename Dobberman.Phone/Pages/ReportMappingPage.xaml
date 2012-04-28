@@ -183,7 +183,7 @@
                 <my:MapItemsControl.ItemTemplate>
                     <DataTemplate>
                         <my:Pushpin Location="{Binding Location, Converter={StaticResource StringToGeoConverter}}" Tap="Pushpin_Tap" Background="{Binding Mood, Converter={StaticResource BorderBrushConverter}}"
-                            Content="{Binding Authoroty}" >
+                            Content="{Binding Authority.Name}" >
                             
                         </my:Pushpin>
                     </DataTemplate>
