@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Device.Location;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -11,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Controls.Maps;
 using TAUP2C.Dobberman.Phone.DobbermanService;
 using TAUP2C.Dobberman.Phone.Helpers;
 
@@ -55,9 +57,16 @@ namespace TAUP2C.Dobberman.Phone.Pages
         ObservableCollection<Stats> reportList = new ObservableCollection<Stats>();
         ObservableCollection<Stats> ss = new ObservableCollection<Stats>();
         DobbermanServiceClient client = new DobbermanServiceClient();
+        List<Report> GeoReportList = new List<Report>();
+        MapLayer PushpinLayer = new MapLayer();
+        private List<Pushpin> pins = new List<Pushpin>();
+
+        GeoCoordinate geocenter = new GeoCoordinate(32.067, 34.47);
+
         public MainPage()
         {
             InitializeComponent();
+            googlemap.SetView(geocenter, 9);
             client.GetAllCategoriesCompleted += new EventHandler<GetAllCategoriesCompletedEventArgs>(client_GetAllCategoriesCompleted);
             client.GetAllCategoriesAsync();
 
@@ -121,20 +130,28 @@ namespace TAUP2C.Dobberman.Phone.Pages
             }
             
         }
-                 
 
-   
+
+        private void Pushpin_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+
+            Report PushpinReport = (sender as Pushpin).DataContext as Report;
+            States.CurReport = PushpinReport;
+
+            NavigationService.Navigate(new Uri("/Pages/ReportDetails.xaml", UriKind.Relative));
+
+        } 
 
         void client_FindReportCompleted(object sender, GetReportsByUserIdCompletedEventArgs e)
         {
-            
-            //foreach (Report r in e.Result.Cast<Report>())
-           // {
-            //    reportList.Add(r);
-           // }
+
+            foreach (Report r in e.Result.Cast<Report>())
+            {
+                GeoReportList.Add(r);
+            }
 
             ReportList.ItemsSource = e.Result;
-            
+            fuckit.ItemsSource = GeoReportList;
         }
 
        
