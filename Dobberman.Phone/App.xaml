@@ -19,19 +19,10 @@
         <converters:StringToGeoConverter x:Key="StringToGeoConverter" />
 
        
-            <ControlTemplate  
-       x:Key="PinTemplate" 
-         TargetType="my:Pushpin" >
-                <Grid>
+    
+        
 
-                    <Ellipse Fill="Red"   
-      Width="25" Height="25"
-                           />
-                </Grid>
-            </ControlTemplate>
-       
 
-       
 
         <Style x:Key="ExpanderViewStyle" TargetType="toolkit:ExpanderView">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>

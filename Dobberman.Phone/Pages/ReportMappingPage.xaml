@@ -92,6 +92,7 @@
                          Name="location" />
 
             </StackPanel>
+            
             <StackPanel  Visibility="Collapsed"
                          Name="routePanel"
                          VerticalAlignment="Top"
@@ -182,8 +183,8 @@
             <my:MapItemsControl Name="fuckit" Height="696" Width="504">
                 <my:MapItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <my:Pushpin Location="{Binding Location, Converter={StaticResource StringToGeoConverter}}" Tap="Pushpin_Tap" Background="{Binding Mood, Converter={StaticResource BorderBrushConverter}}"
-                            Content="{Binding Authority.Name}" >
+                        <my:Pushpin  Location="{Binding Location, Converter={StaticResource StringToGeoConverter}}" Tap="Pushpin_Tap" Background="{Binding Mood, Converter={StaticResource BorderBrushConverter}}"
+                    Content="{Binding Authority.Name}"     >
                             
                         </my:Pushpin>
                     </DataTemplate>
