@@ -221,7 +221,7 @@ namespace TAUP2C.Dobberman.WebRole.Services
                     CategoryId = authority.CategoryId,
                     FacebookPage = authority.FacebookPage,
                     AccumulatedScore = 0,
-                    Score = 0.5,
+                    Score = 50,
 
                 };
                 context.AddToAuthorities(authorityEntity);
@@ -286,8 +286,9 @@ namespace TAUP2C.Dobberman.WebRole.Services
                 AuthorityId = authorityEntity.AuthorityId,
                 Name = authorityEntity.Name,
                 FacebookPage = authorityEntity.FacebookPage,
-                CategoryId = authorityEntity.CategoryId,
-                Category = TranslateCategoryEntityToCategory(authorityEntity.Category),
+                Score = authorityEntity.Score,
+                CategoryId = authorityEntity.CategoryId,                
+                Category = TranslateCategoryEntityToCategory(authorityEntity.Category),                
             };
             return authority;
         }

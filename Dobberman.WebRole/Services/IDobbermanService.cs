@@ -101,6 +101,8 @@ namespace TAUP2C.Dobberman.WebRole.Services
         public int CategoryId { get; set; }
         [DataMember]
         public Category Category { get; set; }
+        [DataMember(IsRequired = false)]
+        public double Score { get; set; }
 
     }
 
