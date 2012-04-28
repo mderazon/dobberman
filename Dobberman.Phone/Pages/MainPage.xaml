@@ -10,7 +10,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded_1" mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480">
+    shell:SystemTray.IsVisible="True"  mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480">
     
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -51,7 +51,7 @@
             <!--Pivot item two-->
             <controls:PivotItem Header="Statistics">
                 <Grid>
-                    <ListBox Name="StatisticsList" Margin="0,0,0,0">
+                    <ListBox Name="StatisticsList" Margin="0,0,0,0" >
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <toolkit:ExpanderView Header="{Binding Type}" x:Name="expander" Width="500" FontSize="50" BorderThickness="0,0,0,0" Style="{StaticResource ExpanderViewStyle}">

@@ -7,7 +7,6 @@ namespace TAUP2C.Dobberman.Phone.Converters
 
     public class VisibilityConverter : IValueConverter
     {
-        //olga -  dooo
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value == null)

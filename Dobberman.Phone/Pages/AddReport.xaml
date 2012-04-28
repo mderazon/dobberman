@@ -13,8 +13,9 @@
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls">
 
-    <ScrollViewer Margin="12,0,12,-391" Grid.Row="1" Height="1093" Width="468">
-        <Grid x:Name="LayoutRoot">
+
+    <ScrollViewer Height="auto">
+    <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -26,29 +27,44 @@
         </StackPanel>
         
             <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,-391" DataContext="{Binding}">
-            <toolkit:AutoCompleteBox HorizontalAlignment="Left" Margin="15,39,0,0" Name="autoCompleteBox1" VerticalAlignment="Top" Height="69" Width="397" Text="Select Authority" GotFocus="AutoCompleteSelected" />
-            <CheckBox Content="Get Location From GPS" Height="67" HorizontalAlignment="Left" Margin="12,379,0,0" Name="checkbox" VerticalAlignment="Top" Width="316" IsChecked="True" Background="White" Checked="GPScheckbox_Checked"></CheckBox>
-                <CheckBox Background="White" BorderBrush="#BFC11414" Content="Post to autority's Facebook page" Height="74" HorizontalAlignment="Left" IsChecked="True" Margin="15,426,0,0" Name="checkBox2" VerticalAlignment="Top" Width="421" />
-            <Button HorizontalAlignment="Left"  Name="button1" Click="button1_Click" Height="134" Margin="12,140,0,0" VerticalAlignment="Top" Width="140" BorderThickness="20,0,0,0" BorderBrush="#FF0081FF" Opacity="0.5">
-                <TextBlock Height="70" TextWrapping="Wrap" Text="Happy" Width="109" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="14.667" Foreground="#FFFBEAEA" />
-            </Button>
-            <Button Height="134" Margin="139,140,153,0" Name="button2" Click="button2_Click" VerticalAlignment="Top" BorderThickness="20,0,0,0" Width="140" BorderBrush="#FFFD0909" Opacity="0.5">
-                <TextBlock Height="70" TextWrapping="Wrap" Text="Unhappy" Width="109" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="14.667" Foreground="#FFFDFDFD" />
-            </Button>
-            <Button HorizontalAlignment="Right" Height="134" Margin="0,140,-3,0" Name="button3" Click="button3_Click" VerticalAlignment="Top" Width="150" BorderThickness="20,0,0,0" BorderBrush="#FFFFD800" Opacity="0.5">
-                <TextBlock Height="70" TextWrapping="Wrap" Text="Concerened" Width="109" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="14.667" Foreground="#FFF3F1F1" />
-            </Button>
-            <!--<Button Content="Post Report!" Height="77" HorizontalAlignment="Left" Margin="89,485,0,0" Name="button4" VerticalAlignment="Top" Width="239" Click="PostReport_Click" />-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
             
-            <TextBlock FontSize="26.667" HorizontalAlignment="Left" Margin="10,10,0,1298" Text="Select Authority:" TextWrapping="Wrap" />
-            <TextBlock FontSize="26.667" HorizontalAlignment="Left" Margin="15,102,0,1188" Text="How do feel?" TextWrapping="Wrap" />
-            <TextBox Margin="10,280,20,949" TextWrapping="Wrap" Text="Please Decsribe." BorderThickness="20,0,0,0" BorderBrush="#FF47643F" GotFocus="TextBox_GotFocus" x:Name="Decs" />
-                <Image Height="164" HorizontalAlignment="Left" x:Name="ReportImage" Margin="96,506,0,0" Visibility="Collapsed" Stretch="Fill" VerticalAlignment="Top" Width="266" />
+                <StackPanel Height="1000" Orientation="Vertical">
+                    <StackPanel Margin="0,0,0,10" Orientation="Vertical" Height="auto">
+                        <TextBlock FontSize="50" HorizontalAlignment="Left" Margin="12,0,12,-5" VerticalAlignment="Top" Text="Select Authority:" TextWrapping="Wrap" LineHeight="31"/>
+                        
+                    </StackPanel>
+                    <toolkit:AutoCompleteBox BorderThickness="20,0,0,0" BorderBrush="#FF47643F" Name="autoCompleteBox1" Height="auto" Width="auto" Text="Start Typing..." GotFocus="AutoCompleteSelected" />
+                    <StackPanel Margin="0,0,0,10" Orientation="Vertical">
+                        <TextBlock  FontSize="50" HorizontalAlignment="Left" Margin="12,0,12,-5" VerticalAlignment="Top"  Text="How do you feel?" TextWrapping="Wrap" LineHeight="31" />
+                        <Button Name="button1" Content="Happy" Height="87"  VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="0,0,0,0" Foreground="DodgerBlue" FontSize="40" Opacity="0.7" Click="button1_Click"/>
+                        <Button Name="button2" Content="Unhappy" Height="91" VerticalAlignment="Top" HorizontalAlignment="Center" BorderThickness="0,0,0,0" Foreground="IndianRed" FontSize="40" Opacity="0.7" Click="button2_Click"/>
+                        <Button Name="button3" Content="Concerned" Height="80"  VerticalAlignment="Bottom" HorizontalAlignment="Right" BorderThickness="0,0,0,0" Foreground="Gold" FontSize="40" Opacity="0.7" Click="button3_Click" d:LayoutOverrides="HorizontalAlignment, GridBox"/>
+                    </StackPanel>
+                    <StackPanel  Margin="0,0,0,10">
+                        <TextBlock FontSize="50" HorizontalAlignment="Left" Margin="12,0,12,-5" VerticalAlignment="Top" Text="Details" TextWrapping="Wrap" LineHeight="31"/>
+                        <TextBox  TextWrapping="Wrap" Text="Please Decsribe." BorderThickness="20,0,0,0" BorderBrush="#FF47643F" GotFocus="TextBox_GotFocus" x:Name="Decs" Height="auto" />
+                    </StackPanel>
+                    
+                        <CheckBox Content="Get Location From GPS" Height="67" HorizontalAlignment="Left"  Name="checkbox" VerticalAlignment="Top" Width="316" IsChecked="True" Background="White" Checked="GPScheckbox_Checked"></CheckBox>
+                        <CheckBox Background="White" BorderBrush="#BFC11414" Content="Post to autority's Facebook page" Height="74" HorizontalAlignment="Left" IsChecked="True"  Name="checkBox2" VerticalAlignment="Top" Width="421" />
+                    
+                    <StackPanel  Margin="0,0,0,10">
+                        <Image Height="auto" x:Name="ReportImage" HorizontalAlignment="Center" Visibility="Collapsed" Stretch="Fill" VerticalAlignment="Top" Width="auto" />
+                    </StackPanel>
+                    
+                </StackPanel>
+                
+
+
             </Grid>
-            <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Bottom">
-                <TextBlock Margin="12,0,12,0" Text="Uploading..." HorizontalAlignment="Left" Visibility="{Binding IsUploading, Converter={StaticResource VisibilityConverter}}" />
-                <ProgressBar Margin="12,0,12,0" Height="20" IsIndeterminate="True" Visibility="{Binding IsUploading, Converter={StaticResource VisibilityConverter}}" />
+            <StackPanel Grid.Row="1" Margin="12,0,12,0" Orientation="Vertical" VerticalAlignment="Bottom">
+                <TextBlock Margin="15,2,0,0" Height="auto" TextWrapping="Wrap" Text="Uploading..." HorizontalAlignment="Left" Visibility="{Binding IsUploading, Converter={StaticResource VisibilityConverter}}" />
+                <ProgressBar Height="20" IsIndeterminate="True" Visibility="{Binding IsUploading, Converter={StaticResource VisibilityConverter}}" />
             </StackPanel>
         </Grid>
     </ScrollViewer>

@@ -25,6 +25,23 @@ namespace TAUP2C.Dobberman.Phone.Pages
         private string _accessToken;
         private IDictionary<string, object> _me;
         private WebBrowser _webBrowser;
+        private bool isLoading = false;
+        public bool IsLoading
+        {
+            get
+            {
+                return this.isLoading;
+            }
+
+            set
+            {
+                if (this.isLoading != value)
+                {
+                    this.isLoading = value;
+                    //this.NotifyPropertyChanged("IsUploading");
+                }
+            }
+        }
         public LoginPage()
         {
             InitializeComponent();
@@ -94,6 +111,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
         // authenticates and registers the user at the dobberman service
         void Register_User()
         {
+            this.loading.Visibility=Visibility.Visible;
             var fb = new FacebookClient(_accessToken);
 
             fb.GetCompleted += (o, args) =>
@@ -105,10 +123,8 @@ namespace TAUP2C.Dobberman.Phone.Pages
                     Dispatcher.BeginInvoke(
                         () =>
                         {
-                            ProfileName.Text = "Hi " + _me["name"];
-                            FirstName.Text = "First Name: " + _me["first_name"];
-                            LastName.Text = "Last Name: " + _me["last_name"];
-                            Email.Text = "Email: " + _me["email"];
+                            //Welcome.Text = "Welcome " + _me["first_name"] + "!";
+                            
                             DobbermanServiceClient client = new DobbermanServiceClient();
                             User user = new User()
                             {
@@ -136,6 +152,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
             // this is the user id from the dobberman db
             States.userId = e.Result;
             PhoneHelpers.SetIsolatedStorageSetting("UserIsRegistered", true);
+            //this.loading.Visibility = Visibility.Collapsed;
             this.NavigationService.Navigate(new Uri("/Pages/MainPage.xaml", UriKind.RelativeOrAbsolute));
         }
 

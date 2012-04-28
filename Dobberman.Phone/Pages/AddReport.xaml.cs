@@ -32,11 +32,12 @@ namespace TAUP2C.Dobberman.Phone.Pages
         string storageKey = "9Uure7kO3RV71DRY+5rbMWurEuNfP1oCKkGvRi+/TlJq9nQbqU39FUYbPpqt+ml8qHfZNCGlxf4WBuhyO6gkdQ==";
         string blobServiceUri = "http://dobberman.blob.core.windows.net";
         CloudBlobClient blobClient;
-
+        private string location;
         public static string LastMoodCheck;
         private Report newReport;
         private  List<Authority> AuthorityList = new List<Authority>();
-        private bool isUploading;
+        private System.IO.Stream ChosenPhoto = null;
+        private bool isUploading = false;
         public bool IsUploading
         {
             get
@@ -94,7 +95,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
         private void AutoCompleteSelected(object sender, RoutedEventArgs e)
         {
-            if (autoCompleteBox1.Text == "Select Authority")
+            if (autoCompleteBox1.Text == "Start Typing...")
             {
                 autoCompleteBox1.Text = "";
             }
@@ -196,8 +197,8 @@ namespace TAUP2C.Dobberman.Phone.Pages
             var parameters = new Dictionary<string, object>
                {
                     { "message", "I have just posted a " + r.Mood + " report about " + r.Authority.Name +"!" },
-                    { "link", "http://download.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=facebooksdk&DownloadId=170794&Build=17672" },
-                    { "picture", "http://download.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=facebooksdk&DownloadId=170794&Build=17672" },
+                    { "link", newReport.Photo },
+                    { "picture", newReport.Photo },
                     { "name", "This is what I have to say:" },
                     { "caption", "Posted with Dobberman App" },
                     { "description", r.Description },            
@@ -228,7 +229,10 @@ namespace TAUP2C.Dobberman.Phone.Pages
             }
 
             newReport.Description = this.Decs.Text;
-            newReport.Location = "";
+            if (this.checkbox.IsChecked == true)
+                newReport.Location = location;
+            else
+                newReport.Location = "";
             if (LastMoodCheck == "")
             {
                 MessageBox.Show("Please select report mood");
@@ -239,12 +243,18 @@ namespace TAUP2C.Dobberman.Phone.Pages
             newReport.UserId = States.userId;
             
 
-            if (checkBox2.IsChecked == true)
+            if (ChosenPhoto == null)
             {
-                PostToWall(newReport);               
+                if (checkBox2.IsChecked == true)
+                {
+                    PostToWall(newReport);
+                }
+                PostToServer(newReport);
             }
-            PostToServer(newReport);
-
+            else
+            {
+                UploadToBlobContainer(ChosenPhoto);
+            }
             reportEnd:
             return;
        }
@@ -267,7 +277,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
        
         private void GPScheckbox_Checked(object sender, RoutedEventArgs e)
         {
-            string coordinate = System.String.Empty;
+            location = System.String.Empty;
 #if REAL_WP7
             IGeoPositionWatcher<GeoCoordinate> watcher;
             watcher = new System.Device.Location.GeoCoordinateWatcher();
@@ -278,14 +288,14 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
             if (coord.IsUnknown != true)
             {
-                coordinate = coord.ToString(); 
+                location = coord.ToString(); 
                 watcher.Stop();
               
             }
                 
             else
             {
-                coordinate = null;
+                location = null;
             }
         }
 #endif
@@ -297,7 +307,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
                 myList.Add(new GeoCoordinate(31.838, 34.878));
                 myList.Add(new GeoCoordinate(32.549, 35.234));
                 coord = myList[RandomNumber(0, 2)];
-                coordinate = coord.ToString();
+                location = coord.ToString();
 #endif
  
 }
@@ -339,7 +349,8 @@ namespace TAUP2C.Dobberman.Phone.Pages
             {
 
                 WriteableBitmap CapturedImage = PictureDecoder.DecodeJpeg(e.ChosenPhoto);
-                UploadToBlobContainer(e.ChosenPhoto);
+                ChosenPhoto = e.ChosenPhoto;
+                //UploadToBlobContainer(e.ChosenPhoto);
 
                 ReportImage.Source = CapturedImage;
                 ReportImage.Visibility = Visibility.Visible;
@@ -349,6 +360,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
                 //user decided not to take a picture
             }
         }
+
         private void UploadToBlobContainer(System.IO.Stream stream)
         {
             this.IsUploading = true;
@@ -375,18 +387,27 @@ namespace TAUP2C.Dobberman.Phone.Pages
                             stream,
                             response => this.Dispatcher.BeginInvoke(
                             () =>
+                            {
+                                this.IsUploading = false;
+
+                                if (response.Exception == null)
                                 {
-                                    this.IsUploading = false;
-    
-                                    if (response.Exception == null)
+                                    newReport.Photo = blob.Uri.ToString();
+                                    if (checkBox2.IsChecked == true)
                                     {
-                                        newReport.Photo = blob.Uri.ToString();
+                                        PostToWall(newReport);
                                     }
-                                    else
-                                    {
-                                        MessageBox.Show(response.Exception.Message);                                        
-                                    }
-                                }));
+                                    PostToServer(newReport);
+                                }
+                                else
+                                {
+                                    MessageBox.Show(response.Exception.Message);
+                                }
+                            }));
+                    }
+                    else
+                    {
+                        MessageBox.Show(r.Exception.Message);
                     }
                 }));
 

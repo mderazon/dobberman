@@ -26,13 +26,16 @@
             <TextBlock x:Name="PageTitle" Text="login page" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Margin="12,0,12,0">
-            <TextBlock x:Name="ProfileName"></TextBlock>
-            <TextBlock x:Name="FirstName"></TextBlock>
-            <TextBlock x:Name="LastName"></TextBlock>
-            <TextBlock x:Name="Email"></TextBlock>
+            <!--<TextBlock FontSize="50" x:Name="Welcome"/>
+            <TextBlock FontSize="30" TextWrapping="Wrap" Text="Please wait while loading..."/>-->
+           
         </StackPanel>
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0"></Grid>
+        <StackPanel x:Name="loading" Grid.Row="1" Margin="12,0,12,0" Orientation="Vertical" VerticalAlignment="Bottom" Visibility="Collapsed">
+            <TextBlock Margin="15,2,0,0" Height="auto" TextWrapping="Wrap" Text="Loading..." HorizontalAlignment="Left"  />
+            <ProgressBar Height="20" IsIndeterminate="True" />
+        </StackPanel>
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->

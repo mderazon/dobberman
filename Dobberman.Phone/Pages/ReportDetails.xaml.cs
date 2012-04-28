@@ -41,12 +41,16 @@ namespace TAUP2C.Dobberman.Phone.Pages
                     MoodText.Text = "Unhappy";
                     break;
                 case "concerned":
-                    MoodText.Text = "Unhappy";
+                    MoodText.Text = "Concerned";
                     break;
             }
 
 
-
+            if (!(States.CurReport.Photo == "" || States.CurReport.Photo == null))
+            {
+                this.PhotoHeader.Visibility = Visibility.Visible;
+                this.PhotoContainer.Visibility = Visibility.Visible;
+            }
             if (States.CurReport.Location == "")
             {
                 this.LocationBox.Text = "No Location Provided";

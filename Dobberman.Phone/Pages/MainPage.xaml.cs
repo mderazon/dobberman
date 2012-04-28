@@ -52,15 +52,14 @@ namespace TAUP2C.Dobberman.Phone.Pages
     }
     public partial class MainPage : PhoneApplicationPage
     {
-        List<Report> reportList = new List<Report>();
+        ObservableCollection<Stats> reportList = new ObservableCollection<Stats>();
         ObservableCollection<Stats> ss = new ObservableCollection<Stats>();
         DobbermanServiceClient client = new DobbermanServiceClient();
         public MainPage()
         {
             InitializeComponent();
-            
-           
-            //Loaded += new RoutedEventHandler(PivotPage1_Loaded);
+            client.GetAllCategoriesCompleted += new EventHandler<GetAllCategoriesCompletedEventArgs>(client_GetAllCategoriesCompleted);
+            client.GetAllCategoriesAsync();
 
         }
 
@@ -70,9 +69,8 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
             
             client.GetReportsByUserIdCompleted += new EventHandler<GetReportsByUserIdCompletedEventArgs>(client_FindReportCompleted);
-            client.GetReportsByUserIdAsync(1);
-            client.GetAllCategoriesCompleted += new EventHandler<GetAllCategoriesCompletedEventArgs>(client_GetAllCategoriesCompleted);
-            client.GetAllCategoriesAsync();
+            client.GetReportsByUserIdAsync(States.userId);
+            
             
 
 
@@ -83,6 +81,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
         {
             client.GetAuthoritiesByCategoryIdCompleted += new EventHandler<GetAuthoritiesByCategoryIdCompletedEventArgs>(client_GetAuthoritiesByCategoryIdCompleted);
             ss.Clear();
+            ss = new ObservableCollection<Stats>();
             foreach (Category c in e.Result.Cast<Category>())
             {
                 
@@ -115,8 +114,10 @@ namespace TAUP2C.Dobberman.Phone.Pages
                     s.BottomFirst = e.Result.ElementAt(i - 1).Name;
                
                 ss.Add(s);
+
+              
                 StatisticsList.ItemsSource = ss;
-               
+
             }
             
         }
@@ -127,52 +128,34 @@ namespace TAUP2C.Dobberman.Phone.Pages
         void client_FindReportCompleted(object sender, GetReportsByUserIdCompletedEventArgs e)
         {
             
-            foreach (Report r in e.Result.Cast<Report>())
-            {
-                reportList.Add(r);
-            }
+            //foreach (Report r in e.Result.Cast<Report>())
+           // {
+            //    reportList.Add(r);
+           // }
 
-            ReportList.ItemsSource = reportList;
+            ReportList.ItemsSource = e.Result;
             
         }
 
-        void PivotPage1_Loaded(object sender, RoutedEventArgs e)
-        {
-
        
 
-        }
 
 
-        //olga- on click on pushpin:
+
         // Handle selection changed on ListBox
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Report ButtonReport = ( sender as Button /*as pushpin*/).DataContext as Report;
            States.CurReport = ButtonReport;
-            //ReportDetails P = new ReportDetails(ButtonReport);
+           
 
 
             NavigationService.Navigate(new Uri("/Pages/ReportDetails.xaml", UriKind.Relative));
-            //object data = (sender as Button).DataContext as object;
-            //ListBoxItem pressedItem = this.ReportList.ItemContainerGenerator.ContainerFromItem(data) as ListBoxItem;
-            //if (pressedItem != null)
-            //{
-            //    NavigationService.Navigate(new Uri("/Page1.xaml", UriKind.Relative));
-
-            //}
+            
         }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void PhoneApplicationPage_Loaded_1(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
 
         private void AddReport_Click(object sender, EventArgs e)
         {
