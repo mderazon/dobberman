@@ -197,6 +197,8 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
         
         private System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> ReportsField;
         
+        private double ScoreField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int AuthorityId {
             get {
@@ -271,6 +273,19 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
                 if ((object.ReferenceEquals(this.ReportsField, value) != true)) {
                     this.ReportsField = value;
                     this.RaisePropertyChanged("Reports");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Score {
+            get {
+                return this.ScoreField;
+            }
+            set {
+                if ((this.ScoreField.Equals(value) != true)) {
+                    this.ScoreField = value;
+                    this.RaisePropertyChanged("Score");
                 }
             }
         }

@@ -29,6 +29,7 @@
       <xs:element minOccurs="0" name="FacebookPage" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Reports" nillable="true" type="tns:ArrayOfReport" />
+      <xs:element minOccurs="0" name="Score" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Authority" nillable="true" type="tns:Authority" />
