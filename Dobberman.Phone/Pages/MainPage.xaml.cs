@@ -176,7 +176,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
         void client_FindReportCompleted(object sender, GetReportsByUserIdCompletedEventArgs e)
         {
 
-            
+           
 
             ReportList.ItemsSource = e.Result;
             
