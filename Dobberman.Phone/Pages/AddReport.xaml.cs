@@ -36,9 +36,31 @@ namespace TAUP2C.Dobberman.Phone.Pages
         public static string LastMoodCheck;
         private Report newReport;
         private  List<Authority> AuthorityList = new List<Authority>();
+        private bool isUploading;
+        public bool IsUploading
+        {
+            get
+            {
+                return this.isUploading;
+            }
+
+            set
+            {
+                if (this.isUploading != value)
+                {
+                    this.isUploading = value;
+                    //this.NotifyPropertyChanged("IsUploading");
+                }
+            }
+        }
+
         public AddReport()
         {
             InitializeComponent();
+            newReport = new Report();
+            DobbermanServiceClient client = new DobbermanServiceClient();
+            client.GetAllAuthoritiesCompleted += new EventHandler<GetAllAuthoritiesCompletedEventArgs>(client_GetAllAuthoritiesCompleted);
+            client.GetAllAuthoritiesAsync();
             
 
         }
@@ -47,13 +69,11 @@ namespace TAUP2C.Dobberman.Phone.Pages
         {
             base.OnNavigatedTo(e);
             
-            newReport = new Report();
-            var credentials = new StorageCredentialsAccountAndKey(storageAccount, storageKey);
-            blobClient = new CloudBlobClient(blobServiceUri, credentials);
+            
+            
+            
 
-            DobbermanServiceClient client = new DobbermanServiceClient();
-            client.GetAllAuthoritiesCompleted += new EventHandler<GetAllAuthoritiesCompletedEventArgs>(client_GetAllAuthoritiesCompleted);
-            client.GetAllAuthoritiesAsync();
+            
 
 
         }
@@ -188,7 +208,6 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
         private void SendReportClick(object sender, EventArgs e)
         {
-            //Report NewReport = new Report();
             bool match = false;
 
             foreach (Authority a in AuthorityList)
@@ -332,28 +351,45 @@ namespace TAUP2C.Dobberman.Phone.Pages
         }
         private void UploadToBlobContainer(System.IO.Stream stream)
         {
-            string containerName = "reportPictures";
+            this.IsUploading = true;
+            var credentials = new StorageCredentialsAccountAndKey(storageAccount, storageKey);
+            blobClient = new CloudBlobClient(blobServiceUri, credentials);
+            string containerName = "reportsphotos";
             var container = blobClient.GetContainerReference(containerName);
 
             container.CreateIfNotExist(true, r =>
                 Dispatcher.BeginInvoke(() =>
                 {
-                    // TODO reportid not yet created
-                    var blobName = "report" + newReport.ReportId.ToString();
-                    var blob = container.GetBlobReference(blobName);
-                    blob.Metadata["ReportId"] = newReport.ReportId.ToString();
-                    blob.Metadata["Date"] = newReport.Date.ToString();
-                    blob.UploadFromStream(stream, r2 =>
-                        Dispatcher.BeginInvoke(() =>
-                        {
-                             newReport.Photo = container.Uri + "/" + blobName;
-                        }));
+                    if (r.Exception == null)
+                    {
+                        // generate guid for the resource
+                        var uniqueIdentifier = Guid.NewGuid();
+                        var blobName = "report" + uniqueIdentifier.ToString() + ".jpg";
+                        var blob = container.GetBlobReference(blobName);
+                        blob.Metadata["ImageType"] = "image/jpeg";
+                        //blob.Metadata["Date"] = newReport.Date.ToString();
+                        blob.Metadata["FileExtension"] = "jpg";
+                        blob.SetMetadata(r2 => { });
+
+                        blob.UploadFromStream(
+                            stream,
+                            response => this.Dispatcher.BeginInvoke(
+                            () =>
+                                {
+                                    this.IsUploading = false;
+    
+                                    if (response.Exception == null)
+                                    {
+                                        newReport.Photo = blob.Uri.ToString();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(response.Exception.Message);                                        
+                                    }
+                                }));
+                    }
                 }));
 
         }
-
-     
-
-       
   }
 }
