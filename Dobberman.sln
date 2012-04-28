@@ -1,12 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dobberman.Web", "Dobberman.Web\Dobberman.Web.csproj", "{3833DBCF-A3CA-4590-97A6-B07429F551FF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dobberman.Phone", "Dobberman.Phone\Dobberman.Phone.csproj", "{D9424134-3C6D-4DE8-B632-2364D6E83A0F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8F1CFC75-A9ED-44ED-BE73-86D8C8F3BBAF} = {8F1CFC75-A9ED-44ED-BE73-86D8C8F3BBAF}
-		{3833DBCF-A3CA-4590-97A6-B07429F551FF} = {3833DBCF-A3CA-4590-97A6-B07429F551FF}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsPhoneCloud.StorageClient", "WindowsPhoneCloud.StorageClient\WindowsPhoneCloud.StorageClient.csproj", "{B07FCEC6-A640-49CF-A8B0-28C3CABC3F4E}"
@@ -27,9 +24,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3833DBCF-A3CA-4590-97A6-B07429F551FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3833DBCF-A3CA-4590-97A6-B07429F551FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3833DBCF-A3CA-4590-97A6-B07429F551FF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D9424134-3C6D-4DE8-B632-2364D6E83A0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D9424134-3C6D-4DE8-B632-2364D6E83A0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9424134-3C6D-4DE8-B632-2364D6E83A0F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
