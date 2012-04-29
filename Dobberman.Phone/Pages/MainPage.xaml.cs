@@ -17,6 +17,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Controls.Maps;
 using TAUP2C.Dobberman.Phone.DobbermanService;
 using TAUP2C.Dobberman.Phone.Helpers;
+using TAUP2C.Dobberman.Phone.PivotContent;
 
 namespace TAUP2C.Dobberman.Phone.Pages
 {
@@ -56,6 +57,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
     }
     public partial class MainPage : PhoneApplicationPage
     {
+
         ObservableCollection<Stats> reportList = new ObservableCollection<Stats>();
         ObservableCollection<Stats> ss = new ObservableCollection<Stats>();
         DobbermanServiceClient client = new DobbermanServiceClient();
@@ -63,16 +65,38 @@ namespace TAUP2C.Dobberman.Phone.Pages
         MapLayer PushpinLayer = new MapLayer();
         private List<Pushpin> pins = new List<Pushpin>();
 
-       
+        private void OnLoadingPivotItem(object sender, PivotItemEventArgs e)
+        {
+            if (e.Item.Content != null)
+            {
+                // Content loaded already
+                return;
+            }
+
+            Pivot pivot = (Pivot)sender;
+
+            if (e.Item == pivot.Items[0])
+            {
+                e.Item.Content = new ReportsList();
+            }
+            else if (e.Item == pivot.Items[1])
+            {
+                e.Item.Content = new Statistics();
+            }
+            else if (e.Item == pivot.Items[2])
+            {
+                e.Item.Content = new ReportsMapping();
+            }
+        }
 
         public MainPage()
         {
             InitializeComponent();
-            googlemap.SetView(GetMyLocation(), 16);
-            client.GetAllCategoriesCompleted += new EventHandler<GetAllCategoriesCompletedEventArgs>(client_GetAllCategoriesCompleted);
-            client.GetAllCategoriesAsync();
-            client.GetAllReportsWithLocationCompleted += new EventHandler<GetAllReportsWithLocationCompletedEventArgs>(client_GetAllUsers);
-            client.GetAllReportsWithLocationAsync(1);
+            //googlemap.SetView(GetMyLocation(), 16);
+            //client.GetAllCategoriesCompleted += new EventHandler<GetAllCategoriesCompletedEventArgs>(client_GetAllCategoriesCompleted);
+            //client.GetAllCategoriesAsync();
+            //client.GetAllReportsWithLocationCompleted += new EventHandler<GetAllReportsWithLocationCompletedEventArgs>(client_GetAllUsers);
+            //client.GetAllReportsWithLocationAsync(1);
         }
 
         void client_GetAllUsers(object sender, GetAllReportsWithLocationCompletedEventArgs e)
@@ -81,7 +105,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
             {
                 GeoReportList.Add(r);
             }
-            fuckit.ItemsSource = GeoReportList;
+            // TODO fuckit.ItemsSource = GeoReportList;
         }
         private GeoCoordinate GetMyLocation()
         {
@@ -103,19 +127,19 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
+        //protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        //{
+        //    base.OnNavigatedTo(e);
 
             
-            client.GetReportsByUserIdCompleted += new EventHandler<GetReportsByUserIdCompletedEventArgs>(client_FindReportCompleted);
-            client.GetReportsByUserIdAsync(States.userId);
+        //    client.GetReportsByUserIdCompleted += new EventHandler<GetReportsByUserIdCompletedEventArgs>(client_FindReportCompleted);
+        //    client.GetReportsByUserIdAsync(States.userId);
             
             
 
 
 
-        }
+        //}
         //olga - itemsource or datacontext for pushpin - tells what to bind. binding is needed to be at scope.
         void client_GetAllCategoriesCompleted(object sender, GetAllCategoriesCompletedEventArgs e)
         {
@@ -156,7 +180,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
                 ss.Add(s);
 
               
-                StatisticsList.ItemsSource = ss;
+                //TODO StatisticsList.ItemsSource = ss;
 
             }
             
@@ -178,7 +202,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
            
 
-            ReportList.ItemsSource = e.Result;
+            // TODO ReportList.ItemsSource = e.Result;
             
         }
 

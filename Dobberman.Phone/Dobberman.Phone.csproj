@@ -131,6 +131,15 @@
     <Compile Include="Pages\ReportMappingPage.xaml.cs">
       <DependentUpon>ReportMappingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PivotContent\ReportsList.xaml.cs">
+      <DependentUpon>ReportsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PivotContent\ReportsMapping.xaml.cs">
+      <DependentUpon>ReportsMapping.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PivotContent\Statistics.xaml.cs">
+      <DependentUpon>Statistics.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Service References\DobbermanService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -177,6 +186,18 @@
     <Page Include="Pages\ReportMappingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PivotContent\ReportsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PivotContent\ReportsMapping.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PivotContent\Statistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

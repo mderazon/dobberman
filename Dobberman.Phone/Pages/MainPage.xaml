@@ -40,18 +40,20 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <controls:Pivot Title="Dobberman" Grid.ColumnSpan="3">
+        <controls:Pivot Title="Dobberman" Grid.ColumnSpan="3" LoadingPivotItem="OnLoadingPivotItem">
             <!--Pivot item one-->
             <controls:PivotItem Header="Reports">
-                <Grid>
+                <!--<Grid>
                     <ListBox Name="ReportList" Margin="0,0,0,0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Button Click="Button_Click"  Width="540" Height="200" BorderThickness="15,0,0,0" BorderBrush="{Binding Mood, Converter={StaticResource BorderBrushConverter}}">
                                     <Button.Content>
                                         <StackPanel Orientation="Horizontal" Height="160" Width="540">
+                                            <Image Margin="12,0,12,0" Source="http://dobberman.blob.core.windows.net/logos/bezeqint.jpg" Height="80" Width="80" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top" />
                                             <StackPanel Orientation="Vertical" Height="160">
                                                 <StackPanel Orientation="Horizontal" Height="40">
+                                                    
                                                     <TextBlock Width="200" FontSize="22" Text="{Binding Authority.Name}" Height="40"/>
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Height="40">
@@ -69,13 +71,12 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                </Grid>
+                </Grid>-->
             </controls:PivotItem>
-
 
             <!--Pivot item two-->
             <controls:PivotItem Header="Statistics">
-                <Grid>
+                <!--<Grid>
                     <ListBox Name="StatisticsList" Margin="0,0,0,0" >
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -110,24 +111,14 @@
                 
                         </ListBox.ItemTemplate>
                     </ListBox>
-                </Grid>
+                </Grid>-->
             </controls:PivotItem>
-
+            <!--Pivot item three-->
             <controls:PivotItem Header="Reports Around">
-                <Grid>
+                <!--<Grid>
                     <Grid x:Name="ContentPanel"
               Grid.Row="1" Margin="0,0,0,90">
-                        <!--<Grid Name="loadingGrid"
-                  Background="Black"
-                  Canvas.ZIndex="1"
-                  Width="100"
-                  Height="40"
-                  Opacity="0.675"
-                  Visibility="Collapsed">
-                <TextBlock Text="loading..."
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center" />
-            </Grid>-->
+                       
                         <StackPanel  Visibility="Collapsed"
                          Name="searchPanel"
                          VerticalAlignment="Top"
@@ -238,9 +229,8 @@
                                 </DataTemplate>
                             </my:MapItemsControl.ItemTemplate>
                         </my:MapItemsControl>
-                        <!--   <my:Pushpin DataContext="{Binding GeoLocationList}" Name ="pusha" Location="{Binding}"/>-->
                     </my:Map>
-                </Grid>
+                </Grid>-->
             </controls:PivotItem>
         </controls:Pivot>
     </Grid>

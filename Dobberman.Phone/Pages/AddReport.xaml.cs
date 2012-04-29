@@ -232,13 +232,14 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
                     // now we can either cast it to IDictionary<string, object> or IList<object>
                     var result = (IDictionary<string, object>)args.GetResultData();
-                    //_lastMessageId = (string)result["id"];
+                    var _lastMessageId = (string)result["id"];
 
                     // make sure to be on the right thread when working with ui.
                     Dispatcher.BeginInvoke(() =>
                     {
                         MessageBox.Show("Report posted to facebook succesfully");
                         this.NavigationService.Navigate(new Uri("/Pages/MainPage.xaml", UriKind.RelativeOrAbsolute));
+                        
                        
                     });
                 }

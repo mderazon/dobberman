@@ -1,0 +1,86 @@
+﻿<UserControl 
+    x:Class="TAUP2C.Dobberman.Phone.PivotContent.Statistics"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid>
+            <ListBox Name="StatisticsList" Margin="0,0,0,0" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <toolkit:ExpanderView Header="{Binding Type}" x:Name="expander" Width="500" FontSize="50" BorderThickness="0,0,0,0" Style="{StaticResource ExpanderViewStyle}">
+                            <toolkit:ExpanderView.Items>
+                                <StackPanel Height="420" VerticalAlignment="Top" Orientation="Vertical">
+
+                                    <StackPanel Orientation="Vertical" Height="500">
+
+                                        <TextBlock Text="Top Favourite" FontSize="35" Foreground="White"/>
+
+                                        <StackPanel Orientation="Vertical" Width="200"  Height="150" Margin="10,8,90,37">
+                                            <TextBlock Text="{Binding TopFirst}" FontSize="30"  Width="200" Foreground="#FF4E7DBC"/>
+                                            <TextBlock Text="{Binding TopSecond}" FontSize="30" Width="200" Foreground="#FF4E7DBC"/>
+                                            <TextBlock Text="{Binding TopThird}" FontSize="30" Width="200" Foreground="#FF4E7DBC"/>
+                                        </StackPanel>
+                                        <TextBlock Text="Least Favourite" FontSize="35" Foreground="White"/>
+                                        <StackPanel Orientation="Vertical" Width="200" Height="150" Margin="10,8,90,37">
+                                            <TextBlock Text="{Binding BottomFirst}" Width="200" FontSize="30" Foreground="#FFBC8A4E"/>
+                                            <TextBlock Text="{Binding BottomSecond}" Width="200" FontSize="30" Foreground="#FFBC8A4E"/>
+                                            <TextBlock Text="{Binding BottomThird}" Width="200"  FontSize="30" Foreground="#FFBC8A4E"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </toolkit:ExpanderView.Items>
+                            <toolkit:ExpanderView.Expander>
+                                <Rectangle Height="0" Width="400" />
+                            </toolkit:ExpanderView.Expander>
+                        </toolkit:ExpanderView>
+                    </DataTemplate>
+
+
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
+
+
+
+</UserControl>

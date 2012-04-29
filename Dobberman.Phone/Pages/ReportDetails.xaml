@@ -22,33 +22,38 @@
 
             <!--TitlePanel contains the name of the application and page title-->
             <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-                <TextBlock x:Name="ApplicationTitle" Text="Dobberman" Style="{StaticResource PhoneTextNormalStyle}"/>
-                <TextBlock x:Name="PageTitle" Text="Report Details" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+                <TextBlock x:Name="ApplicationTitle" Text="DOBBERMAN" Style="{StaticResource PhoneTextNormalStyle}"/>
+                <TextBlock x:Name="PageTitle" Text="report details" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
             </StackPanel>
 
             <!--ContentPanel - place additional content here-->
 
             <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" DataContext="{Binding}">
                 <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel >
+                            <TextBlock Height="62" HorizontalAlignment="Left"   Text="Authority" VerticalAlignment="Top" FontSize="35"/>
+                            <TextBlock  Margin="25,0,12,0"  HorizontalAlignment="Left" Text="{Binding Authority.Name}" VerticalAlignment="Top" TextWrapping="Wrap" Width="243" FontSize="30" Foreground="{Binding Mood, Converter={StaticResource BorderBrushConverter}}"/>
+                        </StackPanel>
+                        <Border BorderBrush="{Binding Mood, Converter={StaticResource BorderBrushConverter}}" BorderThickness="5" >
+                            <Image  Source="http://dobberman.blob.core.windows.net/logos/bezeqint.jpg" Height="100" Width="100" Stretch="Fill" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                        </Border>
+                    </StackPanel>                    
+                    <StackPanel>                        
+                        <TextBlock  Height="62" HorizontalAlignment="Left"   Text="Date"   FontSize="35" />
+                        <TextBlock  Margin="25,0,12,0" HorizontalAlignment="left"  Text="{Binding Date}"  Width="300" FontSize="30" Foreground="{Binding Mood, Converter={StaticResource BorderBrushConverter}}"/>
+                    </StackPanel>                        
                     <StackPanel>
-                        <TextBlock Height="62" HorizontalAlignment="Left"   Text="Authority" VerticalAlignment="Top" Width="224" FontSize="50" />
-                        <TextBlock  Height="55" HorizontalAlignment="Center"   Text="{Binding Authority.Name}" VerticalAlignment="Top" Width="243" FontSize="30" />
+                        <TextBlock Height="62" HorizontalAlignment="Left"   Text="Mood" VerticalAlignment="Top" FontSize="35" />
+                        <TextBlock  Margin="25,0,12,0" HorizontalAlignment="Left"  x:Name="MoodText" Text="" VerticalAlignment="Top" Width="243" FontSize="30" Foreground="{Binding Mood, Converter={StaticResource BorderBrushConverter}}" />
                     </StackPanel>
                     <StackPanel>
-                        <TextBlock Height="62" HorizontalAlignment="Left"   Text="Date"  Width="224" FontSize="50" />
-                        <TextBlock  Height="61" HorizontalAlignment="Center"  Text="{Binding Date}"  Width="327" FontSize="30" />
-                    </StackPanel>   
-                    <StackPanel>
-                        <TextBlock FontSize="50" Height="61" HorizontalAlignment="Left"  Text="Mood" VerticalAlignment="Top" Width="154" />
-                        <TextBlock  Height="72" HorizontalAlignment="Center"  x:Name="MoodText" Text="" VerticalAlignment="Top" Width="243" FontSize="50" Foreground="{Binding Mood, Converter={StaticResource BorderBrushConverter}}" />
+                        <TextBlock Height="62" HorizontalAlignment="Left"   Text="Location" VerticalAlignment="Top" FontSize="35" />
+                        <TextBlock  Margin="25,0,12,0" Height="auto" HorizontalAlignment="Left" Text="" Width="333" FontSize="30" x:Name="LocationBox" Foreground="{Binding Mood, Converter={StaticResource BorderBrushConverter}}" TextWrapping="Wrap"/>
                     </StackPanel>
-                    <StackPanel Height="auto">
-                        <TextBlock Height="74" FontSize="50" HorizontalAlignment="Left"  Text="Location" VerticalAlignment="Top" Width="195" />
-                        <TextBlock Height="auto" HorizontalAlignment="Center" Text="" Width="333" FontSize="30" x:Name="LocationBox"/>
-                    </StackPanel>
-                    <StackPanel Height="auto" >
-                        <TextBlock Height="74" FontSize="50" HorizontalAlignment="Left"  Text="Comment" VerticalAlignment="Top" Width="auto" />
-                        <TextBlock Height="auto" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Description}" />
+                    <StackPanel >
+                        <TextBlock Height="62" HorizontalAlignment="Left"   Text="Description" VerticalAlignment="Top" FontSize="35" />
+                        <TextBlock  Margin="25,0,12,0"  HorizontalAlignment="Left"   Text="{Binding Description}" VerticalAlignment="Top" Width="400" FontSize="30" Foreground="{Binding Mood, Converter={StaticResource BorderBrushConverter}}" TextWrapping="Wrap"/>
                     </StackPanel>
                     <StackPanel>
                         <TextBlock x:Name="PhotoHeader" FontSize="50" Height="86" HorizontalAlignment="Left" Text="Picture Attached" VerticalAlignment="Top" Width="403" Visibility="Collapsed" />
