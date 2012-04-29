@@ -33,6 +33,7 @@
     <Property Name="CategoryId" Type="int" Nullable="false" />
     <Property Name="Score" Type="float" Nullable="false" DefaultValue="0.5" />
     <Property Name="AccumulatedScore" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="Logo" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="Reports">
     <Key>
@@ -46,6 +47,7 @@
     <Property Name="Photo" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Location" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Mood" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FacebookLink" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -134,6 +136,7 @@
           <Property Type="Double" Name="Score" Nullable="false" DefaultValue="0.5" />
           <Property Type="Int32" Name="AccumulatedScore" Nullable="false" DefaultValue="0" />
           <NavigationProperty Name="Category" Relationship="DobbermanModel.FK_CategoryEntityAuthorityEntity" FromRole="Authorities" ToRole="Categories" />
+          <Property Type="String" Name="Logo" Nullable="true" />
         </EntityType>
         <EntityType Name="ReportEntity">
           <Key>
@@ -149,6 +152,7 @@
           <Property Type="String" Name="Photo" Nullable="true" />
           <Property Type="String" Name="Location" Nullable="true" />
           <Property Type="String" Name="Mood" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Type="String" Name="FacebookLink" Nullable="true" />
         </EntityType>
         <EntityType Name="UserEntity">
           <Key>
@@ -220,6 +224,7 @@
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
           <ScalarProperty Name="Score" ColumnName="Score" />
           <ScalarProperty Name="AccumulatedScore" ColumnName="AccumulatedScore" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -234,6 +239,7 @@
           <ScalarProperty Name="Photo" ColumnName="Photo" />
           <ScalarProperty Name="Location" ColumnName="Location" />
           <ScalarProperty Name="Mood" ColumnName="Mood" />
+          <ScalarProperty Name="FacebookLink" ColumnName="FacebookLink" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -276,12 +282,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="DobbermanModel" >
-        <EntityTypeShape EntityType="DobbermanModel.AuthorityEntity" Width="1.5" PointX="6.375" PointY="3.375" Height="2.5571907552083326" />
-        <EntityTypeShape EntityType="DobbermanModel.ReportEntity" Width="1.5" PointX="3.375" PointY="3" Height="2.9417936197916656" />
+        <EntityTypeShape EntityType="DobbermanModel.AuthorityEntity" Width="1.5" PointX="6.375" PointY="3.375" Height="2.7494921874999996" />
+        <EntityTypeShape EntityType="DobbermanModel.ReportEntity" Width="1.5" PointX="3.375" PointY="3" Height="3.1340950520833326" />
         <EntityTypeShape EntityType="DobbermanModel.UserEntity" Width="1.5" PointX="0.5" PointY="3.375" Height="1.7879850260416674" />
         <AssociationConnector Association="DobbermanModel.FK_AuthorityEntityReportEntity" >
-          <ConnectorPoint PointX="6.375" PointY="4.6535953776041659" />
-          <ConnectorPoint PointX="4.875" PointY="4.6535953776041659" />
+          <ConnectorPoint PointX="6.375" PointY="4.74974609375" />
+          <ConnectorPoint PointX="4.875" PointY="4.74974609375" />
         </AssociationConnector>
         <AssociationConnector Association="DobbermanModel.FK_ReportEntityUserEntity" >
           <ConnectorPoint PointX="2" PointY="4.2689925130208337" />

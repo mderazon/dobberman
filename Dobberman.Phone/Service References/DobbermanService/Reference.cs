@@ -28,7 +28,9 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
         
         private string DescriptionField;
         
-        private string LocationField;//change togeolocation???
+        private string FacebookLinkField;
+        
+        private string LocationField;
         
         private string MoodField;
         
@@ -88,6 +90,19 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
                 if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
                     this.DescriptionField = value;
                     this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FacebookLink {
+            get {
+                return this.FacebookLinkField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FacebookLinkField, value) != true)) {
+                    this.FacebookLinkField = value;
+                    this.RaisePropertyChanged("FacebookLink");
                 }
             }
         }
@@ -193,6 +208,8 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
         
         private string FacebookPageField;
         
+        private string LogoField;
+        
         private string NameField;
         
         private System.Collections.ObjectModel.ObservableCollection<TAUP2C.Dobberman.Phone.DobbermanService.Report> ReportsField;
@@ -247,6 +264,19 @@ namespace TAUP2C.Dobberman.Phone.DobbermanService {
                 if ((object.ReferenceEquals(this.FacebookPageField, value) != true)) {
                     this.FacebookPageField = value;
                     this.RaisePropertyChanged("FacebookPage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Logo {
+            get {
+                return this.LogoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LogoField, value) != true)) {
+                    this.LogoField = value;
+                    this.RaisePropertyChanged("Logo");
                 }
             }
         }

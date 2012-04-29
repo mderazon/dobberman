@@ -40,9 +40,9 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <controls:Pivot Title="Dobberman" Grid.ColumnSpan="3" LoadingPivotItem="OnLoadingPivotItem">
+        <controls:Pivot Title="DOBBERMAN" Grid.ColumnSpan="3" LoadingPivotItem="OnLoadingPivotItem">
             <!--Pivot item one-->
-            <controls:PivotItem Header="Reports">
+            <controls:PivotItem Header="my reports">
                 <!--<Grid>
                     <ListBox Name="ReportList" Margin="0,0,0,0">
                         <ListBox.ItemTemplate>
@@ -75,7 +75,7 @@
             </controls:PivotItem>
 
             <!--Pivot item two-->
-            <controls:PivotItem Header="Statistics">
+            <controls:PivotItem Header="statistics">
                 <!--<Grid>
                     <ListBox Name="StatisticsList" Margin="0,0,0,0" >
                         <ListBox.ItemTemplate>
@@ -114,7 +114,7 @@
                 </Grid>-->
             </controls:PivotItem>
             <!--Pivot item three-->
-            <controls:PivotItem Header="Reports Around">
+            <controls:PivotItem Header="reports around">
                 <!--<Grid>
                     <Grid x:Name="ContentPanel"
               Grid.Row="1" Margin="0,0,0,90">
@@ -239,10 +239,10 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton x:Name="AddReport" IconUri="/Images/appbar.add.rest.png" Text="add report" Click="AddReport_Click"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar.logout.rest.png" Text="log out" Click="OnLogout" />
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.logout.rest.png" Text="log out" />
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
+                <!--<shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>-->
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

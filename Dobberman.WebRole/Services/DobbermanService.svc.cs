@@ -270,6 +270,7 @@ namespace TAUP2C.Dobberman.WebRole.Services
                 Mood = reportEntity.Mood,
                 Photo = reportEntity.Photo,
                 Location = reportEntity.Location,
+                FacebookLink = reportEntity.FacebookLink,
                 UserId = reportEntity.UserId,
                 AuthorityId = reportEntity.AuthorityId,
                 User = TranslateUserEntityToUser(reportEntity.User),
@@ -287,6 +288,7 @@ namespace TAUP2C.Dobberman.WebRole.Services
                 Name = authorityEntity.Name,
                 FacebookPage = authorityEntity.FacebookPage,
                 Score = authorityEntity.Score,
+                Logo = authorityEntity.Logo,
                 CategoryId = authorityEntity.CategoryId,                
                 Category = TranslateCategoryEntityToCategory(authorityEntity.Category),                
             };

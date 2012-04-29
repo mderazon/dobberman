@@ -12,6 +12,7 @@
       <xs:element minOccurs="0" name="AuthorityId" type="xs:int" />
       <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FacebookLink" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Mood" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Photo" nillable="true" type="xs:string" />
@@ -27,6 +28,7 @@
       <xs:element minOccurs="0" name="Category" nillable="true" type="tns:Category" />
       <xs:element minOccurs="0" name="CategoryId" type="xs:int" />
       <xs:element minOccurs="0" name="FacebookPage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Logo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Reports" nillable="true" type="tns:ArrayOfReport" />
       <xs:element minOccurs="0" name="Score" type="xs:double" />

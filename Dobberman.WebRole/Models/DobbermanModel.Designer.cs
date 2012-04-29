@@ -355,6 +355,30 @@ namespace TAUP2C.Dobberman.WebRole.Models
         private global::System.Int32 _AccumulatedScore = 0;
         partial void OnAccumulatedScoreChanging(global::System.Int32 value);
         partial void OnAccumulatedScoreChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Logo
+        {
+            get
+            {
+                return _Logo;
+            }
+            set
+            {
+                OnLogoChanging(value);
+                ReportPropertyChanging("Logo");
+                _Logo = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Logo");
+                OnLogoChanged();
+            }
+        }
+        private global::System.String _Logo;
+        partial void OnLogoChanging(global::System.String value);
+        partial void OnLogoChanged();
 
         #endregion
     
@@ -805,6 +829,30 @@ namespace TAUP2C.Dobberman.WebRole.Models
         private global::System.String _Mood;
         partial void OnMoodChanging(global::System.String value);
         partial void OnMoodChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String FacebookLink
+        {
+            get
+            {
+                return _FacebookLink;
+            }
+            set
+            {
+                OnFacebookLinkChanging(value);
+                ReportPropertyChanging("FacebookLink");
+                _FacebookLink = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("FacebookLink");
+                OnFacebookLinkChanged();
+            }
+        }
+        private global::System.String _FacebookLink;
+        partial void OnFacebookLinkChanging(global::System.String value);
+        partial void OnFacebookLinkChanged();
 
         #endregion
     

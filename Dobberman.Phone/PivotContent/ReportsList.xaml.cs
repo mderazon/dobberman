@@ -25,15 +25,14 @@ namespace TAUP2C.Dobberman.Phone.PivotContent
         public ReportsList()
         {
             InitializeComponent();
+            loading.Visibility = Visibility.Visible;
             client.GetReportsByUserIdCompleted += new EventHandler<GetReportsByUserIdCompletedEventArgs>(client_FindReportCompleted);
             client.GetReportsByUserIdAsync(States.userId);
         }
 
         void client_FindReportCompleted(object sender, GetReportsByUserIdCompletedEventArgs e)
         {
-
-
-
+            loading.Visibility = Visibility.Collapsed;
             ReportList.ItemsSource = e.Result;
 
         }

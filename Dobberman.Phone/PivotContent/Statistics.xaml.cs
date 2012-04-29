@@ -57,7 +57,7 @@ namespace TAUP2C.Dobberman.Phone.PivotContent
         public Statistics()
         {
             InitializeComponent();
-
+            loading.Visibility = Visibility.Visible;
             client.GetAllCategoriesCompleted += new EventHandler<GetAllCategoriesCompletedEventArgs>(client_GetAllCategoriesCompleted);
             client.GetAllCategoriesAsync();
         }
@@ -67,10 +67,16 @@ namespace TAUP2C.Dobberman.Phone.PivotContent
             client.GetAuthoritiesByCategoryIdCompleted += new EventHandler<GetAuthoritiesByCategoryIdCompletedEventArgs>(client_GetAuthoritiesByCategoryIdCompleted);
             ss.Clear();
             ss = new ObservableCollection<Stats>();
+            int categoryCount = e.Result.Count;
+            int i = 1;
             foreach (Category c in e.Result.Cast<Category>())
             {
-
+                if (i == categoryCount)
+                {
+                    loading.Visibility = Visibility.Collapsed;
+                }
                 client.GetAuthoritiesByCategoryIdAsync(c.CategoryId);
+                i++;
             }
         }
 

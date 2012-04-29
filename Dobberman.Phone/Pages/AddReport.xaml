@@ -22,8 +22,9 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="PageTitle" Text="add report" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+                <TextBlock x:Name="ApplicationTitle" Text="DOBBERMAN" Style="{StaticResource PhoneTextNormalStyle}"/>
+                <TextBlock x:Name="PageTitle" Text="add report" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
         
             <!--ContentPanel - place additional content here-->
@@ -50,11 +51,11 @@
                         <TextBox  TextWrapping="Wrap" Text="Please Decsribe." BorderThickness="20,0,0,0" BorderBrush="#FF47643F" GotFocus="TextBox_GotFocus" x:Name="Decs" Height="auto" />
                     </StackPanel>
                     
-                        <CheckBox Content="Get Location From GPS" Height="67" HorizontalAlignment="Left"  Name="checkbox" VerticalAlignment="Top" Width="316" IsChecked="True" Background="White" Checked="GPScheckbox_Checked"></CheckBox>
+                        <CheckBox Content="Get Location From GPS" Height="67" HorizontalAlignment="Left"  Name="checkbox" VerticalAlignment="Top" Width="316" IsChecked="False" Background="White" Checked="GPScheckbox_Checked"></CheckBox>
                         <CheckBox Background="White" BorderBrush="#BFC11414" Content="Post to autority's Facebook page" Height="74" HorizontalAlignment="Left" IsChecked="True"  Name="checkBox2" VerticalAlignment="Top" Width="421" />
                     
                     <StackPanel  Margin="0,0,0,10">
-                        <Image Height="auto" x:Name="ReportImage" HorizontalAlignment="Center" Visibility="Collapsed" Stretch="Fill" VerticalAlignment="Top" Width="auto" />
+                        <Image Height="189" Width="304" x:Name="ReportImage" HorizontalAlignment="Center" Visibility="Collapsed" Stretch="Fill" VerticalAlignment="Top" />
                     </StackPanel>
                     
                 </StackPanel>

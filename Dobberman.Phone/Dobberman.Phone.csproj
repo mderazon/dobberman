@@ -128,9 +128,6 @@
     <Compile Include="Pages\AddReport.xaml.cs">
       <DependentUpon>AddReport.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ReportMappingPage.xaml.cs">
-      <DependentUpon>ReportMappingPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PivotContent\ReportsList.xaml.cs">
       <DependentUpon>ReportsList.xaml</DependentUpon>
     </Compile>
@@ -180,10 +177,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AddReport.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Pages\ReportMappingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

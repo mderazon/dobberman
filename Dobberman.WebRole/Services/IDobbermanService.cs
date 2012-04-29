@@ -80,6 +80,8 @@ namespace TAUP2C.Dobberman.WebRole.Services
         public int UserId { get; set; }
         [DataMember]
         public User User { get; set; }
+        [DataMember(IsRequired = false)]
+        public string FacebookLink { get; set; }
         [DataMember]
         public int AuthorityId { get; set; }
         [DataMember]
@@ -103,6 +105,8 @@ namespace TAUP2C.Dobberman.WebRole.Services
         public Category Category { get; set; }
         [DataMember(IsRequired = false)]
         public double Score { get; set; }
+        [DataMember(IsRequired = false)]
+        public string Logo { get; set; }
 
     }
 

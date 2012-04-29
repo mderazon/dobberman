@@ -36,7 +36,7 @@
                             <TextBlock  Margin="25,0,12,0"  HorizontalAlignment="Left" Text="{Binding Authority.Name}" VerticalAlignment="Top" TextWrapping="Wrap" Width="243" FontSize="30" Foreground="{Binding Mood, Converter={StaticResource BorderBrushConverter}}"/>
                         </StackPanel>
                         <Border BorderBrush="{Binding Mood, Converter={StaticResource BorderBrushConverter}}" BorderThickness="5" >
-                            <Image  Source="http://dobberman.blob.core.windows.net/logos/bezeqint.jpg" Height="100" Width="100" Stretch="Fill" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                            <Image  Source="{Binding Authority.Logo}" Height="100" Width="100" Stretch="Fill" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                         </Border>
                     </StackPanel>                    
                     <StackPanel>                        
@@ -61,10 +61,6 @@
                     </StackPanel>
                 </StackPanel>
 
-                
-                
-                
-                
             </Grid>
             
         </Grid>
