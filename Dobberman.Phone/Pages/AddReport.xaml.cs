@@ -22,6 +22,9 @@ using TAUP2C.Dobberman.Phone.Google_Maps;
 using System.Device.Location;
 using Microsoft.Samples.WindowsPhoneCloud.StorageClient;
 using Microsoft.Samples.WindowsPhoneCloud.StorageClient.Credentials;
+using System.IO.IsolatedStorage;
+using System.IO;
+using ExifLib;
 
 namespace TAUP2C.Dobberman.Phone.Pages
 {
@@ -78,10 +81,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
 
         }
-
-
-       
-
+         
         void client_GetAllAuthoritiesCompleted(object sender, GetAllAuthoritiesCompletedEventArgs e)
         {
             List<string> AutList = new List<string>();
@@ -100,7 +100,7 @@ namespace TAUP2C.Dobberman.Phone.Pages
                 autoCompleteBox1.Text = "";
             }
         }
-
+        #region mood buttons
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             if (Decs.Text == "Please Decsribe.")
@@ -122,7 +122,6 @@ namespace TAUP2C.Dobberman.Phone.Pages
             (sender as Button).Opacity = 1;
             LastMoodCheck = "positive";
         }
-
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             if (this.button1.Opacity == 1)
@@ -137,7 +136,6 @@ namespace TAUP2C.Dobberman.Phone.Pages
             (sender as Button).Opacity = 1;
             LastMoodCheck = "negative";
         }
-
         private void button3_Click(object sender, RoutedEventArgs e)
         {
             if (this.button1.Opacity == 1)
@@ -152,8 +150,58 @@ namespace TAUP2C.Dobberman.Phone.Pages
             (sender as Button).Opacity = 1;
             LastMoodCheck = "concerned";
         }
+        #endregion
 
-        private void PostToWall(Report r)
+        private void SendReportClick(object sender, EventArgs e)
+        {
+            this.UploadingBar.Visibility = Visibility.Visible;
+            bool match = false;
+
+            foreach (Authority a in AuthorityList)
+            {
+                if (autoCompleteBox1.Text == a.Name)
+                {
+                    match = true;
+                    newReport.Authority = a;
+                    newReport.AuthorityId = a.AuthorityId;
+                }
+            }
+
+            if (match == false)
+            {
+                MessageBox.Show("Authority Not Recognized");
+                goto reportEnd;
+
+            }
+
+            newReport.Description = this.Decs.Text;
+            if (this.checkbox.IsChecked == true)
+                newReport.Location = location;
+            else
+                newReport.Location = "";
+            if (LastMoodCheck == "")
+            {
+                MessageBox.Show("Please select report mood");
+                goto reportEnd;
+            }
+            newReport.Date = System.DateTime.Now;
+            newReport.Mood = LastMoodCheck;
+            newReport.UserId = States.userId;
+
+
+            if (ChosenPhoto == null)
+            {                
+                PostToServer();
+            }
+            else
+            {
+                UploadToBlobContainer(ChosenPhoto);
+            }
+        reportEnd:
+            return;
+        }
+
+        private void PostToWall()
         {
             var fb = new FacebookClient(States.accessToken);
 
@@ -190,88 +238,43 @@ namespace TAUP2C.Dobberman.Phone.Pages
                     Dispatcher.BeginInvoke(() =>
                     {
                         MessageBox.Show("Report posted to facebook succesfully");
+                        this.NavigationService.Navigate(new Uri("/Pages/MainPage.xaml", UriKind.RelativeOrAbsolute));
+                       
                     });
                 }
             };
 
             var parameters = new Dictionary<string, object>
                {
-                    { "message", "I have just posted a " + r.Mood + " report about " + r.Authority.Name +"!" },
+                    { "message", "I have just posted a " + newReport.Mood + " report about " + newReport.Authority.Name +"!" },
                     { "link", newReport.Photo },
                     { "picture", newReport.Photo },
                     { "name", "This is what I have to say:" },
                     { "caption", "Posted with Dobberman App" },
-                    { "description", r.Description },            
+                    { "description", newReport.Description },            
                 };
-            fb.PostAsync(r.Authority.FacebookPage + "/feed", parameters);
+            fb.PostAsync(newReport.Authority.FacebookPage + "/feed", parameters);
             
         }
 
-        private void SendReportClick(object sender, EventArgs e)
-        {
-            bool match = false;
-
-            foreach (Authority a in AuthorityList)
-            {
-                if (autoCompleteBox1.Text == a.Name)
-                {
-                    match = true;
-                    newReport.Authority = a;
-                    newReport.AuthorityId = a.AuthorityId;
-                }
-            }
-
-            if (match == false)
-            {
-                MessageBox.Show("Authority Not Recognized");
-                goto reportEnd;
-
-            }
-
-            newReport.Description = this.Decs.Text;
-            if (this.checkbox.IsChecked == true)
-                newReport.Location = location;
-            else
-                newReport.Location = "";
-            if (LastMoodCheck == "")
-            {
-                MessageBox.Show("Please select report mood");
-                goto reportEnd;
-            }
-            newReport.Date = System.DateTime.Now;
-            newReport.Mood = LastMoodCheck;
-            newReport.UserId = States.userId;
-            
-
-            if (ChosenPhoto == null)
-            {
-                if (checkBox2.IsChecked == true)
-                {
-                    PostToWall(newReport);
-                }
-                PostToServer(newReport);
-            }
-            else
-            {
-                UploadToBlobContainer(ChosenPhoto);
-            }
-            reportEnd:
-            return;
-       }
-
-        private void PostToServer(Report r)
+        private void PostToServer()
         {
 
             DobbermanServiceClient client = new DobbermanServiceClient();
             client.CreateNewReportCompleted += new EventHandler<CreateNewReportCompletedEventArgs>(client_CreateNewReportCompletedE);
-            client.CreateNewReportAsync(r);
+            client.CreateNewReportAsync(newReport);
 
 
         }
 
         void client_CreateNewReportCompletedE(object sender, CreateNewReportCompletedEventArgs e)
         {
-            MessageBox.Show("Report Sent Succesfulluy");
+            
+            if (checkBox2.IsChecked == true)
+            {
+                PostToWall();
+                MessageBox.Show("Report Sent Succesfully");
+            }
         }
 
        
@@ -318,8 +321,6 @@ namespace TAUP2C.Dobberman.Phone.Pages
         }
 
 
-
-
         private void TakePhotoClick(object sender, EventArgs eventArgs)
         {
             //The camera chooser used to capture a picture.
@@ -336,21 +337,33 @@ namespace TAUP2C.Dobberman.Phone.Pages
 
         }
 
-        /// <summary>
-        /// Event handler for retrieving the JPEG photo stream.
-        /// Also to for decoding JPEG stream into a writeable bitmap and displaying.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         void ctask_Completed(object sender, PhotoResult e)
         {
 
             if (e.TaskResult == TaskResult.OK && e.ChosenPhoto != null)
             {
+                int angle = GetAngleFromExif(e.ChosenPhoto);
+                WriteableBitmap CapturedImage = DecodeImage(e.ChosenPhoto, angle);
+                // Create a file name for the JPEG file in isolated storage.
+                String tempJPEG = "TempJPEG";
 
-                WriteableBitmap CapturedImage = PictureDecoder.DecodeJpeg(e.ChosenPhoto);
-                ChosenPhoto = e.ChosenPhoto;
-                //UploadToBlobContainer(e.ChosenPhoto);
+                // Create a virtual store and file stream. Check for duplicate tempJPEG files.
+                var myStore = IsolatedStorageFile.GetUserStoreForApplication();
+                if (myStore.FileExists(tempJPEG))
+                {
+                    myStore.DeleteFile(tempJPEG);
+                }
+                
+                IsolatedStorageFileStream myFileStream = myStore.CreateFile(tempJPEG);
+
+                //WriteableBitmap CapturedImage = PictureDecoder.DecodeJpeg(e.ChosenPhoto,400,400);
+
+                CapturedImage.SaveJpeg(myFileStream, CapturedImage.PixelWidth, CapturedImage.PixelHeight,0,85);
+                ChosenPhoto = new MemoryStream();
+                myFileStream.Position = 0;
+                myFileStream.CopyTo(ChosenPhoto);
+                myFileStream.Close();
+                //UploadToBlobContainer(ChosenPhoto);
 
                 ReportImage.Source = CapturedImage;
                 ReportImage.Visibility = Visibility.Visible;
@@ -388,16 +401,13 @@ namespace TAUP2C.Dobberman.Phone.Pages
                             response => this.Dispatcher.BeginInvoke(
                             () =>
                             {
+                                stream.Close();
                                 this.IsUploading = false;
 
                                 if (response.Exception == null)
                                 {
                                     newReport.Photo = blob.Uri.ToString();
-                                    if (checkBox2.IsChecked == true)
-                                    {
-                                        PostToWall(newReport);
-                                    }
-                                    PostToServer(newReport);
+                                    PostToServer();
                                 }
                                 else
                                 {
@@ -412,5 +422,76 @@ namespace TAUP2C.Dobberman.Phone.Pages
                 }));
 
         }
-  }
+
+        #region handle camera rotation
+        int GetAngleFromExif(Stream imageStream)
+        {
+            var position = imageStream.Position;
+            imageStream.Position = 0;
+            ExifOrientation orientation = ExifReader.ReadJpeg(imageStream).Orientation;        
+            imageStream.Position = position;
+ 
+            switch (orientation)
+            {
+                case ExifOrientation.TopRight:
+                    return 90;
+                case ExifOrientation.BottomRight:
+                    return 180;
+                case ExifOrientation.BottomLeft:
+                    return 270;
+                case ExifOrientation.TopLeft:
+                case ExifOrientation.Undefined:
+                default:
+                    return 0;
+            }
+        }
+        private WriteableBitmap RotateBitmap(WriteableBitmap source, int width, int height, int angle)
+        {
+            var target = new WriteableBitmap(width, height); 
+            int sourceIndex = 0;
+            int targetIndex = 0;
+            for (int x = 0; x < source.PixelWidth; x++)
+            {
+                for (int y = 0; y < source.PixelHeight; y++)
+                {
+                    sourceIndex = x + y * source.PixelWidth;
+                    switch (angle) 
+                    {
+                        case 90:
+                            targetIndex = (source.PixelHeight - y - 1) 
+                                + x * target.PixelWidth;
+                            break;
+                        case 180:  
+                            targetIndex = (source.PixelWidth - x - 1) 
+                                + (source.PixelHeight - y - 1) * source.PixelWidth;
+                            break;
+                        case 270:  
+                            targetIndex = y + (source.PixelWidth - x - 1) 
+                                * target.PixelWidth;
+                            break;
+                    }
+                    target.Pixels[targetIndex] = source.Pixels[sourceIndex]; 
+                }
+            }
+            return target;
+        }
+        private WriteableBitmap DecodeImage(Stream imageStream, int angle)
+        {
+            WriteableBitmap source = PictureDecoder.DecodeJpeg(imageStream, 400, 400); 
+ 
+            switch(angle)
+            {
+                case 90: 
+                case 270: 
+                    return RotateBitmap(source, source.PixelHeight, 
+                        source.PixelWidth, angle);                 
+                case 180: 
+                    return RotateBitmap(source, source.PixelHeight, 
+                        source.PixelWidth, angle);
+                default:
+                    return source;  
+            }
+        }
+        #endregion
+    }
 }

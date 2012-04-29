@@ -128,9 +128,6 @@
     <Compile Include="Pages\AddReport.xaml.cs">
       <DependentUpon>AddReport.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\camera.xaml.cs">
-      <DependentUpon>camera.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\ReportMappingPage.xaml.cs">
       <DependentUpon>ReportMappingPage.xaml</DependentUpon>
     </Compile>
@@ -161,10 +158,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="Pages\camera.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -306,6 +299,10 @@
     <ProjectReference Include="..\Data.Services.Client\Microsoft.Samples.Data.Services.Client.csproj">
       <Project>{4FE8D3CE-A4D7-426A-9D51-E22DC4D470A9}</Project>
       <Name>Microsoft.Samples.Data.Services.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExifLib\ExifLib.csproj">
+      <Project>{B1995423-880A-4E79-AF69-D075CAD1DA75}</Project>
+      <Name>ExifLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\WindowsPhoneCloud.StorageClient\WindowsPhoneCloud.StorageClient.csproj">
       <Project>{B07FCEC6-A640-49CF-A8B0-28C3CABC3F4E}</Project>

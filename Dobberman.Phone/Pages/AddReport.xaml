@@ -58,13 +58,10 @@
                     </StackPanel>
                     
                 </StackPanel>
-                
-
-
-            </Grid>
-            <StackPanel Grid.Row="1" Margin="12,0,12,0" Orientation="Vertical" VerticalAlignment="Bottom">
-                <TextBlock Margin="15,2,0,0" Height="auto" TextWrapping="Wrap" Text="Uploading..." HorizontalAlignment="Left" Visibility="{Binding IsUploading, Converter={StaticResource VisibilityConverter}}" />
-                <ProgressBar Height="20" IsIndeterminate="True" Visibility="{Binding IsUploading, Converter={StaticResource VisibilityConverter}}" />
+        </Grid>
+            <StackPanel Name="UploadingBar" Grid.Row="1" Margin="12,0,12,0" Orientation="Vertical" VerticalAlignment="Bottom" Visibility="Collapsed">
+                <TextBlock Margin="15,2,0,0" Height="auto" TextWrapping="Wrap" Text="Uploading..." HorizontalAlignment="Left" />
+                <ProgressBar Height="20" IsIndeterminate="True"  />
             </StackPanel>
         </Grid>
     </ScrollViewer>
