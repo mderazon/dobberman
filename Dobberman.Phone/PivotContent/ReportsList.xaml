@@ -26,7 +26,7 @@
                         <Button Click="Button_Click"  Width="540" Height="200" BorderThickness="15,0,0,0" BorderBrush="{Binding Mood, Converter={StaticResource BorderBrushConverter}}">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal" Height="160" Width="540">
-                                    <Image Margin="12,0,12,0" Source="http://dobberman.blob.core.windows.net/logos/bezeqint.jpg" Height="80" Width="80" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                                    
                                     <StackPanel Orientation="Vertical" Height="160">
                                         <StackPanel Orientation="Horizontal" Height="40">
 
