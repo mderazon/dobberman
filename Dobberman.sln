@@ -16,6 +16,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dobberman.WebRole", "Dobber
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExifLib", "ExifLib\ExifLib.csproj", "{B1995423-880A-4E79-AF69-D075CAD1DA75}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A566C759-090B-494F-AD64-58771845A720}"
+	ProjectSection(SolutionItems) = preProject
+		..\Users\michael\Desktop\README.md = ..\Users\michael\Desktop\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
